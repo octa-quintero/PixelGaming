@@ -1,0 +1,36 @@
+@import "./variables.modules";
+
+
+body {
+    width: 100%;
+    height: 100%;
+    color: #1f1f1f;
+    background-color: $dark;
+    box-sizing: border-box;
+}
+
+li {
+    color: $dark;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a,
+a:link,
+a:hover,
+a:visited,
+a:active {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+ul {
+    list-style-type: none;
+}

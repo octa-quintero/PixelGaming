@@ -1,0 +1,30 @@
+@import "../../variables.modules.scss";
+
+footer {
+  color: $dark;
+}
+
+.dark {
+  background-color: $dark;
+  color: $white;
+  transition: all 400ms;
+
+  a, i, li {
+    color: $white;
+    transition: color 400ms;
+  }
+
+  a:visited {
+    color: $white;
+  }
+
+  footer {
+    color: $white;
+  }
+}
+
+.light {
+  background-color: $dark;
+  color: $dark;
+  transition: all 400ms;
+}

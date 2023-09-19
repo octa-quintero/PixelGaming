@@ -1,0 +1,79 @@
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBars,
+  faLayerGroup,
+  faUser,
+  faCrown,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
+import logo from "../../assets/logo/logoPixelGaming1.png";
+import style from "./navBarStyle.module.css";
+
+function NavBar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <div className={style.navbarContainer}>
+      <div className={style.navbar}>
+        <NavLink to="/home" className={style.logo}>
+          <div className={style.logo}>
+            <img className={style.logo1} src={logo} alt="logo" />
+          </div>
+        </NavLink>
+        <div className={style.links}>
+          <NavLink to="/home" className={style.btn}>
+              <h1>Home</h1>
+          </NavLink>
+          <NavLink to="/activitySearch" className={style.btn}>
+              <h1>Juegos</h1>
+          </NavLink>
+          <NavLink to="/" className={style.btn}>
+              <h1>Contacto</h1>
+          </NavLink>
+          <NavLink to="/activity" className={style.btn}>
+              <h1>Biblioteca</h1>
+          </NavLink>
+          <NavLink to="/activity" className={style.btnTOP}>
+              <h1>Top 2023 <FontAwesomeIcon className={style.nameIcon} icon={faCrown} /></h1>
+          </NavLink>
+        </div>
+          <div className={style.registro}>
+            <NavLink to="/biblioteca" className={style.btnUser}>
+              <p><FontAwesomeIcon icon={faLayerGroup}/></p>
+            </NavLink>
+            <NavLink to="/hola" className={style.btnUser}>
+              <p><FontAwesomeIcon icon={faUser} /></p>
+            </NavLink>
+            <NavLink to="/activity" className={style.btnRegistro}>
+              <h1>Acceso Gratuito</h1>
+            </NavLink>
+          </div>
+        <div className={style.toggleBtn} onClick={toggleMenu}>
+          <FontAwesomeIcon icon={isOpen ? faTimes : faBars} />
+        </div>
+      </div>
+      {isOpen && (
+        <div className={style.dropdownMenu}>
+          <ul>
+            <li><NavLink exact to="/">Home</NavLink></li>
+            <li><NavLink to="/paises">Juegos</NavLink></li>
+            <li><NavLink to="/actividades">Contacto</NavLink></li>
+            <li><NavLink to="/actividades">Biblioteca</NavLink></li>
+            <li><NavLink to="/activity" className={style.btnTOPDrop}><h1>Top 2023</h1></NavLink></li>
+            <li><NavLink to="/activity" className={style.btnRegistroDrop}><p>Acceso Gratuito</p>
+            </NavLink></li>
+          </ul>
+        </div>
+      )}
+      <div className={style.lineDivisor}></div>
+    </div>
+  );
+}
+
+export default NavBar;

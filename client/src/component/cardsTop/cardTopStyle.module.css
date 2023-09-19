@@ -1,0 +1,139 @@
+.cardsTopContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  margin-top: 2rem;
+  }
+
+.cards{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.nameIcon{
+  color: #ffe600;
+}
+
+.text{
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 80%;
+  font-size: 2vw;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 400;
+  color: rgb(202, 202, 202);
+  padding: 5px;
+  gap: 5px;
+  margin: 10px;
+}
+
+.cardContent{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  gap: 30px;
+}
+
+.cardContent1{
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  border-radius: 5px;
+  top: 0;
+  height: auto;
+  flex-direction: column;
+  background-color: #2a2a2abb;;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.cardContent1:hover{
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.8);
+  transform: scale(1.05);
+}
+
+.cardImage{
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  object-fit: cover;
+  transition: 1s;
+}
+
+.cardImage:hover {
+  filter: contrast(1.2); /* Aumenta el contraste al 120% */
+}
+
+.title{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 5rem;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+.cardTitle{
+  font-size: 1.5rem;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 400;
+  color: rgb(202, 202, 202);
+}
+
+.cardBtn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  font-family: 'Ubuntu', sans-serif;
+  border-radius: 3px;
+  background-color: #2464ad;
+  width: 80px;
+  height: 30px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.cardBtn:hover{
+  background-color: #0475f6;
+}
+
+  /* MEDIA *//* MEDIA *//* MEDIA *//* MEDIA */
+  
+  @media (max-width: 1200px) {
+  }
+  
+  @media (max-width: 576px){
+    .title{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 0rem;
+      padding: 20px;
+      width: 100%;
+      height: auto;
+    }
+    .cardTitle{
+      font-size: 1rem;
+    }
+    .text{
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+  }
