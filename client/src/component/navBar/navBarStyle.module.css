@@ -1,16 +1,14 @@
 .navbarContainer{
   display: flex;
-  z-index: 2;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  width: auto;
+  z-index: 2;
   position: relative;
-  height: 0px;
   padding: 0 0rem;
-  height: 100%;
   top: 0px;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 1);
-  box-shadow: 5px 0px 10px rgba(0, 0, 0, 1);
+  height: auto;
 }
 
 
@@ -20,7 +18,6 @@
   text-decoration: none;
   justify-content: space-between;
   margin: 0 auto;
-  height: 100px;
   width: 90%;
 } 
 
@@ -28,10 +25,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
-  width: 100%;
+  flex-direction: row;  
   margin: 20px;
-  gap: 4rem;
+  gap: 2.7rem;
 }
 
 .btnTOP h1 {
@@ -51,6 +47,10 @@
   font-size: 18px;
   text-shadow: 0 0 14px rgba(255, 255, 255, 1);
   transition: 0.2s;
+}
+
+.btn .IconHeart:hover{
+  color: hsl(302, 100%, 50%);
 }
 
 .nameIcon{
@@ -80,16 +80,8 @@
   background-color: transparent;
 }
 
-.logo {
-  display: flex;
-  justify-content: center;
-  max-width: 100%;
-  align-items: center;
-}
-
 .logo1{
-  width: 300px;
-  max-width: 100%;
+  width: 250px;
   transition: 0.2s;
 }
 
@@ -158,11 +150,12 @@
 .dropdownMenu{
   font-family: 'Ubuntu', sans-serif;
   font-weight: bold;
+  font-size: 2rem;
   display: none;
   position: absolute;
   right: 2rem;
-  top: 107px;
-  width: 300px;
+  top: 90px;
+  width: 30%;
   background-color: rgba(0, 0, 0, 0.636);
   border-radius: 10px;
   overflow: hidden;
@@ -170,14 +163,15 @@
 }
 
 .dropdownMenu li{
-  display: flex;
   padding: 0.7rem;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .dropdownMenu.open{
-  height: 24px;
+  z-index: 0;
+  height: 240px;
 }
 
 .btnRegistroDrop{
@@ -196,6 +190,7 @@
 
 .lineDivisor{
   width: 100%;
+  bottom: 0;
   height: 6px;
   position: relative;
   background: linear-gradient(to right, #5ddcff, #4e00c2, #7c3af6,#8e17c1, #3c67e3 43%,#ff02f7,#5ddcff, #5ddcff, #4e00c2, #5ddcff);
@@ -235,10 +230,6 @@
     .navbar .btnRegistro {
       display: none;
     }
-  
-    .logo1{
-      width: 150px;
-    }
     
   .navbar .toggleBtn {
     display: block;
@@ -251,7 +242,7 @@
   
   }
   
-  @media (max-width: 576px){
+  @media (max-width: 1000px){
     .dropdownMenu{
       left: 2rem;
       width: unset;

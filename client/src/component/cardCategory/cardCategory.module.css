@@ -1,0 +1,150 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  margin: 2rem;
+}
+
+.text h1{
+  font-size: 28px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 400;
+  color: rgb(202, 202, 202);
+  padding: 5px;
+  gap: 5px;
+  margin: 10px;
+}
+
+.cards{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.cardCategory{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+  font-size: 2.5rem;
+  transition: 0.5s;
+}
+
+.terror{
+  font-family: 'Creepster', cursive;
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.terror::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(to top, rgb(183, 22, 22), transparent), url('../../assets/category/strategy.png');
+  background-size: cover;
+  z-index: -1;
+  transition: transform 0.8s ease;
+}
+
+.terror:hover::before {
+  transform: scale(1.3);
+  transition: 5s;
+}
+
+.fight{
+  font-family: 'Nabla', cursive;
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.fight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(to top, rgb(0, 123, 255), transparent), url('../../assets/category/racing.png');
+  background-size: cover;
+  z-index: -1;
+  transition: transform 0.8s ease;
+}
+
+.fight:hover::before {
+  transform: scale(1.3);
+  transition: 5s;
+}
+
+.racing{
+  font-family: 'Racing Sans One', cursive;
+  color: white;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.racing::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(to top, rgb(217, 255, 0), transparent), url('../../assets/category/racing.png');
+  background-size: cover;
+  z-index: -1;
+  transition: transform 0.8s ease;
+}
+
+.racing:hover::before {
+  transform: scale(1.3);
+  transition: 5s;
+}
+
+.strategy {
+  font-family: 'Cairo Play', sans-serif;
+  color: aliceblue;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.strategy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(to top, rgb(22, 183, 22), transparent), url('../../assets/category/strategy.png');
+  background-size: cover;
+  z-index: -1;
+  transition: transform 0.8s ease;
+}
+
+.strategy:hover::before {
+  transform: scale(1.3);
+  transition: 5s;
+}
+
+
+
+
+

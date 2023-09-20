@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTop3Games } from '../../redux/action';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faRobot,
-        faCrown } from '@fortawesome/free-solid-svg-icons'
+import {
+        faCrown,
+        faPaperclip} from '@fortawesome/free-solid-svg-icons';
 import style from './cardTopStyle.module.css';
 
 function CardsTop() {
@@ -24,11 +25,14 @@ function CardsTop() {
 
   return (
     <div className={style.cardsTopContainer}>
+      <div className={style.textInfoCard}>
+          <h1 className={style.textInfo}><FontAwesomeIcon icon={faPaperclip} />{' '}Inicia sesión para acceder a tu Biblioteca. Descubre juegos totalmente gratis!</h1>
+          <h1 className={style.text}><FontAwesomeIcon className={style.crown} icon={faCrown} />{' '}Top recomendados por la comunidad</h1>
+      </div>
       <div className={style.cards}>
-          <h1 className={style.text}><FontAwesomeIcon className={style.nameIcon} icon={faCrown} />{' '}Top recomendados por la comunidad</h1>
         <div className={style.cardContent}>
         {topGames.map((game) => (
-            <div className={style.cardContent1} key={game.id}>
+          <div className={style.cardContent1} key={game.id}>
               <img src={game.thumbnail} alt={game.title} className={style.cardImage}/>
                 <div className={style.title}>
                   <h2 className={style.cardTitle}>{game.title}</h2>

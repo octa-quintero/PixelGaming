@@ -15,41 +15,47 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  flex-wrap: wrap;
-  width: 100%;
+  width: 80%;
+  padding: 10px;
+  transition: 1s;
 }
 
-.nameIcon{
+.crown{
   color: #ffe600;
 }
 
-.text{
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
+.textInfoCard{
   width: 80%;
+}
+
+.text{
   font-size: 2vw;
   font-family: 'Ubuntu', sans-serif;
   font-weight: 400;
   color: rgb(202, 202, 202);
-  padding: 5px;
-  gap: 5px;
-  margin: 10px;
+  padding: 4px;
+}
+
+.textInfo{
+  font-size: 1.1vw;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 100;
+  color: #00a2ff95;
+  padding: 4px;
 }
 
 .cardContent{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
-  width: 80%;
-  gap: 30px;
+  gap: 10px;
 }
 
 .cardContent1{
   display: flex;
+  width: 400px;
   overflow: hidden;
   align-items: center;
   border-radius: 5px;
@@ -115,9 +121,6 @@
 }
 
   /* MEDIA *//* MEDIA *//* MEDIA *//* MEDIA */
-  
-  @media (max-width: 1200px) {
-  }
   
   @media (max-width: 576px){
     .title{

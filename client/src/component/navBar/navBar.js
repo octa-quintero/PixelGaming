@@ -7,6 +7,9 @@ import {
   faUser,
   faCrown,
   faTimes,
+  faGamepad,
+  faHeart,
+  faTowerObservation,
 } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../assets/logo/logoPixelGaming1.png";
 import style from "./navBarStyle.module.css";
@@ -28,16 +31,16 @@ function NavBar() {
         </NavLink>
         <div className={style.links}>
           <NavLink to="/home" className={style.btn}>
-              <h1>Home</h1>
+              <h1><FontAwesomeIcon icon={faHeart}/>{' '}Home</h1>
           </NavLink>
           <NavLink to="/activitySearch" className={style.btn}>
-              <h1>Juegos</h1>
+              <h1><FontAwesomeIcon icon={faGamepad} />{' '}Juegos</h1>
           </NavLink>
-          <NavLink to="/" className={style.btn}>
-              <h1>Contacto</h1>
+          <NavLink to="/activitySearch" className={style.btn}>
+              <h1><FontAwesomeIcon icon={faTowerObservation} />{' '}Contactos</h1>
           </NavLink>
           <NavLink to="/activity" className={style.btn}>
-              <h1>Biblioteca</h1>
+              <h1><FontAwesomeIcon icon={faLayerGroup}/>{' '}Biblioteca</h1>
           </NavLink>
           <NavLink to="/activity" className={style.btnTOP}>
               <h1>Top 2023 <FontAwesomeIcon className={style.nameIcon} icon={faCrown} /></h1>
@@ -58,6 +61,7 @@ function NavBar() {
           <FontAwesomeIcon icon={isOpen ? faTimes : faBars} />
         </div>
       </div>
+      <div className={style.lineDivisor}></div>
       {isOpen && (
         <div className={style.dropdownMenu}>
           <ul>
@@ -71,7 +75,6 @@ function NavBar() {
           </ul>
         </div>
       )}
-      <div className={style.lineDivisor}></div>
     </div>
   );
 }
