@@ -59,6 +59,32 @@ async function getTop3Games(req, res, next) {
   }
 }
 
+async function getRandomGames(req, res, next) {
+  try {
+    const response = await axios.get('https://www.freetogame.com/api/games?sort-by=popularity');
+    
+    if (response.status === 200) {
+      const games = response.data; // Obtener todos los juegos
+      shuffleArray(games); // Mezclar aleatoriamente la lista de juegos
+      const randomGames = games.slice(0, 6); // Tomar los primeros 6 juegos de la lista aleatoria
+      res.json(randomGames); // Enviar los juegos aleatorios como respuesta al cliente
+    } else {
+      throw new Error('No se pudo obtener la lista de juegos');
+    }
+  } catch (error) {
+    next(error); // Lanzar el error para que se maneje adecuadamente en un controlador Express u otro lugar
+  }
+}
+
+// Función para mezclar aleatoriamente un array (Fisher-Yates shuffle)
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+
 
 
 // Obtener lista de juegos con paginación y búsqueda
@@ -84,15 +110,6 @@ async function getGames(req, res, next) {
     });
 
     return res.json(games);
-  } catch (error) {
-    next(error);
-  }
-}
-
-async function getAllGames(req, res, next) {
-  try {
-    const allGamesData = await Games.findAll();
-    res.json(allGamesData);
   } catch (error) {
     next(error);
   }
@@ -166,6 +183,7 @@ async function getGamesOrder(req, res, next) {
 module.exports = {
   getGames,
   getTop3Games,
+  getRandomGames,
   getAllGames,
   getOneGame,
   getGamesOrder,

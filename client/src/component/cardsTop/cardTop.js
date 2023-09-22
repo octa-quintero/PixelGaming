@@ -9,7 +9,7 @@ import style from './cardTopStyle.module.css';
 
 function CardsTop() {
   const dispatch = useDispatch();
-  const topGames = useSelector((state) => state.games) || []; // Inicializa como un array vacío
+  const topGames = useSelector((state) => state.topGames) || []; // Inicializa como un array vacío
 
   useEffect(() => {
     dispatch(getTop3Games())
@@ -25,11 +25,11 @@ function CardsTop() {
 
   return (
     <div className={style.cardsTopContainer}>
+      <div className={style.cards}>
       <div className={style.textInfoCard}>
           <h1 className={style.textInfo}><FontAwesomeIcon icon={faPaperclip} />{' '}Inicia sesión para acceder a tu Biblioteca. Descubre juegos totalmente gratis!</h1>
           <h1 className={style.text}><FontAwesomeIcon className={style.crown} icon={faCrown} />{' '}Top recomendados por la comunidad</h1>
       </div>
-      <div className={style.cards}>
         <div className={style.cardContent}>
         {topGames.map((game) => (
           <div className={style.cardContent1} key={game.id}>

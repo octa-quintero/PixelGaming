@@ -44,6 +44,21 @@ export function getTop3Games() {
   };
 }
 
+// Acciones asincrónicas para obtener Top 3 Juegos
+export function getRandomGames() {
+  return (dispatch) => {
+    return axios.get("/games/freegames")
+      .then((response) => {
+        console.log(response.data); // Agrega esto para verificar los datos
+        dispatch({ type: "GET_FREE_GAMES", payload: response.data });
+      })
+      .catch((error) => {
+        console.error("Error occurred:", error);
+        dispatch({ type: "GET_FREE_GAMES_ERROR", payload: error.message });
+      });
+  };
+}
+
 // Acciones asincrónicas para obtener todos los países
 export function getAllGames(page) {
   return dispatch => {

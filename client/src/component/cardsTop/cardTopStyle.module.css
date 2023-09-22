@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  min-width: 100%;
+  width: 85%;
   margin: 0;
   padding: 0;
   top: 0;
@@ -13,10 +13,9 @@
 .cards{
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: column;
-  width: 80%;
-  padding: 10px;
+  width: 100%;
   transition: 1s;
 }
 
@@ -25,7 +24,7 @@
 }
 
 .textInfoCard{
-  width: 80%;
+  width: 100%;
 }
 
 .text{
@@ -34,6 +33,7 @@
   font-weight: 400;
   color: rgb(202, 202, 202);
   padding: 4px;
+  margin: 10px;
 }
 
 .textInfo{
@@ -41,23 +41,23 @@
   font-family: 'Ubuntu', sans-serif;
   font-weight: 100;
   color: #00a2ff95;
-  padding: 4px;
+  margin: 10px;
 }
 
 .cardContent{
   display: flex;
+  width: 100%;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: left;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
 }
 
 .cardContent1{
   display: flex;
-  width: 400px;
+  width: 380px;
   overflow: hidden;
   align-items: center;
+  justify-content: center;
   border-radius: 5px;
   top: 0;
   height: auto;
@@ -109,6 +109,7 @@
   flex-direction: row;
   font-family: 'Ubuntu', sans-serif;
   border-radius: 3px;
+  color: rgb(202, 202, 202);
   background-color: #2464ad;
   width: 80px;
   height: 30px;

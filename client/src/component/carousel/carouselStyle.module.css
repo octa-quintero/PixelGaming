@@ -1,7 +1,10 @@
 .sliderContainer{
   position: relative;
-  margin: 0 auto;
-  display: flex; /* Establece un contenedor flexible */
+  margin: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   overflow: hidden;
   width: 100%;
