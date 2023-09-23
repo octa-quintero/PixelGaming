@@ -37,10 +37,6 @@
   transition: 0.2s;
 }
 
-.btn .IconHeart:hover{
-  color: hsl(302, 100%, 50%);
-}
-
 .nameIcon{
   color: #ffe600;}
 

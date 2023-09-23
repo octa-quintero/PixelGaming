@@ -1,0 +1,62 @@
+.sectionAbout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 85%; 
+  margin-top: 4rem;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 100%;
+  height: 290px;
+  border-radius: 15px;
+}
+
+.Icon{
+  color: aliceblue;
+  font-size: 70px;
+}
+
+.text{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.text p{
+  padding: 30px;
+  width: 50%;
+  letter-spacing: 1.8px;
+  font-family: 'Ubuntu', sans-serif;
+  color: rgb(202, 202, 202);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.pixelGaming{
+  color: white;
+  font-size: 20px;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 1);
+  font-family: 'Chakra Petch', sans-serif;
+}
+
+.btnRegistro h1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  font-family: 'Ubuntu', sans-serif;
+  border: 2px solid #00a2ff;
+  border-radius: 5px;
+  color: #00a2ff;
+  font-size: 17px;
+  font-weight: bold;
+  padding: 10px;
+  transition: 0.3s;
+}
+
+.btnRegistro h1:hover{
+  color: #00ccff;
+  border: 2px solid #00ccff;
+}
