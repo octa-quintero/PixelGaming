@@ -61,7 +61,6 @@ function NavBar() {
           <FontAwesomeIcon icon={isOpen ? faTimes : faBars} />
         </div>
       </div>
-      <div className={style.lineDivisor}></div>
       {isOpen && (
         <div className={style.dropdownMenu}>
           <ul>
@@ -75,6 +74,7 @@ function NavBar() {
           </ul>
         </div>
       )}
+      <div className={style.lineDivisor}></div>
     </div>
   );
 }

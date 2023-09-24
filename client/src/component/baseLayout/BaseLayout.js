@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Style from './BaseLayout.module.scss'
 import Navbar from '../navBar/navBar';
 import Home from '../home/home'
+import Footer from '../footer/footer.js'
 import {Route, Routes} from "react-router-dom";
 import {Box, Grid} from "@mui/material";
 
@@ -28,9 +29,9 @@ export default function BaseLayout() {
 return (
 <Box className={darkMode ? Style.dark : Style.light}>
 <Grid container display={'flex'} flexDirection={'column'}  minHeight={'100vh'}
-              justifyContent={'space-between'}>
-            <Grid item >
-            <Navbar darkMode={darkMode} handleClick={handleToggleDarkMode}/>
+      justifyContent={'space-between'}>
+    <Grid item >
+      <Navbar darkMode={darkMode} handleClick={handleToggleDarkMode}/>
     </Grid>
     <Grid item flexGrow={1}>
       <Routes>
@@ -40,11 +41,7 @@ return (
       </Routes>
     </Grid>
     <Grid item>
-      <Box  component={'footer'} display={'flex'} flexDirection={'column'} alignItems={'center'}
-            py={'1.5rem'} sx={{opacity: 0.7}} width={'100%'}>
-            <p>Creado por Octavio Quintero</p>
-            <p>&copy; 2023</p>
-      </Box>
+      <Footer/>
     </Grid>
 </Grid>
 </Box>

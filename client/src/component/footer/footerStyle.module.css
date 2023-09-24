@@ -1,0 +1,114 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin-top: 50px;
+  background: linear-gradient(to right, rgb(18, 18, 18), transparent, rgb(18, 18, 18));
+}
+.lineDivisor{
+  width: 100%;
+  top: 0px;
+  height: 6px;
+  position: relative;
+  background: linear-gradient(to right, #5ddcff, #4e00c2, #7c3af6,#8e17c1, #3c67e3 43%,#ff02f7,#5ddcff, #5ddcff, #4e00c2, #5ddcff);
+  background-size: 500% 10%;
+  animation: gradient 400s linear infinite;
+}
+@keyframes gradient {
+  0%   {background-position: 0%}
+  100% {background-position: 500%}
+}
+
+.lineDivisor::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 15px;
+  background: linear-gradient(to left, #5ddcff,transparent, #3c67e3, #3c67e3 43%,transparent,transparent, #01ddff,#01ddff,#ff02f7,#01ddff, transparent,#8e17c1,transparent,#01b4f5,#5ddcff);
+  background-size: 500% 10%;
+  animation: gradient 500s linear infinite;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3), 0px -10px 10px rgba(0, 0, 0, 0.3);
+  filter: blur(10px);
+  z-index: 0;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% }
+  100% { background-position: 5000% }
+}
+
+.footer1{
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+  gap: 25%;
+  flex-direction: center;
+  width: 80%;
+  height: 180px;
+}
+
+.logo{
+  width: 100px;
+}
+
+.icons{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+
+.icons p{
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  color: rgb(202, 202, 202);
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.icons h1{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 20px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  color: rgb(202, 202, 202);
+  font-size: 35px;
+  font-weight: 600;
+}
+
+.info{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  color: rgb(202, 202, 202);
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.info p{
+  margin-bottom: 10px;
+}
+
+.info h1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  color: rgb(202, 202, 202);
+  font-size: 15px;
+  font-weight: 600;
+}
