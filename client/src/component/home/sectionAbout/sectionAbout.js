@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGhost
 } from '@fortawesome/free-solid-svg-icons';
-import PixelGaming from "../../assets/collage/collage.png";
+import PixelGaming from "../../../assets/collage/collage.png";
 import style from './sectionAboutStyle.module.css';
 
 

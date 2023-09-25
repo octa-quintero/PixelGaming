@@ -26,11 +26,11 @@
   justify-content: center;
   align-items: center;
   flex-direction: row;  
-  gap: 2.7rem;
+  gap: 2.5rem;
 }
 
 .btnTOP h1 {
-  font-family: 'DotGothic16', sans-serif;
+  font-family: 'Chakra Petch', sans-serif;
   color: rgb(255, 255, 255);
   font-size: 20px;
   text-shadow: 0 0 14px rgba(255, 255, 255, 1);
@@ -38,7 +38,8 @@
 }
 
 .nameIcon{
-  color: #ffe600;}
+  color: #ffe600;
+}
 
 .btnTOP h1:hover{
   transform: scale(1.09);
@@ -78,7 +79,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  gap: 2rem;
+  gap: 1.5rem;
   padding: 0;
 }
 

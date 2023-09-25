@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import Style from './BaseLayout.module.scss'
-import Navbar from '../navBar/navBar';
-import Home from '../home/home'
-import Footer from '../footer/footer.js'
+import Navbar from './navBar/navBar.js';
+import Footer from './footer/footer.js'
+import Home from '../home/home.js'
+import Games from '../games/games.js'
+import Top2023 from '../top2023/top2023.js'
 import {Route, Routes} from "react-router-dom";
 import {Box, Grid} from "@mui/material";
 
@@ -33,11 +35,11 @@ return (
     <Grid item >
       <Navbar darkMode={darkMode} handleClick={handleToggleDarkMode}/>
     </Grid>
-    <Grid item flexGrow={1}>
+    <Grid item flexGrow={1} display={'flex'} justifyContent={'center'} alignItems={'center'}>
       <Routes>
         <Route exact path={'/'} element={<Home/>}/>
-        {/* <Route exact path={'/about'} element={<About/>}/>
-        <Route exact path={'/portfolio'} element={<Portfolio/>}/> */}
+        <Route exact path={'/games'} element={<Games/>}/>
+        <Route exact path={'/top2023'} element={<Top2023/>}/>
       </Routes>
     </Grid>
     <Grid item>

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTop3Games } from '../../redux/action';
+import { getTop3Games } from '../../../redux/action';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
         faCrown,

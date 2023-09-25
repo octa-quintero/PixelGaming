@@ -6,6 +6,7 @@ const {
   getGames,
   getOneGame,
   getRandomGames,
+  getTop10Games,
   getTop3Games,
   getGamesOrder,
   getAllGames
@@ -14,6 +15,7 @@ const {
 // Definir rutas y asociar a los controladores correspondientes
 router.get("/games", getGames);
 router.get("/games/top3", getTop3Games);
+router.get("/games/top10", getTop10Games);
 router.get("/games/freegames", getRandomGames);
 router.get("/games/all", getAllGames);
 router.get("/details/:gamesId", getOneGame)

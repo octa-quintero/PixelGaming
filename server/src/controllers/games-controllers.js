@@ -43,6 +43,22 @@ async function getAllGames(req, res, next) {
   }
 }
 
+// Obtener Top 10 Juegos
+async function getTop10Games(req, res, next) {
+  try {
+    const response = await axios.get('https://www.freetogame.com/api/games?sort-by=relevance');
+    
+    if (response.status === 200) {
+      const games = response.data.slice(0, 10); // Obtener los primeros 3 juegos
+      res.json(games); // Enviar los juegos como respuesta al cliente
+    } else {
+      throw new Error('No se pudo obtener la lista de juegos');
+    }
+  } catch (error) {
+    next(error); // Lanzar el error para que se maneje adecuadamente en un controlador Express u otro lugar
+  }
+}
+
 // Obtener Top 3 Juegos
 async function getTop3Games(req, res, next) {
   try {
@@ -58,7 +74,7 @@ async function getTop3Games(req, res, next) {
     next(error); // Lanzar el error para que se maneje adecuadamente en un controlador Express u otro lugar
   }
 }
-
+// Obtener lista de 6 juegos Randoms
 async function getRandomGames(req, res, next) {
   try {
     const response = await axios.get('https://www.freetogame.com/api/games?sort-by=popularity');
@@ -182,6 +198,7 @@ async function getGamesOrder(req, res, next) {
 
 module.exports = {
   getGames,
+  getTop10Games,
   getTop3Games,
   getRandomGames,
   getAllGames,

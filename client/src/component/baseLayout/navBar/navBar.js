@@ -11,7 +11,7 @@ import {
   faHeart,
   faTowerObservation,
 } from "@fortawesome/free-solid-svg-icons";
-import logo from "../../assets/logo/logoPixelGaming1.png";
+import logo from "../../../assets/logo/logoPixelGaming1.png";
 import style from "./navBarStyle.module.css";
 
 function NavBar() {
@@ -24,25 +24,25 @@ function NavBar() {
   return (
     <div className={style.navbarContainer}>
       <div className={style.navbar}>
-        <NavLink to="/home" className={style.logo}>
+        <NavLink to="/" className={style.logo}>
           <div className={style.logo}>
             <img className={style.logo1} src={logo} alt="logo" />
           </div>
         </NavLink>
         <div className={style.links}>
-          <NavLink to="/home" className={style.btn}>
+          <NavLink to="/" className={style.btn}>
               <h1><FontAwesomeIcon icon={faHeart}/>{' '}Home</h1>
           </NavLink>
-          <NavLink to="/activitySearch" className={style.btn}>
+          <NavLink to="/games" className={style.btn}>
               <h1><FontAwesomeIcon icon={faGamepad} />{' '}Juegos</h1>
           </NavLink>
           <NavLink to="/activitySearch" className={style.btn}>
-              <h1><FontAwesomeIcon icon={faTowerObservation} />{' '}Contactos</h1>
+              <h1><FontAwesomeIcon icon={faTowerObservation} />{' '}Contacto</h1>
           </NavLink>
           <NavLink to="/activity" className={style.btn}>
               <h1><FontAwesomeIcon icon={faLayerGroup}/>{' '}Biblioteca</h1>
           </NavLink>
-          <NavLink to="/activity" className={style.btnTOP}>
+          <NavLink to="/top2023" className={style.btnTOP}>
               <h1>Top 2023 <FontAwesomeIcon className={style.nameIcon} icon={faCrown} /></h1>
           </NavLink>
         </div>

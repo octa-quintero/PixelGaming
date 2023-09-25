@@ -5,10 +5,10 @@ import {
   faArrowRight,
   faArrowLeft
 } from "@fortawesome/free-solid-svg-icons";
-import CarouselImage from "../../assets/carousel/Carousel1.jpg";
-import CarouselImage1 from "../../assets/carousel/Carousel2.jpg";
-import CarouselImage2 from "../../assets/carousel/Carousel3.jpg";
-import CarouselImage3 from "../../assets/carousel/Carousel4.jpg";
+import CarouselImage from "../../../assets/carousel/Carousel1.jpg";
+import CarouselImage1 from "../../../assets/carousel/Carousel2.jpg";
+import CarouselImage2 from "../../../assets/carousel/Carousel3.jpg";
+import CarouselImage3 from "../../../assets/carousel/Carousel4.jpg";
 
 function Carousel() {
   

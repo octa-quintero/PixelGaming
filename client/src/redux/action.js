@@ -44,6 +44,22 @@ export function getTop3Games() {
   };
 }
 
+// Acciones asincrónicas para obtener Top 10 Juegos
+export function getTop10Games() {
+  return (dispatch) => {
+    return axios.get("/games/top10")
+      .then((response) => {
+        console.log(response.data); // Agrega esto para verificar los datos
+        dispatch({ type: "GET_TOP10_GAMES", payload: response.data });
+      })
+      .catch((error) => {
+        console.error("Error occurred:", error);
+        dispatch({ type: "GET_TOP3_GAMES_ERROR", payload: error.message });
+      });
+  };
+}
+
+
 // Acciones asincrónicas para obtener Top 3 Juegos
 export function getRandomGames() {
   return (dispatch) => {

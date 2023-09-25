@@ -21,6 +21,12 @@ function reducer(state = initialState, action) {
         ...state,
         topGames: action.payload
       };
+      case "GET_TOP10_GAMES":
+        // Actualizar el estado con la lista de los primeros 3 juegos
+        return {
+          ...state,
+          top10Games: action.payload
+        };
     case "GET_ALL_GAMES":
       // Actualizar el estado con la lista de todos los juegos
       return {

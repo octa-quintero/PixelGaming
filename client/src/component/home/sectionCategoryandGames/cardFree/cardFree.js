@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRandomGames } from '../../redux/action';
+import { getRandomGames } from '../../../../redux/action.js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faRobot,
@@ -19,7 +19,7 @@ function CardFree() {
         console.log('Datos cargados correctamente:', response);
       })
       .catch((error) => {
-        console.error('Error al obtener el top 3 de juegos:', error);
+        console.error('Error al obtener juegos:', error);
       });
   }, [dispatch]);
 

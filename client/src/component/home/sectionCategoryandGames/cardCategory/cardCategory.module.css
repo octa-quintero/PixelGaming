@@ -9,7 +9,7 @@
 .text h1{
   font-size: 28px;
   font-family: 'Ubuntu', sans-serif;
-  font-weight: 400;
+  font-weight: bold;
   color: rgb(202, 202, 202);
   padding: 5px;
   gap: 5px;
@@ -51,7 +51,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: linear-gradient(to top, rgb(183, 22, 22), transparent), url('../../assets/category/strategy.png');
+  background-image: linear-gradient(to top, rgb(183, 22, 22), transparent), url('../../../../assets/category/strategy.png');
   background-size: cover;
   z-index: -1;
   transition: transform 0.8s ease;
@@ -78,7 +78,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: linear-gradient(to top, rgb(0, 123, 255), transparent), url('../../assets/category/racing.png');
+  background-image: linear-gradient(to top, rgb(0, 123, 255), transparent), url('../../../../assets/category/fight.png');
   background-size: cover;
   z-index: -1;
   transition: transform 0.8s ease;
@@ -105,7 +105,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: linear-gradient(to top, rgb(217, 255, 0), transparent), url('../../assets/category/racing.png');
+  background-image: linear-gradient(to top, rgb(217, 255, 0), transparent), url('../../../../assets/category/racing.png');
   background-size: cover;
   z-index: -1;
   transition: transform 0.8s ease;
@@ -132,7 +132,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: linear-gradient(to top, rgb(22, 183, 22), transparent), url('../../assets/category/strategy.png');
+  background-image: linear-gradient(to top, rgb(22, 183, 22), transparent), url('../../../../assets/category/strategy.png');
   background-size: cover;
   z-index: -1;
   transition: transform 0.8s ease;

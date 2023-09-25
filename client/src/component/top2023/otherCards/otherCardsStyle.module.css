@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 85%;
+  width: 100%;
   margin: 0;
   padding: 0;
   top: 0;
@@ -28,9 +28,9 @@
 }
 
 .text{
-  font-size: 2vw;
+  font-size: 28px;
   font-family: 'Ubuntu', sans-serif;
-  font-weight: 400;
+  font-weight: bold;
   color: rgb(202, 202, 202);
   padding: 4px;
   margin: 10px;
@@ -46,7 +46,7 @@
 
 .cardContent{
   display: flex;
-  width: 100%;
+  min-width: 100%;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -74,7 +74,6 @@
 }
 
 .cardImage{
-  width: 100%;
   top: 0;
   bottom: 0;
   object-fit: cover;
@@ -89,13 +88,17 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  gap: 5rem;
   padding: 20px;
   width: 100%;
   height: 100%;
 }
 
 .cardTitle{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 80%;
   font-size: 1.5rem;
   font-family: 'Ubuntu', sans-serif;
   font-weight: 400;
@@ -106,7 +109,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
   font-family: 'Ubuntu', sans-serif;
   border-radius: 3px;
   color: rgb(202, 202, 202);
@@ -140,4 +142,41 @@
       font-size: 0.8rem;
       font-weight: bold;
     }
+  }
+
+  .masJuegos{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .btnRegistro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+  
+  .btnRegistro h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 70px;
+    height: 30px;
+    background-color: transparent;
+    font-family: 'Ubuntu', sans-serif;
+    border: 1.5px solid #00a2ff;
+    border-radius: 3px;
+    color: #00a2ff;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 10px;
+    transition: 0.3s;
+  }
+  
+  .btnRegistro h1:hover{
+    color: #00ccff;
+    border: 1.5px solid #00ccff;
   }
