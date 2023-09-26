@@ -30,7 +30,7 @@ useEffect(() => {
       <div className={style.cards}>
       <div className={style.text}>
           <h1><span><FontAwesomeIcon icon={faCrown}/></span>{' '}Top Games 2023</h1>
-          <p>Descubre nuestros 10 juegos gratuitos más populares de septiembre de 2023,
+          <p>Descubre 10 juegos gratuitos más populares de septiembre,
             clasificados según las preferencias de nuestros usuarios. Actualizamos nuestra lista
             constantemente... </p>
       </div>
