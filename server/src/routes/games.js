@@ -8,8 +8,8 @@ const {
   getRandomGames,
   getTop10Games,
   getTop3Games,
-  getGamesOrder,
-  getAllGames
+  getAllGames,
+  filterGamesByTagsAndPlatform,
 } = require("../controllers/games-controllers.js");
 
 // Definir rutas y asociar a los controladores correspondientes
@@ -18,8 +18,8 @@ router.get("/games/top3", getTop3Games);
 router.get("/games/top10", getTop10Games);
 router.get("/games/freegames", getRandomGames);
 router.get("/games/all", getAllGames);
+router.get('/games/filter', filterGamesByTagsAndPlatform);
 router.get("/details/:gamesId", getOneGame)
-router.get("/games/:order", getGamesOrder);
 
 
 module.exports = router;

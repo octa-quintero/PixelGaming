@@ -2,6 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedinIn, faGithub, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import logo from "../../../assets/logo/pixel.gif";
+import logo1 from "../../../assets/logo/logo.png"
 import style from "./footerStyle.module.css";
 
 function Footer() {
@@ -25,6 +26,7 @@ function Footer() {
               <FontAwesomeIcon icon={faGithub}/>
             </h1>
         </div>
+        <img src={logo1} className={style.logo1}></img>
       </div>
     </div>
   );

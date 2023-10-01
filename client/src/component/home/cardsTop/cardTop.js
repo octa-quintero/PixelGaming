@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTop3Games } from '../../../redux/action';
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
         faCrown,
@@ -9,7 +10,7 @@ import style from './cardTopStyle.module.css';
 
 function CardsTop() {
   const dispatch = useDispatch();
-  const topGames = useSelector((state) => state.topGames) || []; // Inicializa como un array vacío
+  const topGames = useSelector((state) => state.topGames) || [];
 
   useEffect(() => {
     dispatch(getTop3Games())
@@ -28,7 +29,12 @@ function CardsTop() {
       <div className={style.cards}>
       <div className={style.textInfoCard}>
           <h1 className={style.textInfo}><FontAwesomeIcon icon={faPaperclip} />{' '}Inicia sesión para acceder a tu Biblioteca. Descubre juegos totalmente gratis!</h1>
-          <h1 className={style.text}><FontAwesomeIcon className={style.crown} icon={faCrown} />{' '}Top recomendados por la comunidad</h1>
+          <div className={style.masJuegos}>
+          <h1 className={style.text}><FontAwesomeIcon className={style.crown} icon={faCrown} />Top recomendados por la comunidad</h1>
+              <NavLink to="/top2023" className={style.btnRegistro}>
+                <h1>Ver Mas</h1>
+              </NavLink>
+          </div>
       </div>
         <div className={style.cardContent}>
         {topGames.map((game) => (

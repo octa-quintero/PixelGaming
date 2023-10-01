@@ -27,7 +27,19 @@
   width: 100%;
 }
 
+.masJuegos{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
 .text{
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
   font-size: 2vw;
   font-family: 'Ubuntu', sans-serif;
   font-weight: bold;
@@ -62,7 +74,7 @@
   top: 0;
   height: auto;
   flex-direction: column;
-  background-color: #2a2a2abb;;
+  background-color: #2a2a2abb;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
   overflow: hidden;
   transition: 0.3s;
@@ -120,6 +132,37 @@
 .cardBtn:hover{
   background-color: #0475f6;
 }
+
+.btnRegistro{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+  flex-direction: row;
+}
+
+.btnRegistro h1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 70px;
+  height: 30px;
+  background-color: transparent;
+  font-family: 'Ubuntu', sans-serif;
+  border: 1.5px solid #00a2ff;
+  border-radius: 3px;
+  color: #00a2ff;
+  font-size: 13px;
+  font-weight: 400;
+  padding: 10px;
+  transition: 0.3s;
+}
+
+.btnRegistro h1:hover{
+  color: #00ccff;
+  border: 1.5px solid #00ccff;
+} 
 
   /* MEDIA *//* MEDIA *//* MEDIA *//* MEDIA */
   

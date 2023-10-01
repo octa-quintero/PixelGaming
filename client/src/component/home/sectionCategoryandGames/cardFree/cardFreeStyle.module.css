@@ -65,23 +65,6 @@
   filter: contrast(1.2); /* Aumenta el contraste al 120% */
 }
 
-.text{
-  display: flex;
-  justify-content: left;
-  width: 100%;
-  padding: 5px;
-  margin: 10px;
-}
-
-.text h1{
-  font-size: 28px;
-  font-family: 'Ubuntu', sans-serif;
-  font-weight: bold;
-  color: rgb(202, 202, 202);
-  gap: 5px;
-  
-}
-
 .content h3 {
   flex-grow: 1; /* Hace que la descripción ocupe el espacio disponible */
 }
@@ -95,12 +78,65 @@
   
 }
 
+.masJuegos{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.text{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  gap: 8px;
+  font-size: 2vw;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  color: rgb(202, 202, 202);
+  padding: 4px;
+  margin: 10px;
+}
+
 .title {
   font-size: 25px;
   font-family: 'Cairo Play', sans-serif;
   font-weight: bold;
   color: rgb(202, 202, 202);
 }
+
+.btnRegistro{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-right: 5px;
+}
+
+.btnRegistro h1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 70px;
+  height: 30px;
+  background-color: transparent;
+  font-family: 'Ubuntu', sans-serif;
+  border: 1.5px solid #00a2ff;
+  border-radius: 3px;
+  color: #00a2ff;
+  font-size: 13px;
+  font-weight: 400;
+  padding: 10px;
+  transition: 0.3s;
+}
+
+.btnRegistro h1:hover{
+  color: #00ccff;
+  border: 1.5px solid #00ccff;
+} 
 
 .genre{
   font-size: 15px;

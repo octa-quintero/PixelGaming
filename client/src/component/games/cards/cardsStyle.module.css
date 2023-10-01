@@ -1,0 +1,151 @@
+.cardsGamesContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+}
+
+.cards {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 1s;
+}
+
+
+.cardContent{
+  display: flex;
+  width: 60%;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cardContent1{
+  display: flex;
+  width: 250px;
+  height: 250px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  height: auto;
+  flex-direction: column;
+  background-color: #2a2a2abb;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.cardContent1:hover{
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.8);
+  transform: scale(1.05);
+}
+
+.cardImage{
+  width: 100%;
+  object-fit: cover;
+  transition: 1s;
+}
+
+.cardImage:hover {
+  filter: contrast(1.2); /* Aumenta el contraste al 120% */
+}
+
+.title{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px;
+  height: 120px;
+  width: 100%;
+}
+
+.shortDescription {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  width: 100%;
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.cardTitle{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  font-family: 'Cairo Play', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0;
+  color: rgb(202, 202, 202);
+  line-height: 1;
+}
+
+.plattformButton{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  gap: 5px;
+  margin-top: auto;
+}
+
+.genre{
+  font-size: 12px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  color: rgb(202, 202, 202);
+}
+
+
+.cardBtn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Ubuntu', sans-serif;
+  border-radius: 3px;
+  color: rgb(202, 202, 202);
+  background-color: #2464ad;
+  width: 50px;
+  height: 25px;
+  padding: 1px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.cardBtn:hover{
+  background-color: #0475f6;
+}
+
+  /* MEDIA *//* MEDIA *//* MEDIA *//* MEDIA */
+  
+  @media (max-width: 576px){
+    .title{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 0rem;
+      padding: 20px;
+      width: 100%;
+      height: auto;
+    }
+    .cardTitle{
+      font-size: 1rem;
+    }
+    .text{
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+  }

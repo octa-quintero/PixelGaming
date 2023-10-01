@@ -27,8 +27,7 @@ function OtherCards() {
       <div className={style.textInfoCard}>
           <h1 className={style.textInfo}><FontAwesomeIcon icon={faPaperclip} />{' '}Iniciar sesión te da acceso a la Biblioteca y a la comunidad de jugadores mas grande de Latam</h1>
           <div className={style.masJuegos}>
-            <h1 className={style.text}><FontAwesomeIcon icon={faGamepad} />{' '}Descrubre mas juegos Gratis!
-            </h1>
+            <h1 className={style.text}><FontAwesomeIcon icon={faGamepad} />{' '}Descrubre mas juegos Gratis!</h1>
               <NavLink to="/games" className={style.btnRegistro}>
                 <h1>Ver Mas</h1>
               </NavLink>

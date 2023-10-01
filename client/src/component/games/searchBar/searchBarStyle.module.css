@@ -1,0 +1,31 @@
+.search{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.search input{
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  padding: 10px;
+  background-color: #2a2a2abb;
+  color:  rgb(202, 202, 202);
+  border: solid 1px;
+  border-color: #2464ad;
+  transition: 0.3s; 
+}
+
+.search input:focus {
+  border-color: #0475f6;
+  outline: none;
+}
+
+.text{
+  font-size: 2vw;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  color: rgb(202, 202, 202);
+  padding: 4px;
+  margin: 10px;
+}

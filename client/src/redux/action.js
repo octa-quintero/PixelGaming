@@ -1,19 +1,21 @@
-import axios from "axios";
+import axios from 'axios';
 
-// Acciones asincrónicas para obtener países ordenados
-export function getGames(order, page) {
-  return dispatch => {
-    axios.get(`/games/${order}?page=${page}`)
-    .then(response => {
-        console.log(response);
-        dispatch({ type: "GET_GAMES_ORDER", payload: response.data });
-      })
-      .catch(error => {
-        console.error("Error occurred:", error);
-        dispatch({ type: "GET_GAMES_ORDER_ERROR", payload : error.message });
-      });
-    };
+
+// Acción en el frontend
+export function fetchGamesByTagsAndPlatform(tag, platform) {
+  return async dispatch => {
+    try {
+      const response = await axios.get(`/games/filter?tag=${tag}&platform=${platform}`);
+      console.log("Request to /games/filter was successful");
+      dispatch({ type: "FILTER_GAMES_BY_TAGS_PLATFORM", payload: response.data });
+    } catch (error) {
+      console.error("Error occurred:", error);
+      dispatch({ type: "FILTER_GAMES_BY_TAGS_PLATFORM_ERROR", payload: error.message });
+    }
+  };
 }
+
+
 
 // Acciones asincrónicas para buscar países por nombre
 export function searchGames(name) {
@@ -65,7 +67,7 @@ export function getRandomGames() {
   return (dispatch) => {
     return axios.get("/games/freegames")
       .then((response) => {
-        console.log(response.data); // Agrega esto para verificar los datos
+        console.log(response.data);
         dispatch({ type: "GET_FREE_GAMES", payload: response.data });
       })
       .catch((error) => {
@@ -75,7 +77,6 @@ export function getRandomGames() {
   };
 }
 
-// Acciones asincrónicas para obtener todos los países
 export function getAllGames(page) {
   return dispatch => {
     axios.get("/games/all")
@@ -88,6 +89,7 @@ export function getAllGames(page) {
       });
   };
 }
+
 
 // Acciones asincrónicas para filtrar países por continente
 export function sortCountriesContinent(continent) {
@@ -179,12 +181,12 @@ export function getActivities(order) {
 }
 
 // Acciones para remover la lista de países
-export const removeCountries = () => ({
+export const removeGames = () => ({
   type: "REMOVE_COUNTRIES"
 });
 
 // Acciones para remover el detalle de un país
-export const removeCountry = () => ({
+export const removeGame = () => ({
   type: "REMOVE_COUNTRY"
 });
   
