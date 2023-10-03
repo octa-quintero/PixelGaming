@@ -14,9 +14,9 @@ async function data() {
     const upsertPromises = gamesData.map((gamesData) => {
       return Games.upsert({
         id: gamesData.id,
-        name: gamesData.title,
-        image: gamesData.thumbnail,
-        description: gamesData.short_description,
+        title: gamesData.title,
+        thumbnail: gamesData.thumbnail,
+        short_description: gamesData.short_description,
         game_url: gamesData.game_url,
         genre: gamesData.genre,
         platform: gamesData.platform,

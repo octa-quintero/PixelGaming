@@ -3,23 +3,24 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 100%;
+  width: 66%;
   padding: 0;
 }
 
 .cards {
-  width: 100%;
   display: flex;
+  width: 100%;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   transition: 1s;
 }
 
 
 .cardContent{
   display: flex;
-  width: 60%;
-  gap: 20px;
+  width: 100%;
+  gap: 13px;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;

@@ -1,0 +1,122 @@
+.filterContainer{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 30%;
+  gap: 15px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.filter{
+  display: flex;
+  padding: 25px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: #2a2a2abb;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+}
+
+.filter h3{
+  margin-bottom: 10px;
+}
+
+.filter hr{
+  margin-bottom: 10px;
+  padding: 2px;
+  border: 10px;
+  width: 100%;
+  background-color: #11111131;
+  border: none;
+}
+
+.platformSelect{
+  display: flex;
+  padding: 25px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: #2a2a2abb;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+}
+
+.platformSelect h3{
+  margin-bottom: 10px;
+}
+
+.platformSelect label{
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 200;
+}
+
+.platformSelect input{
+  margin-bottom: 10px;
+  width: 15px;
+  margin-right: 10px;
+}
+
+.platformSelect hr{
+  margin-bottom: 10px;
+  padding: 2px;
+  border: 10px;
+  width: 100%;
+  background-color: #11111131;
+  border: none;
+}
+
+.checkboxContainer{
+  width: 100%;
+  font-weight: 200;
+  font-size: 18px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 5px;
+  overflow: auto;
+  max-height: 200px;
+}
+
+.checkboxContainer input{
+  width: 15px;
+  margin-right: 10px;
+}
+
+.checkboxLabel{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.text{
+  width: 100%;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  font-size: 2vw;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  color: rgb(202, 202, 202);
+}
+
+.checkboxContainer::-webkit-scrollbar {
+  width: 12px; /* Ancho de la barra de desplazamiento */
+  background-color: #11111131;
+  border-radius: 10px;
+}
+
+/* Estilo del deslizador (thumb) de la barra de desplazamiento */
+.checkboxContainer::-webkit-scrollbar-thumb {
+  background-color: rgb(202, 202, 202); /* Color del deslizador */
+  border-radius: 10px; /* Radio de borde del deslizador */
+}

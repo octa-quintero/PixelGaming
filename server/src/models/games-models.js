@@ -8,15 +8,15 @@ module.exports = ( sequelize ) => {
       primaryKey: true,
       allowNull: false
     },
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    image: {
+    thumbnail: {
       type: DataTypes.TEXT,
       allowNull: true
     },
-    description: {
+    short_description: {
       type: DataTypes.TEXT,
       allowNull: false
     },

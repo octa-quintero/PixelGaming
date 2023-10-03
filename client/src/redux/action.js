@@ -7,7 +7,7 @@ export function fetchGamesByTagsAndPlatform(tag, platform) {
     try {
       const response = await axios.get(`/games/filter?tag=${tag}&platform=${platform}`);
       console.log("Request to /games/filter was successful");
-      dispatch({ type: "FILTER_GAMES_BY_TAGS_PLATFORM", payload: response.data });
+      dispatch({ type: "GET_GAMES_BY_TAGS_PLATFORM", payload: response.data });
     } catch (error) {
       console.error("Error occurred:", error);
       dispatch({ type: "FILTER_GAMES_BY_TAGS_PLATFORM_ERROR", payload: error.message });

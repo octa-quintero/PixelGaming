@@ -66,26 +66,23 @@
 
 .text{
   display: flex;
-  justify-content: left;
+  align-items: flex-start;
   flex-direction: column;
   width: 100%;
+  font-size: 2vw;
   font-family: 'Ubuntu', sans-serif;
   font-weight: bold;
   color: rgb(202, 202, 202);
-  margin: 10px;
-  padding: 10px;
 }
 
 .text h1{
   font-size: 2vw;
   gap: 5px;
-  margin-bottom: 5px;
 }
 
 .text p{
   font-size: 17px;
   font-weight: 400;
-  padding: 5px;
 }
 
 .text span{

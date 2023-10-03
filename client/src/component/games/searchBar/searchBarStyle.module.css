@@ -1,14 +1,15 @@
 .search{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
+  width: 96%;
+  height: 40px;
+  margin-bottom: 20px;
 }
 
 .search input{
   font-family: 'Ubuntu', sans-serif;
+  width: 100%;
   font-weight: bold;
-  padding: 10px;
+  padding: 20px;
   background-color: #2a2a2abb;
   color:  rgb(202, 202, 202);
   border: solid 1px;
@@ -19,13 +20,4 @@
 .search input:focus {
   border-color: #0475f6;
   outline: none;
-}
-
-.text{
-  font-size: 2vw;
-  font-family: 'Ubuntu', sans-serif;
-  font-weight: bold;
-  color: rgb(202, 202, 202);
-  padding: 4px;
-  margin: 10px;
-}
+} 

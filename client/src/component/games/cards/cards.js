@@ -12,10 +12,17 @@ import style from './cardsStyle.module.css';
 function Cards() {
   const dispatch = useDispatch();
   const allGames = useSelector((state) => state.allGames) || [];
+  const filteredGames = useSelector((state) => state.filteredGames) || [];
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredGames, setFilteredGames] = useState([]);
+  const [SearchGames, setFilteredGames] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  
+
+
+  // Actualiza el estado de búsqueda cuando se hacen cambios en los checkboxes y el select en Filter
+  const handleFilterChange = (newFilteredGames) => {
+    setFilteredGames(newFilteredGames);
+  };
+
   // Función para obtener una selección aleatoria de juegos
   const getRandomGames = (games, count) => {  
     const shuffledGames = games.slice(); // Clonamos el array para no modificar el original
@@ -42,13 +49,19 @@ function Cards() {
 
   useEffect(() => {
     const filtered = allGames.filter((game) =>
-      game.name.toLowerCase().includes(searchTerm.toLowerCase())
+      game.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredGames(filtered);
   }, [allGames, searchTerm])
 
   // Obtener juegos aleatorios de acuerdo a si se ha realizado una búsqueda o no
-  const randomGames = searchTerm ? (filteredGames.length > 0 ? getRandomGames(filteredGames, 30) : []) : getRandomGames(allGames, 30);
+  const randomGames = (() => {
+    if (filteredGames.length === 0) {
+      return getRandomGames(allGames, 30); // Mostrar juegos aleatorios si no hay categorías seleccionadas
+    } else {
+      return filteredGames; // Mostrar juegos filtrados si hay categorías seleccionadas
+    }
+  })();
 
   // Evitar la renderización de las cartas hasta que los datos se hayan cargado
   if (isLoading) {
@@ -57,29 +70,29 @@ function Cards() {
   
   return (
     <div className={style.cardsGamesContainer}>
-      <SearchBar onSearchChange={setSearchTerm} />
       <div className={style.cards}>
+      <SearchBar onSearchChange={setSearchTerm} />
         <div className={style.cardContent}>
           {Array.isArray(randomGames) && randomGames.map((game) => (
             <div className={style.cardContent1} key={game.id}>
-              <img src={game.image} alt={game.title} className={style.cardImage} />
-                <div className={style.title}>
-                  <h2 className={style.cardTitle}>{game.name}</h2>
-                  <h3 className={style.shortDescription}>{game.description}</h3>
-                  <div className={style.plattformButton}>
-                    <h4 className={style.genre}>{game.genre}</h4>
-                      <div className={style.icon}>
-                      {game.platform.includes('PC') ? (
-                        <FontAwesomeIcon icon={faComputer} />
-                        ) : game.platform.includes('Web') ? ( 
-                        <FontAwesomeIcon icon={faGlobe} />
-                        ) : (
-                        game.platform
-                        )}
-                      </div>
-                    <a href={game.game_url} className={style.cardBtn}>Play Now!</a>
+              <img src={game.thumbnail} alt={game.title} className={style.cardImage} />
+              <div className={style.title}>
+                <h2 className={style.cardTitle}>{game.title}</h2>
+                <h3 className={style.shortDescription}>{game.short_description}</h3>
+                <div className={style.plattformButton}>
+                  <h4 className={style.genre}>{game.genre}</h4>
+                  <div className={style.icon}>
+                    {game.platform.includes('PC') ? (
+                      <FontAwesomeIcon icon={faComputer} />
+                    ) : game.platform.includes('Web') ? ( 
+                      <FontAwesomeIcon icon={faGlobe} />
+                    ) : (
+                      game.platform
+                    )}
                   </div>
+                  <a href={game.game_url} className={style.cardBtn}>Play Now!</a>
                 </div>
+              </div>
             </div>
           ))}
         </div>
