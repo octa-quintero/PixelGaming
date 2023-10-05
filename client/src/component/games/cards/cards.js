@@ -14,6 +14,7 @@ function Cards() {
   const allGames = useSelector((state) => state.allGames) || [];
   const filteredGames = useSelector((state) => state.filteredGames) || [];
   const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
   const [SearchGames, setFilteredGames] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -33,6 +34,14 @@ function Cards() {
     return shuffledGames.slice(0, count); // Tomar los primeros 'count' juegos
   };
 
+  
+  useEffect(() => {
+    const filtered = allGames.filter((game) =>
+      game.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    setFilteredGames(filtered);
+  }, [allGames, searchTerm])
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -48,25 +57,26 @@ function Cards() {
   }, [dispatch]);
 
   useEffect(() => {
+    // Realizar la búsqueda y almacenar los resultados en searchResults
     const filtered = allGames.filter((game) =>
       game.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    setFilteredGames(filtered);
-  }, [allGames, searchTerm])
+    setSearchResults(filtered);
+  }, [allGames, searchTerm]);
 
   // Obtener juegos aleatorios de acuerdo a si se ha realizado una búsqueda o no
   const randomGames = (() => {
-    if (filteredGames.length === 0) {
-      return getRandomGames(allGames, 30); // Mostrar juegos aleatorios si no hay categorías seleccionadas
+    if (searchTerm.length === 0 && filteredGames.length === 0) {
+      // Si no hay término de búsqueda y no hay categorías seleccionadas, mostrar juegos aleatorios
+      return getRandomGames(allGames, 30);
+    } else if (searchTerm.length === 0) {
+      // Si no hay término de búsqueda pero hay categorías seleccionadas, mostrar juegos filtrados
+      return filteredGames;
     } else {
-      return filteredGames; // Mostrar juegos filtrados si hay categorías seleccionadas
+      // Si hay un término de búsqueda, mostrar los resultados de la búsqueda
+      return searchResults;
     }
   })();
-
-  // Evitar la renderización de las cartas hasta que los datos se hayan cargado
-  if (isLoading) {
-    return <div>Cargando...</div>;
-  }
   
   return (
     <div className={style.cardsGamesContainer}>

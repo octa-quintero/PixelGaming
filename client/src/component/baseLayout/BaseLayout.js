@@ -35,7 +35,7 @@ return (
     <Grid item >
       <Navbar darkMode={darkMode} handleClick={handleToggleDarkMode}/>
     </Grid>
-    <Grid item flexGrow={1} display={'flex'} justifyContent={'center'} alignItems={'center'}>
+    <Grid item flexGrow={1} display={'flex'} justifyContent={'center'} alignItems={'flex-start'}>
       <Routes>
         <Route exact path={'/'} element={<Home/>}/>
         <Route exact path={'/games'} element={<Games/>}/>

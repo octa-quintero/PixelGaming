@@ -13,11 +13,11 @@
   background-color: #2a2a2abb;
   color:  rgb(202, 202, 202);
   border: solid 1px;
-  border-color: #2464ad;
+  border: 1.8px solid #00a2ff;
   transition: 0.3s; 
 }
 
 .search input:focus {
-  border-color: #0475f6;
+  border: 1.8px solid #00ccff;
   outline: none;
 } 
