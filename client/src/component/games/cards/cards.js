@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllGames } from '../../../redux/action.js';
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faComputer,
@@ -84,26 +85,28 @@ function Cards() {
       <SearchBar onSearchChange={setSearchTerm} />
         <div className={style.cardContent}>
           {Array.isArray(randomGames) && randomGames.map((game) => (
-            <div className={style.cardContent1} key={game.id}>
-              <img src={game.thumbnail} alt={game.title} className={style.cardImage} />
-              <div className={style.title}>
-                <h2 className={style.cardTitle}>{game.title}</h2>
-                <h3 className={style.shortDescription}>{game.short_description}</h3>
-                <div className={style.plattformButton}>
-                  <h4 className={style.genre}>{game.genre}</h4>
-                  <div className={style.icon}>
-                    {game.platform.includes('PC') ? (
-                      <FontAwesomeIcon icon={faComputer} />
-                    ) : game.platform.includes('Web') ? ( 
-                      <FontAwesomeIcon icon={faGlobe} />
-                    ) : (
-                      game.platform
-                    )}
+            <NavLink to={`/games/${game.id}`} state={{ game: game }}>
+              <div className={style.cardContent1} key={game.id}>
+                <img src={game.thumbnail} alt={game.title} className={style.cardImage} />
+                <div className={style.title}>
+                  <h2 className={style.cardTitle}>{game.title}</h2>
+                  <h3 className={style.shortDescription}>{game.short_description}</h3>
+                  <div className={style.plattformButton}>
+                    <h4 className={style.genre}>{game.genre}</h4>
+                    <div className={style.icon}>
+                      {game.platform.includes('PC') ? (
+                        <FontAwesomeIcon icon={faComputer} />
+                      ) : game.platform.includes('Web') ? ( 
+                        <FontAwesomeIcon icon={faGlobe} />
+                      ) : (
+                        game.platform
+                      )}
+                    </div>
+                    <a href={game.game_url} className={style.cardBtn}>Play Now!</a>
                   </div>
-                  <a href={game.game_url} className={style.cardBtn}>Play Now!</a>
                 </div>
               </div>
-            </div>
+            </NavLink>
           ))}
         </div>
       </div>

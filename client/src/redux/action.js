@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-// Acción en el frontend
+// Acciones para obtener filtrado avanzado
 export function fetchGamesByTagsAndPlatform(tag, platform) {
   return async dispatch => {
     try {
@@ -74,8 +74,8 @@ export function getRandomGames() {
         console.error("Error occurred:", error);
         dispatch({ type: "GET_FREE_GAMES_ERROR", payload: error.message });
       });
-  };
-}
+    };
+  }
 
 export function getAllGames(page) {
   return dispatch => {
@@ -86,6 +86,23 @@ export function getAllGames(page) {
       .catch(error => {
         console.error("Error occurred:", error);
         dispatch({ type: "GET_ALL_GAMES_ERROR", payload: error.message });
+      });
+    };
+  }
+
+// Acciones asincrónicas para obtener el detalle de un juego por ID
+export function getGamesId(gameId) {
+  return dispatch => {
+    console.log("Fetching game details for id:", gameId);
+    
+    axios.get(`/games/${gameId}`)
+      .then(response => {
+        console.log("Info:", response.data);
+        dispatch({ type: "GET_GAME_ID", payload: response.data });
+      })
+      .catch(error => {
+        console.error("Error occurred:", error);
+        dispatch({ type: "GET_GAME_ID_ERROR", payload: error.message });
       });
   };
 }
@@ -102,22 +119,23 @@ export function sortCountriesContinent(continent) {
         console.error("Error occurred:", error);
         dispatch({ type: "SORT_COUNTRIES_CONTINENT_ERROR", payload: error.message });
       });
-  };
+    };
 }
 
 // Acciones asincrónicas para filtrar países por actividad
 export function sortCountriesActivity(activity) {
   return dispatch => {
     axios.get("/countries/all")
-      .then(response => {
-        dispatch({ type: "SORT_COUNTRIES_ACTIVITY", payload: response.data, activity: activity });
-      })
-      .catch(error => {
-        console.error("Error occurred:", error);
-        dispatch({ type: "SORT_COUNTRIES_ACTIVITY_ERROR", payload: error.message });
-      });
+    .then(response => {
+      dispatch({ type: "SORT_COUNTRIES_ACTIVITY", payload: response.data, activity: activity });
+    })
+    .catch(error => {
+      console.error("Error occurred:", error);
+      dispatch({ type: "SORT_COUNTRIES_ACTIVITY_ERROR", payload: error.message });
+    });
   };
 }
+
 
 // Acciones asincrónicas para obtener países paginados
 export function getCountries(page) {
@@ -134,22 +152,6 @@ export function getCountries(page) {
 }
 
 
-// Acciones asincrónicas para obtener el detalle de un país por ID
-export function getCountryId(id) {
-  return dispatch => {
-    console.log("Fetching country details for id:", id);
-    
-    axios.get(`/details/${id}`)
-      .then(response => {
-        console.log("Info:", response.data);
-        dispatch({ type: "GET_COUNTRY_ID", payload: response.data });
-      })
-      .catch(error => {
-        console.error("Error occurred:", error);
-        dispatch({ type: "GET_COUNTRY_ID_ERROR", payload: error.message });
-      });
-  };
-}
 
 // Acciones asincrónicas para crear una nueva actividad
 export function createActivity(values) {

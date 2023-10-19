@@ -1,4 +1,4 @@
-const { Games, Users, Op } = require("../db");
+const { Games, Users, Review, Op } = require("../db");
 const axios = require("axios");
 
 
@@ -155,24 +155,18 @@ async function getGames(req, res, next) {
 // Obtener el detalle de un país en particular
 async function getOneGame(req, res, next) {
   const { gameId } = req.params;
+  console.log("gameId:", gameId);
 
   try {
-    const games = await Games.findOne({
+    const game = await Games.findOne({
       where: { id: gameId },
-      include: [
-        {
-          model: Reviews,
-          attributes: ['id', 'name', 'description', 'game_url', 'genre', 'platform', 'publisher', 'release_date'],
-          through: { attributes: [] },
-        },
-      ],
     });
 
-    if (!games) {
+    if (!game) {
       return res.status(404).json({ error: "Juego no encontrado" });
     }
     
-    res.json(games);
+    res.json(game);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error al obtener el detalle del juego" });

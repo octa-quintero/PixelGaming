@@ -7,7 +7,7 @@ const {
   getReviewsForGame
 } = require("../controllers/reviews-controllers");
 
-router.post('/reviews', createReview);
-router.get('/games/:gameId/reviews', getReviewsForGame);
+router.post("/reviews", createReview);
+router.get("/games/:gameId/reviews", getReviewsForGame);
 
 module.exports = router;

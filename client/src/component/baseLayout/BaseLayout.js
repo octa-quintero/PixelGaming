@@ -5,6 +5,7 @@ import Footer from './footer/footer.js'
 import Home from '../home/home.js'
 import Games from '../games/games.js'
 import Top2023 from '../top2023/top2023.js'
+import GameDetail from '../gameDetail/gameDetail.js'
 import {Route, Routes} from "react-router-dom";
 import {Box, Grid} from "@mui/material";
 
@@ -38,8 +39,9 @@ return (
     <Grid item flexGrow={1} display={'flex'} justifyContent={'center'} alignItems={'flex-start'}>
       <Routes>
         <Route exact path={'/'} element={<Home/>}/>
-        <Route exact path={'/games'} element={<Games/>}/>
-        <Route exact path={'/top2023'} element={<Top2023/>}/>
+        <Route path={'/games'} element={<Games/>}/>
+        <Route path={'/top2023'} element={<Top2023/>}/>
+        <Route path={'/games/:gameId'} element={<GameDetail/>}/>
       </Routes>
     </Grid>
     <Grid item>

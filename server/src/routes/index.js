@@ -7,7 +7,6 @@ const reviews =require("./reviews.js");
 const router = Router();
 
 router.use("/", games )
-router.use("/", users )
 router.use("/", reviews )
 
 
