@@ -10,11 +10,15 @@ module.exports = (sequelize) => {
         primaryKey: true
       },
       name: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(40),
         allowNull: false
       },
-      name_users: {
-        type: DataTypes.STRING,
+      last_name: {
+        type: DataTypes.STRING(40),
+        allowNull: false
+      },
+      name_user: {
+        type: DataTypes.STRING(40),
         allowNull: false,
         unique: true
       },
@@ -26,10 +30,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
+      },
+      avatar: {
+        type: DataTypes.STRING,
+        allowNull: true
       }
-    }, {
-      createdAt: false,
-      updatedAt: false,
-      timestamps: false
     });
 };

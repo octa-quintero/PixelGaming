@@ -60,7 +60,7 @@ function reducer(state = initialState, action) {
         freeGames: action.payload
       };
 
-    case "GET_GAMES_ID":
+    case "GET_GAME_ID":
       // Actualizar el estado con el detalle del juego
       return {
         ...state,

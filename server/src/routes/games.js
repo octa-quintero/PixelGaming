@@ -19,7 +19,7 @@ router.get("/games/top10", getTop10Games);
 router.get("/games/freegames", getRandomGames);
 router.get("/games/all", getAllGames);
 router.get('/games/filter', filterGamesByTagsAndPlatform);
-router.get("/details/:gamesId", getOneGame)
+router.get("/games/:gameId", getOneGame)
 
 
 module.exports = router;

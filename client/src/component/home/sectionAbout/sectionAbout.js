@@ -18,7 +18,7 @@ function SectionAbout() {
               los juegos. ¡Bienvenido a <span className={style.pixelGaming}>PixelGaming</span>!
           </p>
               <NavLink to="/activity" className={style.btnRegistro}>
-                <h1>Comienza tu experiencia</h1>
+                <h1>Comenzá tu experiencia</h1>
               </NavLink>
       </div>
     </div>  

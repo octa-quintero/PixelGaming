@@ -151,6 +151,7 @@ async function getGames(req, res, next) {
   }
 }
 
+
 // Obtener el detalle de un país en particular
 async function getOneGame(req, res, next) {
   const { gameId } = req.params;
@@ -160,7 +161,7 @@ async function getOneGame(req, res, next) {
       where: { id: gameId },
       include: [
         {
-          // model: TouristActivity,
+          model: Reviews,
           attributes: ['id', 'name', 'description', 'game_url', 'genre', 'platform', 'publisher', 'release_date'],
           through: { attributes: [] },
         },

@@ -33,11 +33,16 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 // Definición de modelos específicos
-const { Games, Users } = sequelize.models;
+const { Games, Users, Review } = sequelize.models;
 
 // Definir relaciones entre modelos
 Users.belongsToMany(Games, { through: 'games-users' });
 Games.belongsToMany(Users, { through: 'games-users' });
+
+Users.hasMany(Review);
+Games.hasMany(Review);
+Review.belongsTo(Users);
+Review.belongsTo(Games);
 
 
 module.exports = {

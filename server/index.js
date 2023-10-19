@@ -17,7 +17,6 @@ if (process.env.NODE_ENV === 'production') {
 
 console.log(__dirname, 'client/build');
 
-
 // Sincronización de la base de datos y inicio del servidor
 async function startServer() {
   try {
