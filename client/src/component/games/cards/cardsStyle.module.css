@@ -7,16 +7,6 @@
   padding: 0;
 }
 
-.cards {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  transition: 1s;
-}
-
-
 .cardContent{
   display: flex;
   width: 100%;

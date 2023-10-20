@@ -10,7 +10,7 @@ module.exports = ( sequelize ) => {
     },
     title: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false  
     },
     thumbnail: {
       type: DataTypes.TEXT,
@@ -39,6 +39,10 @@ module.exports = ( sequelize ) => {
     release_date: {
       type: DataTypes.STRING, 
       allowNull: true
+    },
+    developer: {
+      type: DataTypes.STRING,
+      allowNull: true,
     }
   }, {
     createdAt: false,

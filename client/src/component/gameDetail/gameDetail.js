@@ -26,27 +26,22 @@ function GameDetail() {
   console.log("GameDetail component rendered with gameInfo:", gameInfo);
 
   return (
-    <div>
+    <div className={style.cardsGamesContainer}>
       <div className={style.cardContent1} key={gameInfo.id}>
         {gameInfo ? (
-          <div>
-            <img src={gameInfo.thumbnail} alt={gameInfo.title} className={style.cardImage} />
+          <div className={style.cardContent}>
+            <div className={style.image}>
+              <img src={gameInfo.thumbnail} alt={gameInfo.title} className={style.cardImage} />
+              <a href={gameInfo.game_url} className={style.cardBtn}>Play Now!</a>
+            </div>  
             <div className={style.title}>
               <h2 className={style.cardTitle}>{gameInfo.title}</h2>
-              <h3 className={style.shortDescription}>{gameInfo.short_description}</h3>
-              <div className={style.platformButton}>
-                <h4 className={style.genre}>{gameInfo.genre}</h4>
-                <div className={style.icon}>
-                  {gameInfo.platform && gameInfo.platform.includes('PC') ? (
-                    <FontAwesomeIcon icon={faComputer} />
-                  ) : gameInfo.platform && gameInfo.platform.includes('Web') ? ( 
-                    <FontAwesomeIcon icon={faGlobe} />
-                  ) : (
-                    gameInfo.platform
-                  )}
-                </div>
-                <a href={gameInfo.game_url} className={style.cardBtn}>Play Now!</a>
-              </div>
+              <h3 className={style.description}>{gameInfo.short_description}</h3>
+              <h3 className={style.shortDescription}>Publicado:<h3>{gameInfo.publisher}</h3></h3>
+              <h3 className={style.shortDescription}>Desarrollo: <h3>{gameInfo.developer}</h3></h3>
+              <h3 className={style.shortDescription}>Lanzamiento: <h3>{gameInfo.release_date}</h3></h3>
+              <h3 className={style.shortDescription}>Genero: <h3>{gameInfo.genre}</h3></h3>
+              <h3 className={style.shortDescription}>Plataforma: <h3>{gameInfo.platform}</h3></h3>
             </div>
           </div>
         ) : (

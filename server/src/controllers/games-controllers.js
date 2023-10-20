@@ -21,7 +21,8 @@ async function data() {
         genre: gamesData.genre,
         platform: gamesData.platform,
         publisher: gamesData.publisher,
-        release_date: gamesData.release_date
+        release_date: gamesData.release_date,
+        developer: gamesData.developer
       });
     });
 
