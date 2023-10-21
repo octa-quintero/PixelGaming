@@ -5,6 +5,7 @@ const initialState = {
   gameDetail: {},
   allGames: [],
   filteredGames: [],
+  reviews: [],
 };
 
 // Reducer de Redux para manejar el estado global
@@ -74,15 +75,15 @@ function reducer(state = initialState, action) {
         activities: action.payload
       };
 
-    case "CREATE_ACTIVITY":
+    case "CREATE_REVIEWS":
       // Agregar una nueva actividad al estado
       return {
         ...state,
-        activities: [...state.activities, action.payload],
+        reviews: [...state.reviews, action.payload],
         error: null,
       };
 
-    case "CREATE_ACTIVITY_ERROR":
+    case "CREATE_REVIEWS_ERROR":
       // Manejar errores al crear actividades
       return {
         ...state,

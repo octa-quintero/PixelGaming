@@ -1,19 +1,41 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getGamesId } from '../../redux/action.js';
+import { getGamesId, createReview } from '../../redux/action.js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faComputer,
+  faPaperPlane,
   faGlobe
 } from '@fortawesome/free-solid-svg-icons';
 import style from './gameDetailStyle.module.css';
+import Duck from "../../../src/assets/logo/duck.gif";
+import Emoticon1 from "../../../src/assets/pixelArt/emoticon.png";
+import Emoticon2 from "../../../src/assets/pixelArt/emoticon1.png";
+import Emoticon3 from "../../../src/assets/pixelArt/emoticon2.png";
+import Emoticon4 from "../../../src/assets/pixelArt/emoticon3.png";
+import Emoticon5 from "../../../src/assets/pixelArt/emoticon4.png";
+import Emoticon6 from "../../../src/assets/pixelArt/emoticon5.png";
+
+
 
 function GameDetail() {
   const dispatch = useDispatch();
   const gameInfo = useSelector(state => state.gameDetail);
+  const [reviewText, setReviewText] = useState("");
+
+  const handleReviewSubmit = () => {
+    if (reviewText.trim() !== "") {
+      const reviewData = {
+        text: reviewText,
+        rating: 5,
+        gameId: gameInfo.id, // Asegúrate de que gameId esté disponible
+        userId: 1, // Debes reemplazar esto con la autenticación de usuario real
+      };
+      dispatch(createReview(reviewData));
+      setReviewText(""); // Borra el texto de la reseña después de enviarlo
+    }
+  };
   
   useEffect(() => {
-    // Accede al `gameId` desde la URL actual, por ejemplo, utilizando window.location
     const pathname = window.location.pathname;
     const gameId = pathname.split('/games/')[1];
 
@@ -42,11 +64,22 @@ function GameDetail() {
               <h3 className={style.shortDescription}>Lanzamiento: <h3>{gameInfo.release_date}</h3></h3>
               <h3 className={style.shortDescription}>Genero: <h3>{gameInfo.genre}</h3></h3>
               <h3 className={style.shortDescription}>Plataforma: <h3>{gameInfo.platform}</h3></h3>
+              <div className={style.textArea}>
+                <img src={Duck} className={style.duck}></img>
+                  <textarea
+                    value={reviewText}
+                    onChange={(e) => setReviewText(e.target.value)}
+                    placeholder="Escribe tu reseña aquí"
+                  />
+                  <button className={style.btnRegistro} onClick={handleReviewSubmit}>
+                    <h1><FontAwesomeIcon icon={faPaperPlane}/></h1>
+                  </button>
+              </div>
             </div>
           </div>
         ) : (
           <p>Loading game details...</p>
-        )}
+          )}
       </div>
     </div>
   );

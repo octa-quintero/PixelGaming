@@ -108,65 +108,20 @@ export function getGamesId(gameId) {
 }
 
 
-// Acciones asincrónicas para filtrar países por continente
-export function sortCountriesContinent(continent) {
+
+// Acciones asincrónicas para crear una nueva reseña
+export function createReview(values) {
   return dispatch => {
-    axios.get("/countries/all")
-      .then(response => {
-        dispatch({ type: "SORT_COUNTRIES_CONTINENT", payload: response.data, continent: continent });
+    axios.post("/reviews", values)
+      .then(response => { 
+        dispatch({ type: "CREATE_REVIEWS", payload: response.data });
       })
       .catch(error => {
         console.error("Error occurred:", error);
-        dispatch({ type: "SORT_COUNTRIES_CONTINENT_ERROR", payload: error.message });
-      });
-    };
-}
-
-// Acciones asincrónicas para filtrar países por actividad
-export function sortCountriesActivity(activity) {
-  return dispatch => {
-    axios.get("/countries/all")
-    .then(response => {
-      dispatch({ type: "SORT_COUNTRIES_ACTIVITY", payload: response.data, activity: activity });
-    })
-    .catch(error => {
-      console.error("Error occurred:", error);
-      dispatch({ type: "SORT_COUNTRIES_ACTIVITY_ERROR", payload: error.message });
-    });
-  };
-}
-
-
-// Acciones asincrónicas para obtener países paginados
-export function getCountries(page) {
-  return dispatch => {
-    axios.get(`/countries?page=${page}`)
-      .then(response => {
-        dispatch({ type: "GET_COUNTRIES", payload: response.data });
-      })
-      .catch(error => {
-        console.error("Error occurred:", error);
-        dispatch({ type: "GET_COUNTRIES_ERROR", payload: error.message });
+        dispatch({ type: "CREATE_REVIEWS_ERROR", payload: error.message });
       });
   };
 }
-
-
-
-// Acciones asincrónicas para crear una nueva actividad
-export function createActivity(values) {
-  return dispatch => {
-    axios.post("/activity", values)
-      .then(response => {
-        dispatch({ type: "CREATE_ACTIVITY", payload: response.data });
-      })
-      .catch(error => {
-        console.error("Error occurred:", error);
-        dispatch({ type: "CREATE_ACTIVITY_ERROR", payload: error.message });
-      });
-  };
-}
-
 // Acciones asincrónicas para obtener actividades
 export function getActivities(order) {
   return dispatch => {

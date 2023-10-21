@@ -125,6 +125,71 @@
   color: rgb(202, 202, 202);
 }
 
+.textArea{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+}
+
+.textArea textArea{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-radius: 3px;
+  padding: 10px;
+  width: 100%;
+  height: 70px;
+  background-color: transparent;
+  color: rgb(202, 202, 202);
+  font-family: 'Ubuntu', sans-serif;
+  resize: vertical;
+  font-weight: bold;
+  border: solid 1px;
+  border: 1.8px solid #00a2ff;
+  transition: border 0.5s;
+}
+
+
+.textArea textarea:focus{
+  border: 1.8px solid #00ccff;
+  outline: none;
+}
+
+.duck{
+  width: 70px;
+}
+
+.btnRegistro{
+  all: initial;
+  cursor: pointer;
+  height: auto;
+}
+
+.btnRegistro h1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  height: 70px;
+  background-color: transparent;
+  font-family: 'Ubuntu', sans-serif;
+  border: 1.8px solid #00a2ff;
+  border-radius: 3px;
+  color: #00a2ff;
+  font-size: 25px;
+  font-weight: 400;
+  padding: 10px;
+  transition: 0.3s;
+}
+
+.btnRegistro h1:hover{
+  color: #00ccff;
+  border: 1.8px solid #00ccff;
+} 
 
 .cardBtn{
   display: flex;
@@ -136,8 +201,8 @@
   color: rgb(202, 202, 202);
   background-color: #2464ad;
   width: 100%;
-  height: 25px;
-  font-size: 15px;
+  height: 30px;
+  font-size: 16px;
   font-weight: bold;
 }
 
