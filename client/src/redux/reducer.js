@@ -6,6 +6,7 @@ const initialState = {
   allGames: [],
   filteredGames: [],
   reviews: [],
+  getReviews: []
 };
 
 // Reducer de Redux para manejar el estado global
@@ -68,15 +69,15 @@ function reducer(state = initialState, action) {
         gameDetail: action.payload
       };
 
-    case "GET_ACTIVITIES":
-      // Actualizar el estado con la lista de actividades turísticas
-      return {
-        ...state,
-        activities: action.payload
-      };
+      case "GET_REVIEWS":
+        // Actualizar el estado con la lista de reseñas
+        return {
+          ...state, // Copiar el estado actual
+          reviews: action.payload, // Actualizar la propiedad de reseñas con los datos de la acción
+        };
 
     case "CREATE_REVIEWS":
-      // Agregar una nueva actividad al estado
+      // Agregar una nueva reviews al estado
       return {
         ...state,
         reviews: [...state.reviews, action.payload],

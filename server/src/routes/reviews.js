@@ -4,7 +4,7 @@ const router = Router();  // Crear instancia del router
 // Importar controladores
 const {
   createReview,
-  getReviewsForGame
+  getReviewsForGame,
 } = require("../controllers/reviews-controllers");
 
 router.post("/reviews", createReview);

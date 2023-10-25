@@ -7,14 +7,13 @@ const createReview = async (req, res, next) => {
   try {
     console.log("Creating new review...");
 
-    const { text, rating, gameId, userId } = req.body;
-    console.log("Received data:", req.body);
+    const { text, rating, gameId } = req.body;
+    console.log("Data OK:", req.body);
 
     // Validar que el juego y el usuario existan antes de crear la reseña
     const game = await Games.findByPk(gameId);
-    const user = await Users.findByPk(userId);
 
-    if (!game || !user) {
+    if (!game) {
       return res.status(404).json({ error: "Juego o usuario no encontrado" });
     }
 
@@ -22,11 +21,11 @@ const createReview = async (req, res, next) => {
     const newReview = await Review.create({
       text,
       rating,
+      GameId: gameId,  // Asignar gameId a la reseña
     });
 
     // Asociar la reseña al juego y al usuario
     await newReview.setGame(game);
-    await newReview.setUser(user);
 
     console.log("Review created:", newReview);
 
@@ -43,14 +42,14 @@ const createReview = async (req, res, next) => {
 const getReviewsForGame = async (req, res, next) => {
   try {
     const gameId = req.params.gameId; // Obtén el ID del juego de los parámetros de la ruta
-    const game = await Games.findByPk(gameId); // Cambia Game a Games
+    const game = await Games.findByPk(gameId);
 
     if (!game) {
       return res.status(404).json({ error: 'Juego no encontrado' });
     }
 
     const reviews = await Review.findAll({
-      where: { GameId: gameId }, // Filtra las reseñas por el ID del juego
+      where: { GameId: gameId },
     });
 
     res.status(200).json(reviews);
@@ -60,7 +59,6 @@ const getReviewsForGame = async (req, res, next) => {
     next(error);
   }
 };
-
 
 
 module.exports = { 

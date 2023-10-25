@@ -6,16 +6,9 @@ import {
   faPaperPlane,
   faGlobe
 } from '@fortawesome/free-solid-svg-icons';
+import RatingInput from './rating/rating.js';
 import style from './gameDetailStyle.module.css';
 import Duck from "../../../src/assets/logo/duck.gif";
-import Emoticon1 from "../../../src/assets/pixelArt/emoticon.png";
-import Emoticon2 from "../../../src/assets/pixelArt/emoticon1.png";
-import Emoticon3 from "../../../src/assets/pixelArt/emoticon2.png";
-import Emoticon4 from "../../../src/assets/pixelArt/emoticon3.png";
-import Emoticon5 from "../../../src/assets/pixelArt/emoticon4.png";
-import Emoticon6 from "../../../src/assets/pixelArt/emoticon5.png";
-
-
 
 function GameDetail() {
   const dispatch = useDispatch();
@@ -26,12 +19,11 @@ function GameDetail() {
     if (reviewText.trim() !== "") {
       const reviewData = {
         text: reviewText,
-        rating: 5,
-        gameId: gameInfo.id, // Asegúrate de que gameId esté disponible
-        userId: 1, // Debes reemplazar esto con la autenticación de usuario real
+        gameId: gameInfo.id,
+        rating: 3,
       };
       dispatch(createReview(reviewData));
-      setReviewText(""); // Borra el texto de la reseña después de enviarlo
+      setReviewText("");
     }
   };
   
@@ -45,8 +37,6 @@ function GameDetail() {
     }
   }, [dispatch]);
 
-  console.log("GameDetail component rendered with gameInfo:", gameInfo);
-
   return (
     <div className={style.cardsGamesContainer}>
       <div className={style.cardContent1} key={gameInfo.id}>
@@ -55,6 +45,7 @@ function GameDetail() {
             <div className={style.image}>
               <img src={gameInfo.thumbnail} alt={gameInfo.title} className={style.cardImage} />
               <a href={gameInfo.game_url} className={style.cardBtn}>Play Now!</a>
+              <RatingInput onRatingChange={(rating) => {}} />
             </div>  
             <div className={style.title}>
               <h2 className={style.cardTitle}>{gameInfo.title}</h2>

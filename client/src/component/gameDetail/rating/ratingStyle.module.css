@@ -1,0 +1,22 @@
+.rating{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 85%;
+  font-size: 17px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+}
+
+.rating img{
+  width: 30px;
+}
+
+.ratingEmoticon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+}

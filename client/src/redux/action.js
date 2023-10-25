@@ -97,7 +97,6 @@ export function getGamesId(gameId) {
     
     axios.get(`/games/${gameId}`)
       .then(response => {
-        console.log("Info:", response.data);
         dispatch({ type: "GET_GAME_ID", payload: response.data });
       })
       .catch(error => {
@@ -122,20 +121,22 @@ export function createReview(values) {
       });
   };
 }
-// Acciones asincrónicas para obtener actividades
-export function getActivities(order) {
+
+// Acciones asincrónicas para obtener reseñas
+export function getReviews(order) {
   return dispatch => {
-    axios.get(`/activities?order=${order}`)
+    axios.get(`/reviews?order=${order}`)
       .then(response => {
         console.log(response);
-        dispatch({ type: "GET_ACTIVITIES", payload: response.data });
+        dispatch({ type: "GET_REVIEWS", payload: response.data });
       })
       .catch(error => {
         console.error("Error occurred:", error);
-        dispatch({ type: "GET_ACTIVITIES_ERROR", payload: error.message });
+        dispatch({ type: "GET_REVIEWS_ERROR", payload: error.message });
       });
   };
 }
+
 
 // Acciones para remover la lista de países
 export const removeGames = () => ({
