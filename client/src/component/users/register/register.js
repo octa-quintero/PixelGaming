@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createUser } from '../../../redux/action.js';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+        faUser} from '@fortawesome/free-solid-svg-icons';
 import style from './registerStyle.module.css';
 
 // Importa tus avatares aquí
+import GameBoy from "../../../assets/gameBoy/game_boy.gif";
+
 import Duck from "../../../assets/usersPixelArt/duck.png";
 import Ghost from "../../../assets/usersPixelArt/ghost.png";
 import Ghost1 from "../../../assets/usersPixelArt/ghost1.png";
@@ -13,6 +18,16 @@ import Picachu from "../../../assets/usersPixelArt/picachu.png";
 import Skull from "../../../assets/usersPixelArt/skull.png";
 import Ufo from "../../../assets/usersPixelArt/ufo.png";
 import Fungus from "../../../assets/usersPixelArt/fungus.png";
+
+import Kirby from "../../../assets/usersPixelArt/kirby.png";
+import Charizard from "../../../assets/usersPixelArt/charizard.png";
+import Computer from "../../../assets/usersPixelArt/computer.png";
+import Espada from "../../../assets/usersPixelArt/espada.png";
+import GameVoy from "../../../assets/usersPixelArt/gameboy.png";
+import Hamburguer from "../../../assets/usersPixelArt/hamburguer.png";
+import Pacman from "../../../assets/usersPixelArt/pacman.png";
+import Pizza from "../../../assets/usersPixelArt/pizza.png";
+import Superman from "../../../assets/usersPixelArt/superman.png";
 
 function Register() {
   const [user, setUser] = useState({
@@ -44,11 +59,11 @@ function Register() {
 
   // Array de campos para el formulario
   const formFields = [
-    { name: 'name', label: 'Nombre', type: 'text' },
-    { name: 'last_name', label: 'Apellido', type: 'text' },
-    { name: 'name_user', label: 'Nombre de usuario', type: 'text' },
-    { name: 'password', label: 'Contraseña', type: 'password' },
-    { name: 'email', label: 'Correo electrónico', type: 'email' }
+    { name: 'name', type: 'text', placeholder: 'Ingresa tu nombre' },
+    { name: 'last_name', type: 'text', placeholder: 'Tu apellido' },
+    { name: 'name_user', type: 'text', placeholder: 'Nombre de Usuario' },
+    { name: 'password', type: 'password', placeholder: 'Contraseña' },
+    { name: 'email', type: 'email', placeholder: 'Correo electrónico' }
   ];
 
   // Lista de nombres de archivo de avatares
@@ -61,41 +76,52 @@ function Register() {
     { name: 'Picachu', image: Picachu },
     { name: 'Skull', image: Skull },
     { name: 'Ufo', image: Ufo },
-    { name: 'Fungus', image: Fungus }
+    { name: 'Fungus', image: Fungus },
+    { name: 'Kirby', image: Kirby },
+    { name: 'Pizza', image: Pizza },
+    { name: 'Charizard', image: Charizard },
+    { name: 'Pacman', image: Pacman},
+    { name: 'Espada', image: Espada },
+    { name: 'Superman', image: Superman },
+    { name: 'Hamburguer', image: Hamburguer },
+    { name: 'GameVoy', image: GameVoy },
+    { name: 'Computer', image: Computer }
   ];
 
   return (
     <div className={style.loginContainer}>
-      <form onSubmit={handleSubmit}>
+      <div className={style.gameBoyContent}>
+        <img src={GameBoy} className={style.GameBoy}/>
+      </div>
+      <form onSubmit={handleSubmit} className={style.loginContent}>
+        <h1 className={style.text}><FontAwesomeIcon icon={faUser} />Crea Tu Cuenta</h1>
         {formFields.map((field) => (
-          <div key={field.name}>
-            <label htmlFor={field.name}>{field.label}</label>
+          <div key={field.name} className={style.label}>
             <input
               type={field.type}
               name={field.name}
               value={user[field.name]}
               onChange={handleInputChange}
+              placeholder={field.placeholder}
             />
           </div>
         ))}
-        <form onSubmit={handleSubmit}>
-        <div className={style.avatarSelection}>
+        <form onSubmit={handleSubmit} className={style.avatarSelection}>
           {avatarImages.map((avatar, index) => (
             <div
               key={index}
               className={`${style.avatarOption}`}
               onClick={() => handleAvatarSelect(avatar.image)}
             >
-              <img
-                src={avatar.image}
-                alt={avatar.name}
-                className={style.avatarImage}
-              />
+                <img
+                  src={avatar.image}
+                  alt={avatar.name}
+                  className={style.avatarImage}
+                />
             </div>
           ))}
-        </div>
       </form>
-        <button type="submit">Registrarse</button>
+        <button type="submit" className={style.cardBtn}>Unete Gratis!</button>
       </form>
     </div>
   );

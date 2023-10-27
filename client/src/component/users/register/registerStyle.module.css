@@ -1,24 +1,126 @@
-.avatarsList{
+.loginContainer{
   display: flex;
+  align-items: flex-start;
   justify-content: center;
-  flex-wrap: wrap;
-  align-items: center;
-  width: 40%;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  margin-top: 30px;
+  padding: 0;
+  background-color: #2a2a2abb;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transition: 0.3s;
+  border-radius: 5px;
 }
 
-.avatarSelection {
+.gameBoyContent{
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 35%;
+  padding: 30px;
+}
+
+.GameBoy{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
   width: 100%;
-  gap: 5px;
+}
+
+.loginContent{
+  display: flex;
+  overflow: hidden;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  padding: 30px;
+  width: 50%;
+  gap: 15px;
+}
+
+.label{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.label input{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 5px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  padding: 17px;
+  background-color: #2a2a2abb;
+  color:  rgb(202, 202, 202);
+  border: 1.8px solid #00a2ff;
+  transition: 0.3s; 
+}
+
+.label input:focus {
+  border: 1.8px solid #00ccff;
+  outline: none;
+} 
+
+.avatarSelection {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  border: 1.8px solid #00a2ff;
+  padding: 8px;
 }
 
 .avatarOption {
-  width: calc(33.33% - 5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(17.33% - 5px);
   text-align: center;
+  padding: 5px;
 }
 
 .avatarImage {
-  max-width: 6%;
+  max-width: 30px;
+}
+
+.text{
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  font-size: 2vw;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  color: rgb(202, 202, 202);
+  padding: 4px;
+  margin: 10px;
+}
+
+.cardBtn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Ubuntu', sans-serif;
+  border-radius: 3px;
+  color: rgb(202, 202, 202);
+  background-color: #2464ad;
+  width: 100%;
+  height: 40px;
+  padding: 1px;
+  font-size: 18px;
+  font-weight: bold;
+  outline: none;
+  border: none;
+}
+
+.cardBtn:hover{
+  background-color: #0475f6;
 }
