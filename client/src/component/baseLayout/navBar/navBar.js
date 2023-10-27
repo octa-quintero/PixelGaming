@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
   faLayerGroup,
-  faUser,
+  faMagnifyingGlass,
   faCrown,
   faTimes,
   faGamepad,
@@ -50,10 +50,10 @@ function NavBar() {
             <NavLink to="/biblioteca" className={style.btnUser}>
               <p><FontAwesomeIcon icon={faLayerGroup}/></p>
             </NavLink>
-            <NavLink to="/hola" className={style.btnUser}>
-              <p><FontAwesomeIcon icon={faUser} /></p>
+            <NavLink to="/games" className={style.btnUser}>
+              <p><FontAwesomeIcon icon={faMagnifyingGlass} /></p>
             </NavLink>
-            <NavLink to="/activity" className={style.btnRegistro}>
+            <NavLink to="/register" className={style.btnRegistro}>
               <h1>Acceso Gratuito</h1>
             </NavLink>
           </div>

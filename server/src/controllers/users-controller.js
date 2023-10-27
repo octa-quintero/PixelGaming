@@ -1,96 +1,60 @@
-const { Countries, TouristActivity} = require("../db");
+const { Users } = require("../db");
 const axios = require("axios");
 
 
-// Crear actividad turística
-const createActivity = async (req, res, next) => {
+// Crear User
+const createUser = async (req, res, next) => {
   try {
-    console.log("Creating new activity...");
+    // Extraer los datos del cuerpo de la solicitud
+    const { name, last_name, name_user, password, email, avatar } = req.body;
 
-    const { name, difficult, duration, season, countries } = req.body;
-    console.log("Received data:", req.body);
+    // Verificar si el usuario ya existe
+    const existingUser = await Users.findOne({ where: { name_user } });
 
-    // Crear una nueva actividad turística en la base de datos
-    const newActivity = await TouristActivity.create({
-      id: countries[0],
-      name,
-      difficult,
-      duration,
-      season,
-      countries,
-    });
-
-    // Asociar la actividad turística al país seleccionado
-    if (countries && countries.length > 0) {
-      const selectedCountry = await Countries.findOne({
-        where: { id: countries[0] },
-      });
-
-      if (selectedCountry) {
-        await newActivity.addCountries(selectedCountry);
-      }
+    if (existingUser) {
+      return res.status(400).json({ error: "El nombre de usuario ya está en uso" });
     }
 
-    console.log("Activity created:", newActivity);
+    // Crear un nuevo usuario en la base de datos
+    const newUser = await Users.create({
+      name,
+      last_name,
+      name_user,
+      password,
+      email,
+      avatar,
+    });
 
-    res.status(201).json(newActivity);
+    res.status(201).json(newUser);
   } catch (error) {
-    console.error('Error al crear la actividad turística:', error);
-    res.status(500).json({ error: 'Error al crear la actividad turística' });
+    console.error("Error al crear un usuario:", error);
+    res.status(500).json({ error: "Error al crear un usuario" });
     next(error);
   }
 };
 
-
-// Obtener actividades turísticas con toda su información
-const getActivities = async (req, res, next) => {
+const login = async (req, res, next) => {
   try {
-    const { order } = req.query;
+    // Extraer los datos del cuerpo de la solicitud
+    const { name_user, password } = req.body;
 
-    // Filtrar y obtener actividades según el parámetro de orden
-    let activities;
-    if (order === 'all') {
-      activities = await TouristActivity.findAll({
-        include: [
-          {
-            model: Countries,
-            attributes: ['id', 'name', 'image'],
-            through: { attributes: [] },
-          },
-        ],
-      });
-    } else if (['Verano', 'Otoño', 'Invierno', 'Primavera'].includes(order)) {
-      activities = await TouristActivity.findAll({
-        where: { season: order },
-        include: [
-          {
-            model: Countries,
-            attributes: ['id', 'name', 'image'],
-            through: { attributes: [] },
-          },
-        ],
-      });
-    } else if (parseInt(order) >= 1 && parseInt(order) <= 5) {
-      activities = await TouristActivity.findAll({
-        where: { difficult: parseInt(order) },
-        include: [
-          {
-            model: Countries,
-            attributes: ['id', 'name', 'image'],
-            through: { attributes: [] },
-          },
-        ],
-      });
-    } else {
-      // Manejo de casos no válidos
-      res.status(400).json({ error: 'Parámetro de orden no válido' });
-      return;
+    // Buscar al usuario por nombre de usuario (name_user) en la base de datos
+    const user = await Users.findOne({ where: { name_user } });
+
+    if (!user) {
+      return res.status(401).json({ error: "Usuario no encontrado" });
     }
 
-    res.status(200).json(activities); // Enviar las actividades como respuesta
+    // Validar la contraseña
+    if (user.password !== password) {
+      return res.status(401).json({ error: "Contraseña incorrecta" });
+    }
+
+    // Autenticación exitosa
+    res.status(200).json({ message: "Inicio de sesión exitoso", user });
   } catch (error) {
-    console.error('Error al obtener las actividades turísticas:', error);
-    res.status(500).json({ error: 'Error al obtener las actividades turísticas' });
+    console.error("Error en el inicio de sesión:", error);
+    res.status(500).json({ error: "Error en el inicio de sesión" });
     next(error);
   }
 };
@@ -98,7 +62,7 @@ const getActivities = async (req, res, next) => {
 
 
 module.exports = { 
-  createActivity,
-  getActivities
+  createUser,
+  login
 };
 

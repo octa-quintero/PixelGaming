@@ -1,6 +1,19 @@
 import axios from 'axios';
 
 
+// Acciones para crear usuario
+export function createUser(user) {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post('/users', user);
+      dispatch({ type: "CREATE_USER", payload: response.data });
+    } catch (error) {
+      console.error("Error al crear usuario:", error);
+    }
+  };
+}
+
+
 // Acciones para obtener filtrado avanzado
 export function fetchGamesByTagsAndPlatform(tag, platform) {
   return async dispatch => {
@@ -14,7 +27,6 @@ export function fetchGamesByTagsAndPlatform(tag, platform) {
     }
   };
 }
-
 
 
 // Acciones asincrónicas para buscar países por nombre

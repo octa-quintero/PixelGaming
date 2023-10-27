@@ -1,0 +1,24 @@
+.avatarsList{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 40%;
+}
+
+.avatarSelection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  gap: 5px;
+}
+
+.avatarOption {
+  width: calc(33.33% - 5px);
+  text-align: center;
+}
+
+.avatarImage {
+  max-width: 6%;
+}

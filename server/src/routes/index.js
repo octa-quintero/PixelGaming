@@ -8,6 +8,7 @@ const router = Router();
 
 router.use("/", games )
 router.use("/", reviews )
+router.use("/", users )
 
 
 module.exports = router;

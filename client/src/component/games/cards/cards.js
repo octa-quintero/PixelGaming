@@ -57,8 +57,8 @@ function Cards() {
     fetchData();
   }, [dispatch]);
 
+  // Realizar la búsqueda y almacenar los resultados en searchResults
   useEffect(() => {
-    // Realizar la búsqueda y almacenar los resultados en searchResults
     const filtered = allGames.filter((game) =>
       game.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -68,20 +68,16 @@ function Cards() {
   // Obtener juegos aleatorios de acuerdo a si se ha realizado una búsqueda o no
   const randomGames = (() => {
     if (searchTerm.length === 0 && filteredGames.length === 0) {
-      // Si no hay término de búsqueda y no hay categorías seleccionadas, mostrar juegos aleatorios
       return getRandomGames(allGames, 30);
     } else if (searchTerm.length === 0) {
-      // Si no hay término de búsqueda pero hay categorías seleccionadas, mostrar juegos filtrados
       return filteredGames;
     } else {
-      // Si hay un término de búsqueda, mostrar los resultados de la búsqueda
       return searchResults;
     }
   })();
   
   return (
     <div className={style.cardsGamesContainer}>
-      <div className={style.cards}>
       <SearchBar onSearchChange={setSearchTerm} />
         <div className={style.cardContent}>
           {Array.isArray(randomGames) && randomGames.map((game) => (
@@ -109,7 +105,6 @@ function Cards() {
             </NavLink>
           ))}
         </div>
-      </div>
     </div>
   );
 }  

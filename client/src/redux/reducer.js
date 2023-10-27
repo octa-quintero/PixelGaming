@@ -1,6 +1,7 @@
 // Estado inicial del store
 const initialState = {
   games: [],
+  users: [],
   freeGames: [],
   gameDetail: {},
   allGames: [],
@@ -18,6 +19,12 @@ function reducer(state = initialState, action) {
       return {
       ...state,
       games: action.payload
+      };
+
+    case "CREATE_USER":
+      return{
+      ...state,
+      users: action.payload
       };
 
     case "GET_TOP3_GAMES":
