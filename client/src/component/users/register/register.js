@@ -40,6 +40,7 @@ function Register() {
   });
 
   const [selectedAvatar, setSelectedAvatar] = useState(null);
+  const [confirmedPassword, setConfirmedPassword] = useState('');
   const dispatch = useDispatch();
 
   const handleInputChange = (event) => {
@@ -54,7 +55,24 @@ function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    
+    if (user.password !== confirmedPassword) {
+      alert('Las contraseñas no coinciden');
+      return;
+    }
+    
     dispatch(createUser(user));
+    
+    setUser({
+      name: '',
+      last_name: '',
+      name_user: '',
+      password: '',
+      email: '',
+      avatar: null
+    });
+    setSelectedAvatar(null);
+    setConfirmedPassword('');
   };
 
   // Array de campos para el formulario
@@ -96,32 +114,43 @@ function Register() {
       <form onSubmit={handleSubmit} className={style.loginContent}>
         <h1 className={style.text}><FontAwesomeIcon icon={faUser} />Crea Tu Cuenta</h1>
         {formFields.map((field) => (
-          <div key={field.name} className={style.label}>
-            <input
-              type={field.type}
-              name={field.name}
-              value={user[field.name]}
-              onChange={handleInputChange}
-              placeholder={field.placeholder}
+  <div key={field.name} className={style.label}>
+    <input
+      type={field.type}
+      name={field.name}
+      value={user[field.name]}
+      onChange={handleInputChange}
+      placeholder={field.placeholder}
+    />
+    {/* Agrega el campo de repetir contraseña si es necesario */}
+    {field.name === 'password' && (
+      <input
+        type="password"
+        name="confirmPassword"
+        value={confirmedPassword}
+        onChange={(event) => setConfirmedPassword(event.target.value)}
+        placeholder="Repetir Contraseña"
+      />
+    )}
+  </div>
+))}
+          <h1 className={style.avatarSelect}>Selecciona tu Avatar</h1>
+        <form onSubmit={handleSubmit} className={style.avatarSelection}>
+        {avatarImages.map((avatar, index) => (
+          <div
+            key={index}
+            className={`${style.avatarOption} ${selectedAvatar === avatar.image ? style.selectedAvatar : ''}`}
+            onClick={() => handleAvatarSelect(avatar.image)}
+          >
+            <img
+            src={avatar.image}
+            alt={avatar.name}
+            className={style.avatarImage}
             />
           </div>
         ))}
-        <form onSubmit={handleSubmit} className={style.avatarSelection}>
-          {avatarImages.map((avatar, index) => (
-            <div
-              key={index}
-              className={`${style.avatarOption}`}
-              onClick={() => handleAvatarSelect(avatar.image)}
-            >
-                <img
-                  src={avatar.image}
-                  alt={avatar.name}
-                  className={style.avatarImage}
-                />
-            </div>
-          ))}
-      </form>
-        <button type="submit" className={style.cardBtn}>Unete Gratis!</button>
+        </form>
+          <button type="submit" className={style.cardBtn}>Unete Gratis!</button>
       </form>
     </div>
   );

@@ -14,6 +14,12 @@
   border-radius: 5px;
 }
 
+.selectedAvatar {
+  background-color: #151515bb;
+  width: 30px;
+  border-radius: 3px; /* Bordes redondeados (puedes ajustar esto) */
+}
+
 .gameBoyContent{
   display: flex;
   justify-content: flex-start;
@@ -45,6 +51,8 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .label input{
@@ -75,6 +83,18 @@
   flex-wrap: wrap;
   border: 1.8px solid #00a2ff;
   padding: 8px;
+}
+
+.avatarSelect{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  font-size: 18px;
+  padding-left: 17px;
+  padding-top: 5px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  color:  rgb(202, 202, 202);
 }
 
 .avatarOption {
