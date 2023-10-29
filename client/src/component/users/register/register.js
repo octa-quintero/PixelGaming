@@ -53,27 +53,29 @@ function Register() {
     setUser({ ...user, avatar });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    
-    if (user.password !== confirmedPassword) {
-      alert('Las contraseñas no coinciden');
-      return;
-    }
-    
-    dispatch(createUser(user));
-    
-    setUser({
-      name: '',
-      last_name: '',
-      name_user: '',
-      password: '',
-      email: '',
-      avatar: null
-    });
-    setSelectedAvatar(null);
-    setConfirmedPassword('');
-  };
+const handleSubmit = (event) => {
+  event.preventDefault();
+
+  if (user.password !== confirmedPassword) {
+    alert('Las contraseñas no coinciden');
+    return;
+  }
+
+  console.log('Datos del usuario a enviar:', user); // Agregar este console.log
+
+  dispatch(createUser(user));
+
+  setUser({
+    name: '',
+    last_name: '',
+    name_user: '',
+    password: '',
+    email: '',
+    avatar: null
+  });
+  setSelectedAvatar(null);
+  setConfirmedPassword('');
+};
 
   // Array de campos para el formulario
   const formFields = [
