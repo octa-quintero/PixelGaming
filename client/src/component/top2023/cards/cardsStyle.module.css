@@ -73,6 +73,8 @@
   font-family: 'Ubuntu', sans-serif;
   font-weight: bold;
   color: rgb(202, 202, 202);
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
 .text h1{

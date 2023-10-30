@@ -67,6 +67,24 @@
   flex-grow: 1;
 }
 
+.Favorite{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.heart{
+  width: 40px;
+  cursor: pointer;
+  filter: grayscale(100%);
+  transition: 0.5s;
+}
+
+.heart:hover {
+  filter: grayscale(0%);
+}
+
 .description{
   display: flex;
   justify-content: flex-start;

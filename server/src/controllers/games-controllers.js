@@ -174,43 +174,6 @@ async function getOneGame(req, res, next) {
   }
 }
 
-// // Obtener países con orden específico
-// async function getGamesOrder(req, res, next) {
-//   try {
-//     const { order } = req.params;
-//     const { page = 1 } = req.query;
-//     const itemsPerPage = 9;
-//     const offset = itemsPerPage * (page - 1);
-
-//     const dataCopy = [...(await Games.findAll())];
-//     let orderData;
-
-//     switch (order) {
-//       case "asc":
-//         orderData = dataCopy.sort((a, b) => a.name.localeCompare(b.name));
-//         break;
-//       case "desc":
-//         orderData = dataCopy.sort((a, b) => b.name.localeCompare(a.name));
-//         break;
-//       case "genre":
-//         orderData = dataCopy.sort((a, b) => a.genre - b.genre);
-//         break;
-//       case "platform":
-//         orderData = dataCopy.sort((a, b) => a.platform - b.platform);
-//         break;
-//       default:
-//         throw new Error("Orden no válido");
-//     }
-
-//     const paginatedData = orderData.slice(offset, offset + itemsPerPage);
-
-//     const totalResults = dataCopy.length;
-
-//     res.json({ results: paginatedData, totalResults });
-//   } catch (error) {
-//     res.status(400).json({ error: error.message });
-//   }
-// }
 
 module.exports = {
   getGames,
@@ -219,7 +182,6 @@ module.exports = {
   getRandomGames,
   getAllGames,
   getOneGame,
-  // getGamesOrder,
   filterGamesByTagsAndPlatform,
   data
 };

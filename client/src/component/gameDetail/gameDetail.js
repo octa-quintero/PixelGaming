@@ -8,6 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import RatingInput from './rating/rating.js';
 import style from './gameDetailStyle.module.css';
+import Heart from "../../../src/assets/pixelArt/heart.png";
 import Duck from "../../../src/assets/logo/duck.gif";
 
 function GameDetail() {
@@ -48,7 +49,10 @@ function GameDetail() {
               <RatingInput onRatingChange={(rating) => {}} />
             </div>  
             <div className={style.title}>
-              <h2 className={style.cardTitle}>{gameInfo.title}</h2>
+              <div className={style.Favorite}>
+                <h2 className={style.cardTitle}>{gameInfo.title}</h2>
+                <img src={Heart} className={style.heart}></img> 
+              </div>
               <h3 className={style.description}>{gameInfo.short_description}</h3>
               <h3 className={style.shortDescription}>Publicado:<h3>{gameInfo.publisher}</h3></h3>
               <h3 className={style.shortDescription}>Desarrollo: <h3>{gameInfo.developer}</h3></h3>
