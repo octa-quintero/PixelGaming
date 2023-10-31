@@ -17,7 +17,7 @@ function SectionAbout() {
               Explora nuestra amplia biblioteca y comparte tus valoraciones sobre
               los juegos. ¡Bienvenido a <span className={style.pixelGaming}>PixelGaming</span>!
           </p>
-              <NavLink to="/activity" className={style.btnRegistro}>
+              <NavLink to="/login" className={style.btnRegistro}>
                 <h1>Comenzá tu experiencia</h1>
               </NavLink>
       </div>

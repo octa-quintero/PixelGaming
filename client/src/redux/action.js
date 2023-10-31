@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// ACTIONS USERS // // ACTIONS USERS // // ACTIONS USERS // 
 
 // Acciones para crear usuario
 export function createUser(user) {
@@ -12,6 +13,53 @@ export function createUser(user) {
     }
   };
 }
+
+// Acción para iniciar la solicitud de inicio de sesión
+export function loginRequest() {
+  return {
+    type: 'LOGIN_REQUEST'
+  };
+}
+
+// Acción para manejar el inicio de sesión exitoso
+export function loginSuccess(user) {
+  return {
+    type: 'LOGIN_SUCCESS',
+    payload: user
+  };
+}
+
+// Acción para manejar un error en el inicio de sesión
+export function loginFailure(error) {
+  return {
+    type: 'LOGIN_FAILURE',
+    payload: error
+  };
+}
+
+// Acción para iniciar sesión
+export function login(credentials) {
+  return async (dispatch) => {
+    dispatch(loginRequest());
+
+    try {
+      const response = await axios.post('/login', credentials);
+      const user = response.data;
+      dispatch(loginSuccess(user));
+    } catch (error) {
+      dispatch(loginFailure(error.message));
+    }
+  };
+}
+
+// Acción para cerrar sesión
+export function logout() {
+  return {
+    type: 'LOGOUT'
+  };
+}
+
+// ACTIONS USERS // // ACTIONS USERS // // ACTIONS USERS // 
 
 
 // Acciones para obtener filtrado avanzado

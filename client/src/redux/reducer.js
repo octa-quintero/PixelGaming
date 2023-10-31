@@ -1,30 +1,43 @@
-// Estado inicial del store
-const initialState = {
-  games: [],
-  users: [],
-  freeGames: [],
-  gameDetail: {},
-  allGames: [],
-  filteredGames: [],
-  reviews: [],
-  getReviews: []
-};
+  // Estado inicial del store
+  const initialState = {
+    games: [],
+    users: [],
+    user: null,
+    freeGames: [],
+    gameDetail: {},
+    allGames: [],
+    filteredGames: [],
+    reviews: [],
+    getReviews: []
+  };
 
-// Reducer de Redux para manejar el estado global
-function reducer(state = initialState, action) {
-  switch (action.type) {
+  // Reducer de Redux para manejar el estado global
+  function reducer(state = initialState, action) {
+    switch (action.type) {
 
-    case "GET_GAMES_ORDER":
-    // Actualizar el estado con la lista de juegos ordenados
-      return {
-      ...state,
-      games: action.payload
-      };
+      case "GET_GAMES_ORDER":
+      // Actualizar el estado con la lista de juegos ordenados
+        return {
+        ...state,
+        games: action.payload
+        };
+
+      case "LOGIN_SUCCESS":
+        return {
+          ...state,
+          user: action.payload
+        };
+    
+      case "LOGOUT":
+        return {
+          ...state,
+          user: null
+        };
 
     case "CREATE_USER":
       return{
       ...state,
-      users: action.payload
+      users: [...state.users, action.payload]
       };
 
     case "GET_TOP3_GAMES":

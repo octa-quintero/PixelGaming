@@ -8,6 +8,6 @@ const {
 } = require("../controllers/users-controller.js")
 
 router.post("/users", createUser);
-router.get("/login", login);
+router.post("/login", login);
 
 module.exports = router;

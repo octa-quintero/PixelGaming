@@ -5,13 +5,13 @@ import {
   faGlobe
 } from '@fortawesome/free-solid-svg-icons';
 import style from './usersStyle.module.css';
-import Login from './register/register.js'
+import Register from './register/register.js'
 
 function Users() {
   
   return (
     <div className={style.loginContainer}>
-      <Login/>
+      <Register/>
     </div>
   );
 }  

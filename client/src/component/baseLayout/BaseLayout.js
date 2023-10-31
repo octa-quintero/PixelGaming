@@ -7,6 +7,7 @@ import Games from '../games/games.js'
 import Top2023 from '../top2023/top2023.js'
 import GameDetail from '../gameDetail/gameDetail.js'
 import Users from '../users/users.js'
+import Login from '../login/login.js'
 import {Route, Routes} from "react-router-dom";
 import {Box, Grid} from "@mui/material";
 
@@ -43,6 +44,7 @@ return (
         <Route path={'/games'} element={<Games/>}/>
         <Route path={'/top2023'} element={<Top2023/>}/>
         <Route path={'/register'} element={<Users/>}/>
+        <Route path={'/login'} element={<Login/>}/>
         <Route path={'/games/:gameId'} element={<GameDetail/>}/>
       </Routes>
     </Grid>

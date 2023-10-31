@@ -54,7 +54,7 @@ function NavBar() {
             <NavLink to="/games" className={style.btnUser}>
               <p><FontAwesomeIcon icon={faMagnifyingGlass} /></p>
             </NavLink>
-            <NavLink to="/games" className={style.btnUser}>
+            <NavLink to="/login" className={style.btnUser}>
               <p><FontAwesomeIcon icon={faUser} /></p>
             </NavLink>
             <NavLink to="/register" className={style.btnRegistro}>
