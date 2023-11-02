@@ -6,7 +6,6 @@ import {
         faUser} from '@fortawesome/free-solid-svg-icons';
 import style from './registerStyle.module.css';
 
-// Importa tus avatares aquí
 import GameBoy from "../../../assets/gameBoy/game_boy.gif";
 
 import Duck from "../../../assets/usersPixelArt/duck.png";

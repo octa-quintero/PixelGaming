@@ -1,4 +1,5 @@
 const { Router } = require ("express");
+const verifyToken = require('../middleware/middleware.js');
 const router = Router();  // Crear instancia del router
 
 // Importar controladores
@@ -8,6 +9,6 @@ const {
 } = require("../controllers/users-controller.js")
 
 router.post("/users", createUser);
-router.post("/login", login);
+router.post('/login', verifyToken, login);
 
 module.exports = router;

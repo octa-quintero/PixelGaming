@@ -1,8 +1,9 @@
   // Estado inicial del store
   const initialState = {
     games: [],
-    users: [],
+    token: null,
     user: null,
+    users: [],
     freeGames: [],
     gameDetail: {},
     allGames: [],
@@ -24,14 +25,14 @@
 
       case "LOGIN_SUCCESS":
         return {
-          ...state,
-          user: action.payload
+        ...state,
+        token: action.payload
         };
-    
+
       case "LOGOUT":
         return {
           ...state,
-          user: null
+          token: null
         };
 
     case "CREATE_USER":

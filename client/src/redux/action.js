@@ -22,10 +22,10 @@ export function loginRequest() {
 }
 
 // Acción para manejar el inicio de sesión exitoso
-export function loginSuccess(user) {
+export function loginSuccess(token) {
   return {
     type: 'LOGIN_SUCCESS',
-    payload: user
+    payload: token
   };
 }
 
@@ -44,8 +44,8 @@ export function login(credentials) {
 
     try {
       const response = await axios.post('/login', credentials);
-      const user = response.data;
-      dispatch(loginSuccess(user));
+      const { token } = response.data; // El servidor debe devolver el token
+      dispatch(loginSuccess(token));
     } catch (error) {
       dispatch(loginFailure(error.message));
     }
