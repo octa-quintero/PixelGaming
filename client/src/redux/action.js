@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../config/axiosConfig.js'
 
 // ACTIONS USERS // // ACTIONS USERS // // ACTIONS USERS // 
 
@@ -42,10 +42,19 @@ export function login(credentials) {
   return async (dispatch) => {
     dispatch(loginRequest());
 
+    // Agrega un console.log para ver las credenciales
+    console.log('Credenciales:', credentials);
+
     try {
       const response = await axios.post('/login', credentials);
       const { token } = response.data; // El servidor debe devolver el token
-      dispatch(loginSuccess(token));
+
+      // Asegúrate de que 'token' esté definido antes de usarlo
+      if (token) {
+        dispatch(loginSuccess(token));
+      } else {
+        dispatch(loginFailure("Token no válido"));
+      }
     } catch (error) {
       dispatch(loginFailure(error.message));
     }

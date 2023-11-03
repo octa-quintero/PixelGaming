@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import App from './App';
-import axios from 'axios';
+import axios from './config/axiosConfig';
 
 axios.defaults.baseURL = "http://localhost:3001";
 

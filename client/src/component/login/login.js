@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { login } from '../../redux/action.js'; // Asegúrate de importar la acción adecuadamente
+import { login } from '../../redux/action.js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faUser,
           faLock } from '@fortawesome/free-solid-svg-icons';
@@ -19,15 +19,30 @@ function Login() {
     setCredentials({ ...credentials, [name]: value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(login(credentials));
-    // Restablecer los campos después de enviar
-    setCredentials({
-      name_user: '',
-      password: '',
-    });
+    try {
+      const response = await dispatch(login(credentials));
+  
+      // Verifica si la respuesta contiene un token
+      if (response.data && response.data.token) {
+        const token = response.data.token;
+        localStorage.setItem('token', token);
+  
+        setCredentials({
+          name_user: '',
+          password: '',
+        });
+      } else {
+        console.error('La respuesta del servidor no contiene un token válido.');
+        // Agrega lógica para mostrar un mensaje de error al usuario si es necesario
+      }
+    } catch (error) {
+      console.error('Error en la solicitud de inicio de sesión:', error);
+      // Agrega lógica para mostrar el mensaje de error al usuario si es necesario
+    }
   };
+  
 
   return (
     <div className={style.loginContainer}>

@@ -1,4 +1,6 @@
 const { Users } = require("../db");
+const bcrypt = require('bcrypt');
+const jwt = require("jsonwebtoken");
 const axios = require("axios");
 
 
@@ -42,7 +44,10 @@ const login = async (req, res, next) => {
       return res.status(401).json({ error: "Usuario no encontrado" });
     }
 
-    if (user.password !== password) {
+    // Compara la contraseña proporcionada con la contraseña almacenada de forma segura
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
       return res.status(401).json({ error: "Contraseña incorrecta" });
     }
 
