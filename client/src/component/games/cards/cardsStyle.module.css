@@ -65,6 +65,7 @@
   font-family: 'Ubuntu', sans-serif;
   font-size: 12px;
   font-weight: 500;
+  color: rgb(202, 202, 202);
   width: 100%;
   white-space: wrap;
   overflow: hidden;
@@ -91,13 +92,13 @@
   width: 100%;
   gap: 5px;
   margin-top: auto;
+  color: rgb(202, 202, 202);
 }
 
 .genre{
   font-size: 12px;
   font-family: 'Ubuntu', sans-serif;
   font-weight: bold;
-  color: rgb(202, 202, 202);
 }
 
 

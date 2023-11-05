@@ -14,18 +14,11 @@ export function createUser(user) {
   };
 }
 
-// Acción para iniciar la solicitud de inicio de sesión
-export function loginRequest() {
-  return {
-    type: 'LOGIN_REQUEST'
-  };
-}
-
 // Acción para manejar el inicio de sesión exitoso
-export function loginSuccess(token) {
+export function loginSuccess(data) {
   return {
     type: 'LOGIN_SUCCESS',
-    payload: token
+    payload: data,
   };
 }
 
@@ -33,25 +26,20 @@ export function loginSuccess(token) {
 export function loginFailure(error) {
   return {
     type: 'LOGIN_FAILURE',
-    payload: error
+    payload: error,
   };
 }
 
 // Acción para iniciar sesión
 export function login(credentials) {
   return async (dispatch) => {
-    dispatch(loginRequest());
-
-    // Agrega un console.log para ver las credenciales
-    console.log('Credenciales:', credentials);
-
     try {
+      // No necesitas una acción para LOGIN_REQUEST
       const response = await axios.post('/login', credentials);
-      const { token } = response.data; // El servidor debe devolver el token
+      const { token, user } = response.data;
 
-      // Asegúrate de que 'token' esté definido antes de usarlo
       if (token) {
-        dispatch(loginSuccess(token));
+        dispatch(loginSuccess({ token, user }));
       } else {
         dispatch(loginFailure("Token no válido"));
       }

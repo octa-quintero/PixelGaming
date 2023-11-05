@@ -23,22 +23,26 @@
         games: action.payload
         };
 
-      case "LOGIN_SUCCESS":
-        return {
-        ...state,
-        token: action.payload
-        };
-
-      case "LOGOUT":
-        return {
+        case "LOGIN_SUCCESS":
+          // Actualizar el estado con el token y el usuario
+          return {
           ...state,
-          token: null
-        };
+          token: action.payload.token,
+          user: action.payload.user,
+          };
+
+          case "LOGOUT":
+            // Limpiar el token y el usuario al cerrar sesión
+            return {
+              ...state,
+              token: null,
+              user: null,
+            };
 
     case "CREATE_USER":
-      return{
-      ...state,
-      users: [...state.users, action.payload]
+      return {
+        ...state,
+        users: [...state.users, action.payload]
       };
 
     case "GET_TOP3_GAMES":

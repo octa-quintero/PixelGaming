@@ -11,15 +11,10 @@ function verifyToken(req, res, next) {
     return res.status(401).json({ message: 'Acceso no autorizado' });
   }
 
-  // Divide el encabezado para extraer el token
-  const [bearer, token] = authHeader.split(' ');
-
-  // Verifica si el token tiene el formato correcto
-  if (bearer !== 'Bearer' || !token) {
-    return res.status(401).json({ message: 'Formato de token inválido' });
-  }
-
   try {
+    // Decodifica el token sin verificar el formato "Bearer"
+    const token = authHeader;
+
     // Verifica y decodifica el token
     const decoded = jwt.verify(token, secretKey);
 

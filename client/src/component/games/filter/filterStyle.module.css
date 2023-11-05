@@ -6,6 +6,7 @@
   width: 30%;
   gap: 15px;
   font-family: 'Ubuntu', sans-serif;
+  color: rgb(202, 202, 202);
 }
 
 .filter{
@@ -15,7 +16,7 @@
   align-items: flex-start;
   width: 100%;
   height: auto;
-  flex-direction: column;
+  flex-direction: column; 
   border-radius: 5px;
   background-color: #2a2a2abb;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
