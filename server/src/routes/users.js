@@ -10,7 +10,7 @@ const {
 } = require("../controllers/users-controller.js")
 
 router.post("/users", createUser);
-router.post('/login', verifyToken, login);
+router.post('/login', login);
 router.get("/user", getAllUsers);
 
 module.exports = router;

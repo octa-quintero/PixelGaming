@@ -12,6 +12,8 @@ const createUser = async (req, res, next) => {
     // Verificar si el usuario ya existe
     const existingUser = await Users.findOne({ where: { name_user } });
 
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     if (existingUser) {
       return res.status(400).json({ error: "El nombre de usuario ya está en uso" });
     }
@@ -21,7 +23,7 @@ const createUser = async (req, res, next) => {
       name,
       last_name,
       name_user,
-      password,
+      password: hashedPassword,
       email,
       avatar,
     });
@@ -72,7 +74,7 @@ const login = async (req, res, next) => {
     }
     
     // Autenticación exitosa, generar un token JWT
-    const token = jwt.sign({ userId: user.id }, secretKey, {
+    const token = jwt.sign({ userId: user.id }, process.env.SECRET_KEY, {
       expiresIn: '168h' // Puedes ajustar la expiración del token según tus necesidades
     });
     

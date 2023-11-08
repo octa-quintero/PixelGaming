@@ -6,11 +6,16 @@ const instance = axios.create({
 
 // Agrega un interceptor para configurar los encabezados antes de cada solicitud
 instance.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token'); // Obtén el token de localStorage
+  const token = localStorage.getItem('token');
+  console.log(token, "tokennnnnnnnnnnnnnnnn") // Obtén el token de localStorage
   if (token) {
-    config.headers.common['Authorization'] = `${token}`; // Agrega el token a los encabezados
+    if (!config.headers) {
+      config.headers = {}; // Inicializa config.headers si no está definido
+    }
+    config.headers['Authorization'] = token; // Agrega el token a los encabezados
   }
   return config;
 });
 
 export default instance;
+

@@ -24,6 +24,7 @@
         };
 
         case "LOGIN_SUCCESS":
+          localStorage.setItem("token", action.payload.token)
           // Actualizar el estado con el token y el usuario
           return {
           ...state,

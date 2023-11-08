@@ -1,9 +1,10 @@
 require('dotenv').config();
+const { Users } = require("../db")
 
 const jwt = require('jsonwebtoken');
 const secretKey = process.env.SECRET_KEY;
 
-function verifyToken(req, res, next) {
+async function verifyToken(req, res, next) {
   const authHeader = req.header('Authorization');
 
   // Verifica si el encabezado de autorización existe
@@ -11,18 +12,22 @@ function verifyToken(req, res, next) {
     return res.status(401).json({ message: 'Acceso no autorizado' });
   }
 
+  // Divide el encabezado para extraer el token
+
+  // Verifica si el token tiene el formato correcto
+  if (!authHeader) {
+    return res.status(401).json({ message: 'Formato de token inválido' });
+  }
+
   try {
-    // Decodifica el token sin verificar el formato "Bearer"
-    const token = authHeader;
-
     // Verifica y decodifica el token
-    const decoded = jwt.verify(token, secretKey);
-
+    const decoded = jwt.verify(authHeader, secretKey);
     // Puedes acceder a los datos del usuario desde `decoded`, por ejemplo, `decoded.userId`
-
+  
     // Continúa con la solicitud
     next();
   } catch (error) {
+    console.error(error, "errooooooooooor")
     res.status(401).json({ message: 'Token inválido' });
   }
 }

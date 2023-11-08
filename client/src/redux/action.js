@@ -36,6 +36,7 @@ export function login(credentials) {
     try {
       // No necesitas una acción para LOGIN_REQUEST
       const response = await axios.post('/login', credentials);
+      console.log (response,'Funciona')
       const { token, user } = response.data;
 
       if (token) {
