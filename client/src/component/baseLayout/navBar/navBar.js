@@ -18,7 +18,6 @@ import style from "./navBarStyle.module.css";
 function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const token = localStorage.getItem("token") 
 
 
   const toggleMenu = () => {
@@ -37,12 +36,9 @@ function NavBar() {
           <NavLink to="/" className={style.btn}>
               <h1><FontAwesomeIcon icon={faHeart}/>{' '}Home</h1>
           </NavLink>
-          { token && (
               <NavLink to="/games" className={style.btn}>
               <h1><FontAwesomeIcon icon={faGamepad} />{' '}Juegos</h1>
           </NavLink>
-            ) }
-          
           <NavLink to="/activitySearch" className={style.btn}>
               <h1><FontAwesomeIcon icon={faTowerObservation} />{' '}Contacto</h1>
           </NavLink>

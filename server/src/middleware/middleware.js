@@ -12,8 +12,6 @@ async function verifyToken(req, res, next) {
     return res.status(401).json({ message: 'Acceso no autorizado' });
   }
 
-  // Divide el encabezado para extraer el token
-
   // Verifica si el token tiene el formato correcto
   if (!authHeader) {
     return res.status(401).json({ message: 'Formato de token inválido' });
@@ -22,8 +20,8 @@ async function verifyToken(req, res, next) {
   try {
     // Verifica y decodifica el token
     const decoded = jwt.verify(authHeader, secretKey);
-    // Puedes acceder a los datos del usuario desde `decoded`, por ejemplo, `decoded.userId`
-  
+    req.userId = decoded.userId;
+
     // Continúa con la solicitud
     next();
   } catch (error) {

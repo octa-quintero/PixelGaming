@@ -14,12 +14,12 @@ const {
 } = require("../controllers/games-controllers.js");
 
 // Definir rutas y asociar a los controladores correspondientes
-router.get("/games", verifyToken, getGames);
-router.get("/games/top3", verifyToken, getTop3Games);
-router.get("/games/top10", verifyToken, getTop10Games);
+router.get("/games", getGames);
+router.get("/games/top3", getTop3Games);
+router.get("/games/top10", getTop10Games);
 router.get("/games/freegames",verifyToken, getRandomGames);
-router.get("/games/all",verifyToken,  getAllGames);
-router.get("/games/filter", verifyToken, filterGamesByTagsAndPlatform);
+router.get("/games/all", getAllGames);
+router.get("/games/filter", filterGamesByTagsAndPlatform);
 router.get("/games/:gameId", getOneGame)
 
 

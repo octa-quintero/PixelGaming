@@ -6,11 +6,11 @@ const router = Router();  // Crear instancia del router
 const {
   createUser,
   login,
-  getAllUsers
+  getUserById
 } = require("../controllers/users-controller.js")
 
 router.post("/users", createUser);
 router.post('/login', login);
-router.get("/user", getAllUsers);
+router.get("/user/:userId", getUserById);
 
 module.exports = router;

@@ -39,21 +39,22 @@ const createUser = async (req, res, next) => {
   }
 };
 
-const getAllUsers = async (req, res, next) => {
+const getUserById = async (req, res, next) => {
   try {
-    // Realiza una consulta para obtener todos los usuarios en la tabla Users
-    const users = await Users.findAll();
+    const { userId } = req.params;
+    if (!userId) {
+      return res.status(400).json({ error: "Debe proporcionar un userId" });
+    }
+    const user = await Users.findByPk(userId);
 
-    // Comprueba si se encontraron usuarios
-    if (users.length === 0) {
-      return res.status(404).json({ message: "No se encontraron usuarios en la base de datos" });
+    if (!user) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
     }
 
-    // Devuelve los usuarios encontrados como respuesta
-    res.status(200).json(users);
+    res.status(200).json(user);
   } catch (error) {
-    console.error("Error al consultar usuarios:", error);
-    res.status(500).json({ error: "Error al consultar usuarios" });
+    console.error("Error al consultar usuario:", error);
+    res.status(500).json({ error: "Error al consultar usuario" });
     next(error);
   }
 };
@@ -93,7 +94,7 @@ const login = async (req, res, next) => {
 
 module.exports = { 
   createUser,
-  getAllUsers,
+  getUserById,
   login
 };
 

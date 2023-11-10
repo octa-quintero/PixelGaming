@@ -14,6 +14,30 @@ export function createUser(user) {
   };
 }
 
+// Acción para obtener los detalles del usuario
+export function fetchUserProfile(userId) {
+  return async function (dispatch) {
+    try {
+      // Suponiendo que tienes el token almacenado en localStorage
+      const token = localStorage.getItem('token'); // Ajusta esto según tu implementación
+
+      const response = await axios.get(`/user/${userId}`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+
+      const userData = response.data;
+
+      // Dispatch de la acción para almacenar los datos del usuario en el estado
+      dispatch({ type: "SET_USER_PROFILE", payload: userData });
+    } catch (error) {
+      console.error('Error al obtener los datos del usuario:', error);
+    }
+  };
+}
+
+
 // Acción para manejar el inicio de sesión exitoso
 export function loginSuccess(data) {
   return {
@@ -74,20 +98,6 @@ export function fetchGamesByTagsAndPlatform(tag, platform) {
   };
 }
 
-
-// Acciones asincrónicas para buscar países por nombre
-export function searchGames(name) {
-  return dispatch => {
-    axios.get(`/games?name=${name}`)
-      .then(response => {
-        dispatch({ type: "GET_GAME_NAME", payload: response.data });
-      })
-      .catch(error => {
-        console.error("Error occurred:", error);
-        dispatch({ type: "GET_GAME_NAME_ERROR", payload: error.message });
-      });
-  };
-}
 
 // Acciones asincrónicas para obtener Top 3 Juegos
 export function getTop3Games() {

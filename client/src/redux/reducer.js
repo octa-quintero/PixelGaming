@@ -3,6 +3,7 @@
     games: [],
     token: null,
     user: null,
+    userProfile: [],
     users: [],
     freeGames: [],
     gameDetail: {},
@@ -15,6 +16,12 @@
   // Reducer de Redux para manejar el estado global
   function reducer(state = initialState, action) {
     switch (action.type) {
+
+      case "SET_USER_PROFILE":
+      return {
+        ...state,
+        userProfile: action.payload,
+      };
 
       case "GET_GAMES_ORDER":
       // Actualizar el estado con la lista de juegos ordenados
