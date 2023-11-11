@@ -20,12 +20,11 @@ async function verifyToken(req, res, next) {
   try {
     // Verifica y decodifica el token
     const decoded = jwt.verify(authHeader, secretKey);
-    req.userId = decoded.userId;
 
     // Continúa con la solicitud
     next();
   } catch (error) {
-    console.error(error, "errooooooooooor")
+    console.error(error, "error")
     res.status(401).json({ message: 'Token inválido' });
   }
 }

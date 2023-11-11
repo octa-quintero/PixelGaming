@@ -35,7 +35,7 @@ return (
         <Route path={'/games'} element={<Games/>}/>
         <Route path={'/top2023'} element={<Top2023/>}/>
         <Route path={'/register'} element={<Users/>}/>
-        <Route path={'/user-profile/userId'} element={<UserProfile/>}/>
+        <Route path={'/user-profile/:userId'} element={<UserProfile/>}/>
         <Route path={'/login'} element={<Login/>}/>
         <Route path={'/games/:gameId'} element={<GameDetail/>}/>
       </Routes>

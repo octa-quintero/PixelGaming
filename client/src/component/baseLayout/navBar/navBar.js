@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { jwtDecode }  from  "jwt-decode"
+import { fetchUserProfile } from "../../../redux/action.js";
 import {
   faBars,
   faLayerGroup,
@@ -17,8 +20,23 @@ import style from "./navBarStyle.module.css";
 
 function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [userData, setUserData] = useState(null);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    // Suponiendo que tienes el token almacenado en localStorage
+    const token = localStorage.getItem('token');
 
+    if (token) {
+      // Decodificar el token para obtener la información del usuario
+      const decodedToken = jwtDecode(token);
+      // Puedes acceder a la información del usuario desde decodedToken
+      setUserData(decodedToken);
+      if (decodedToken.userId) {
+        dispatch(fetchUserProfile(decodedToken.userId));
+      }
+    }
+  }, [dispatch]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -56,9 +74,24 @@ function NavBar() {
             <NavLink to="/games" className={style.btnUser}>
               <p><FontAwesomeIcon icon={faMagnifyingGlass} /></p>
             </NavLink>
+            {userData ? (
+            <NavLink to={`/user-profile/${userData && userData.userId}`} className={style.btnUser}>
+            {userData && userData.avatar ? (
+            <img src={userData.avatar} alt="Avatar" className={style.avatarImage} />
+            ) : (
+            <p><FontAwesomeIcon icon={faUser} /></p>
+            )}
+            </NavLink>
+        ) : (
+          <>
             <NavLink to="/login" className={style.btnUser}>
               <p><FontAwesomeIcon icon={faUser} /></p>
             </NavLink>
+            <NavLink to="/register" className={style.btnRegistro}>
+              <h1>Acceso Gratuito</h1>
+            </NavLink>
+          </>
+        )}
             <NavLink to="/register" className={style.btnRegistro}>
               <h1>Acceso Gratuito</h1>
             </NavLink>

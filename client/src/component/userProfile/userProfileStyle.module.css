@@ -1,0 +1,86 @@
+.userProfileContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 80%;
+  height: auto;
+  margin-top: 2rem;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.userContent{
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin-top: 30px;
+  padding: 0;
+  background-color: #2a2a2abb;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transition: 0.3s;
+  border-radius: 5px;
+  gap: 15px;
+  padding: 30px;
+  color:  rgb(202, 202, 202);
+}
+
+.title{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+}
+
+.content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.text1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.bienvenido{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  font-size: 10px;
+  gap: 50px;
+  font-weight: 100;
+}
+
+.avatarImage{
+  width: 18px;
+  margin: 10px;
+}
+
+.info{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info h1{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}

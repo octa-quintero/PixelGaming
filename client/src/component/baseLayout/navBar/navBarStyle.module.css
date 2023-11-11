@@ -172,6 +172,9 @@
   padding: 10px;
 }
 
+.avatarImage{
+  width: 25px;
+}
 
 .lineDivisor{
   width: 100%;
