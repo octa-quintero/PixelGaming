@@ -1,4 +1,4 @@
-const { Users } = require("../db");
+const { Users, Op } = require("../db");
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 
@@ -9,7 +9,7 @@ const createUser = async (req, res, next) => {
     // Extraer los datos del cuerpo de la solicitud
     const { name, last_name, name_user, password, email, avatar } = req.body;
 
-    // Verificar si el usuario ya existe
+    // Verificar si el usuario ya existe  
     const existingUser = await Users.findOne({ where: { name_user } });
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -94,12 +94,66 @@ const login = async (req, res, next) => {
   }
 };
 
+// Modificar información del usuario
+const updateUser = async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+    const { name, last_name, name_user, password, email, avatar } = req.body;
+
+    const user = await Users.findByPk(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: "Usuario no encontrado" });
+    }
+
+    // Verificar si hay otro usuario con el mismo nombre de usuario
+    const existingUserByUsername = await Users.findOne({
+      where: { name_user, id: { [Op.not]: userId } }
+    });
+
+    if (existingUserByUsername) {
+      return res.status(400).json({ error: "Nombre de usuario ya está en uso" });
+    }
+
+    // Verificar si hay otro usuario con el mismo correo electrónico
+    const existingUserByEmail = await Users.findOne({
+      where: { email, id: { [Op.not]: userId } }
+    });
+
+    if (existingUserByEmail) {
+      return res.status(400).json({ error: "Correo electrónico ya está en uso" });
+    }
+
+    // Actualizar campos proporcionados
+    if (name) user.name = name;
+    if (last_name) user.last_name = last_name;
+    if (name_user) user.name_user = name_user;
+    if (email) user.email = email;
+    if (avatar) user.avatar = avatar;
+
+    // Actualizar contraseña si se proporciona
+    if (password) {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      user.password = hashedPassword;
+    }
+
+    await user.save();
+
+    res.status(200).json({ message: "Usuario actualizado con éxito", user });
+  } catch (error) {
+    console.error("Error al actualizar usuario:", error);
+    res.status(500).json({ error: "Error al actualizar usuario" });
+    next(error);
+  }
+};
+
 
 
 
 module.exports = { 
   createUser,
   getUserById,
+  updateUser,
   login
 };
 

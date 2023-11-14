@@ -7,6 +7,7 @@
   height: auto;
   margin-top: 2rem;
   font-family: 'Ubuntu', sans-serif;
+  transition: 0.3s;
 }
 
 .userContent{
@@ -45,23 +46,26 @@
   width: 100%;
 }
 
+.bienvenido{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  gap: 20px;
+}
+
+.bienvenido h2{
+  font-size: 19px;
+  font-weight: 800;
+}
+
 .text1{
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  font-weight: 500;
+  justify-content: flex-start;
+  font-weight: 400;
 }
 
-.bienvenido{
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  align-items: center;
-  font-size: 10px;
-  gap: 50px;
-  font-weight: 100;
-}
 
 .avatarImage{
   width: 18px;
@@ -72,15 +76,109 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
   gap: 20px;
 }
 
-.info h1{
+.field{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 8px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  background-color: #19191972;
+  border-radius: 8px;
+  color:  rgb(202, 202, 202);
+  border-bottom: 1.8px solid #00a2ff;
+  transition: 1s; 
+}
+
+.field:focus{
+  border: 1.8px solid #00ccff;
+  outline: none;
+}
+
+.editInput{
+  width: 30%;
+  height: 40px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  font-weight: 400;
+  background: linear-gradient(to right, #10101072, transparent);
+  border-radius: 8px;
+  font-size: 16px;
+  color:  rgb(202, 202, 202);
+  border: none;
+  text-align: right;
+  transition: 1s;
+  transform: scaleX(1); /* Inicialmente, escala X a 0 */
+  transform-origin: right; /* Punto de origen a la derecha */
+  opacity: 1;
+}
+
+.editInput:focus {
+  color: white;
+  background: linear-gradient(to right, #10101072, transparent);
+  opacity: 0.5;
+  transition: 1s;
+  outline: none;
+}
+
+.info h4{
+  padding: 20px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
+  font-weight: 400;
+}
+
+.fieldName{
+  font-weight: bold;
+}
+
+.editButtonContainer{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.cardBtn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Ubuntu', sans-serif;
+  border-radius: 3px;
+  color: rgb(202, 202, 202);
+  background-color: #2464ad;
+  width: 18%;
+  height: 40px;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  gap: 5px;
+}
+
+.cardBtn:hover{
+  background-color: #0475f6;
+}
+
+.textInfo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  font-size: 1.1vw;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 100;
+  color: #00a2ff95;
+  gap: 5px;
 }

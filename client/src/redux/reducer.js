@@ -23,6 +23,12 @@
         userProfile: action.payload,
       };
 
+      case "UPDATE_USER_PROFILE":
+        return {
+          ...state,
+          userProfile: action.payload,
+        };
+
       case "GET_GAMES_ORDER":
       // Actualizar el estado con la lista de juegos ordenados
         return {

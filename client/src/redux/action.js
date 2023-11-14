@@ -74,6 +74,32 @@ export function login(credentials) {
   };
 }
 
+// Acción para actualizar los detalles del usuario
+export function updateUserProfile(userId, updatedUserData) {
+  return async (dispatch) => {
+    try {
+      // Suponiendo que tienes el token almacenado en localStorage
+      const token = localStorage.getItem('token'); // Ajusta esto según tu implementación
+
+      // Realiza la solicitud PUT al servidor para actualizar los detalles del usuario
+      const response = await axios.put(`/user/${userId}`, updatedUserData, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+
+      // Dispatch de la acción para actualizar los datos del usuario en el estado
+      dispatch({ type: "UPDATE_USER_PROFILE", payload: response.data });
+
+      // Después de actualizar, vuelve a cargar los detalles del usuario
+      dispatch(fetchUserProfile(userId));
+    } catch (error) {
+      console.error('Error al actualizar los datos del usuario:', error);
+    }
+  };
+}
+
+
 // Acción para cerrar sesión
 export function logout() {
   return {
