@@ -113,8 +113,6 @@
   border: none;
   text-align: right;
   transition: 1s;
-  transform: scaleX(1); /* Inicialmente, escala X a 0 */
-  transform-origin: right; /* Punto de origen a la derecha */
   opacity: 1;
 }
 
