@@ -34,6 +34,18 @@ module.exports = (sequelize) => {
       avatar: {
         type: DataTypes.STRING,
         allowNull: true
+      },
+      resetPasswordToken: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      resetPasswordExpires: {
+        type: DataTypes.DATE,
+        allowNull: true
+      },
+      refreshToken: {
+        type: DataTypes.DATE,
+        allowNull: true
       }
     });
 };

@@ -17,7 +17,7 @@ const {
 router.get("/games", getGames);
 router.get("/games/top3", getTop3Games);
 router.get("/games/top10", getTop10Games);
-router.get("/games/freegames",verifyToken, getRandomGames);
+router.get("/games/freegames", getRandomGames);
 router.get("/games/all", getAllGames);
 router.get("/games/filter", filterGamesByTagsAndPlatform);
 router.get("/games/:gameId", getOneGame)

@@ -87,9 +87,6 @@ function NavBar() {
             <NavLink to="/login" className={style.btnUser}>
               <p><FontAwesomeIcon icon={faUser} /></p>
             </NavLink>
-            <NavLink to="/register" className={style.btnRegistro}>
-              <h1>Acceso Gratuito</h1>
-            </NavLink>
           </>
         )}
             <NavLink to="/register" className={style.btnRegistro}>

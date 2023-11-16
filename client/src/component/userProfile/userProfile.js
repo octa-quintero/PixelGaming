@@ -82,8 +82,8 @@ function UserProfile() {
           </div>
         </div>
           <h1 className={style.textInfo}><FontAwesomeIcon icon={faPaperclip} />{' '}Nos tomamos en serio tu privacidad. Puedes 
-          estar seguro de que tus detalles están protegidos. Para mantener la confidencialidad de tu cuenta,
-          evita compartir tu información con terceros.</h1>
+          estar seguro de que tus datos están protegidos. Para mantener la confidencialidad de tu cuenta,
+          evita compartir información con terceros.</h1>
         {userProfile && (
           <div className={style.info}>
             {fields.map((field) => (
