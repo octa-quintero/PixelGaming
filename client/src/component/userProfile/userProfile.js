@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserProfile, updateUserProfile } from '../../redux/action.js'; // Importa la acción updateUser
-import { useParams } from 'react-router-dom';
+import { fetchUserProfile, updateUserProfile } from '../../redux/action.js';
+import { NavLink, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
         faUser,
@@ -16,7 +16,7 @@ function UserProfile() {
   const dispatch = useDispatch();
   const userProfile = useSelector((state) => state.userProfile);
   const [isEditing, setIsEditing] = useState(false);
-  const [editedData, setEditedData] = useState({}); // Estado para almacenar los datos editados
+  const [editedData, setEditedData] = useState({});
 
   const { userId } = useParams();
 
@@ -60,7 +60,6 @@ function UserProfile() {
     setIsEditing(false);
   };
 
-  // Objeto con los nombres de campo y valores correspondientes
   const fields = [
     { name: 'Nombre', key: 'name' },
     { name: 'Apellido', key: 'last_name' },
@@ -81,7 +80,7 @@ function UserProfile() {
             </h1>
           </div>
         </div>
-          <h1 className={style.textInfo}><FontAwesomeIcon icon={faPaperclip} />{' '}Nos tomamos en serio tu privacidad. Puedes 
+          <h1 className={style.textInfo}><FontAwesomeIcon icon={faPaperclip} />Nos tomamos en serio tu privacidad. Puedes 
           estar seguro de que tus datos están protegidos. Para mantener la confidencialidad de tu cuenta,
           evita compartir información con terceros.</h1>
         {userProfile && (
@@ -97,7 +96,6 @@ function UserProfile() {
                     onChange={handleInputChange}
                     onClick={() => setEditedData({ ...editedData, [field.key]: '' })}
                     onBlur={() => {
-                      // Restaurar el valor original si no se realizaron cambios
                       if (editedData[field.key] === '') {
                         setEditedData({ ...editedData, [field.key]: userProfile[field.key] });
                       }
@@ -130,6 +128,9 @@ function UserProfile() {
               Cancelar  <FontAwesomeIcon icon={faX} />
             </button>
           )}
+          <NavLink to={`/reset-password/${userProfile.email}`} className={style.cardBtn}>
+            Restablecer Contraseña.
+          </NavLink>
         </div>
       </div>
     </div>

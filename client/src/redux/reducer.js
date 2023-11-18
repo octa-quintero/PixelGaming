@@ -10,12 +10,32 @@
     allGames: [],
     filteredGames: [],
     reviews: [],
-    getReviews: []
+    getReviews: [],
+    forgotPasswordSuccess: false,
+    resetPasswordSuccess: false,
+    refreshPasswordSuccess: false
   };
 
   // Reducer de Redux para manejar el estado global
   function reducer(state = initialState, action) {
     switch (action.type) {
+      case "FORGOT_PASSWORD_SUCCESS":
+        return {
+          ...state,
+          forgotPasswordSuccess: true,
+        };
+  
+      case "RESET_PASSWORD_SUCCESS":
+        return {
+          ...state,
+          resetPasswordSuccess: true,
+        };
+  
+      case "REFRESH_PASSWORD_SUCCESS":
+        return {
+          ...state,
+          refreshPasswordSuccess: true,
+        };
 
       case "SET_USER_PROFILE":
       return {

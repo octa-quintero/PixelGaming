@@ -2,6 +2,64 @@ import axios from '../config/axiosConfig.js'
 
 // ACTIONS USERS // // ACTIONS USERS // // ACTIONS USERS // 
 
+// Acción para indicar que el proceso de restablecimiento de contraseña fue exitoso
+export const resetPasswordSuccess = () => ({
+  type: "RESET_PASSWORD_SUCCESS",
+});
+
+// Acción asíncrona para enviar la solicitud de restablecimiento de contraseña
+export const resetPassword = (resetToken, newPassword) => async (dispatch) => {
+  try {
+    const response = await axios.post('/reset-password', { resetToken, newPassword });
+
+    if (response.status === 200) {
+      dispatch(resetPasswordSuccess());
+    } else {
+      console.error('Error en la solicitud de restablecimiento de contraseña:', response.data.message);
+    }
+  } catch (error) {
+    console.error('Error en la solicitud de restablecimiento de contraseña:', error.message);
+  }
+};
+
+// Acción para indicar que el proceso de olvido de contraseña fue exitoso
+export const forgotPasswordSuccess = () => ({
+  type: "FORGOT_PASSWORD_SUCCESS",
+});
+
+// Acción asíncrona para enviar la solicitud de olvido de contraseña
+export const forgotPassword = (email) => async (dispatch) => {
+  try {
+    const response = await axios.put('/forgot-password', { email });
+    if (response.status === 200) {
+      dispatch(forgotPasswordSuccess());
+    } else {
+      console.error('Error en la solicitud de olvido de contraseña:', response.data.message);
+    }
+  } catch (error) {
+    console.error('Error en la solicitud de olvido de contraseña:', error.message);
+  }
+};
+
+// Acción para indicar que el proceso de actualización de contraseña fue exitoso
+export const refreshPasswordSuccess = () => ({
+  type: "REFRESH_PASSWORD_SUCCESS",
+});
+
+// Acción asíncrona para enviar la solicitud de actualización de la contraseña
+export const refreshPassword = (refreshToken) => async (dispatch) => {
+  try {
+    const response = await axios.post('/api/refresh-token', { refreshToken });
+    if (response.status === 200) {
+      dispatch(refreshPasswordSuccess());
+    } else {
+      console.error('Error en la solicitud de actualización de contraseña:', response.data.message);
+    }
+  } catch (error) {
+    console.error('Error en la solicitud de actualización de contraseña:', error.message);
+  }
+};
+
 // Acciones para crear usuario
 export function createUser(user) {
   return async (dispatch) => {
@@ -18,8 +76,7 @@ export function createUser(user) {
 export function fetchUserProfile(userId) {
   return async function (dispatch) {
     try {
-      // Suponiendo que tienes el token almacenado en localStorage
-      const token = localStorage.getItem('token'); // Ajusta esto según tu implementación
+      const token = localStorage.getItem('token');
 
       const response = await axios.get(`/user/${userId}`, {
         headers: {
@@ -28,8 +85,6 @@ export function fetchUserProfile(userId) {
       });
 
       const userData = response.data;
-
-      // Dispatch de la acción para almacenar los datos del usuario en el estado
       dispatch({ type: "SET_USER_PROFILE", payload: userData });
     } catch (error) {
       console.error('Error al obtener los datos del usuario:', error);
@@ -58,7 +113,6 @@ export function loginFailure(error) {
 export function login(credentials) {
   return async (dispatch) => {
     try {
-      // No necesitas una acción para LOGIN_REQUEST
       const response = await axios.post('/login', credentials);
       console.log (response,'Funciona')
       const { token, user } = response.data;
@@ -78,27 +132,19 @@ export function login(credentials) {
 export function updateUserProfile(userId, updatedUserData) {
   return async (dispatch) => {
     try {
-      // Suponiendo que tienes el token almacenado en localStorage
-      const token = localStorage.getItem('token'); // Ajusta esto según tu implementación
-
-      // Realiza la solicitud PUT al servidor para actualizar los detalles del usuario
+      const token = localStorage.getItem('token')
       const response = await axios.put(`/user/${userId}`, updatedUserData, {
         headers: {
           Authorization: `${token}`,
         },
       });
-
-      // Dispatch de la acción para actualizar los datos del usuario en el estado
       dispatch({ type: "UPDATE_USER_PROFILE", payload: response.data });
-
-      // Después de actualizar, vuelve a cargar los detalles del usuario
       dispatch(fetchUserProfile(userId));
     } catch (error) {
       console.error('Error al actualizar los datos del usuario:', error);
     }
   };
 }
-
 
 // Acción para cerrar sesión
 export function logout() {

@@ -89,14 +89,13 @@ const login = async (req, res, next) => {
       const refreshToken = jwt.sign(
         { userId: user.id, username: user.name_user, avatar: user.avatar },
         process.env.JWT_SECRET,
-        {
-         expiresIn: '168h' // Puedes ajustar la expiración del token según tus necesidades
-      }
-    );
+        { expiresIn: '168h' }
+      );
 
     user.refreshToken = refreshToken;
 
     try {
+      user.updatedAt = new Date();
       await user.save();
     } catch (error) {
       console.error('Error al guardar el refresh token:', error);
@@ -172,7 +171,7 @@ const forgotPassword = async (req, res) => {
     const { email } = req.body;
 
     // Busca al usuario por su correo electrónico
-    const user = await User.findOne({ email });
+    const user = await Users.findOne({ email });
 
     if (!user) {
       return res.status(404).json({ message: 'Usuario no encontrado' });
@@ -191,9 +190,8 @@ const forgotPassword = async (req, res) => {
 
     const info = await transporter.sendMail({
       from: '"Forgot Password" <pixelgaming@gmail.com>', // sender address
-      to: user.name_user,
+      to: user.user.email,
       subject: "Forgot Password",
-      text: "Hello world?",
       html: `
       <b>Haz click en el link para restablecer tu contraseña</b>
       <a href="${verificationLink}">${verificationLink}</a>
@@ -212,7 +210,7 @@ const resetPassword = async (req, res) => {
     const { resetToken, newPassword } = req.body;
 
     // Busca al usuario por el token de restablecimiento de contraseña
-    const user = await User.findOne({ resetPasswordToken: resetToken, resetPasswordExpires: { $gt: Date.now() } });
+    const user = await Users.findOne({ resetPasswordToken: resetToken, resetPasswordExpires: { $gt: Date.now() } });
 
     if (!user) {
       return res.status(400).json({ message: 'Enlace de restablecimiento de contraseña no válido o ha expirado.' });
@@ -221,7 +219,8 @@ const resetPassword = async (req, res) => {
     const decodedToken = jwt.verify(resetToken, process.env.JWT_SECRET);
 
     // Actualiza la contraseña y limpia los campos relacionados con el restablecimiento
-    user.password = newPassword;
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedPassword;
     user.resetPasswordToken = undefined;
     user.resetPasswordExpires = undefined;
     await user.save();
@@ -246,7 +245,7 @@ const refreshToken = async (req, res) => {
     const decodedToken = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
 
     // Busca al usuario por el ID del token decodificado
-    const user = await User.findByPk(decodedToken.userId);
+    const user = await Users.findByPk(decodedToken.userId);
 
     // Verifica si el usuario existe
     if (!user) {
