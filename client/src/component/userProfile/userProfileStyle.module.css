@@ -169,6 +169,38 @@
   background-color: #0475f6;
 }
 
+.btnRegistro{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+  flex-direction: row;
+}
+
+.btnRegistro h1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: auto;
+  height: 30px;
+  background-color: transparent;
+  font-family: 'Ubuntu', sans-serif;
+  border: 1.5px solid #00a2ff;
+  border-radius: 3px;
+  color: #00a2ff;
+  font-size: 1vw;
+  font-weight: 400;
+  padding: 10px;
+  transition: 0.3s;
+  gap: 10px;
+}
+
+.btnRegistro h1:hover{
+  color: #00ccff;
+  border: 1.5px solid #00ccff;
+} 
+
 .textInfo{
   display: flex;
   justify-content: center;
@@ -179,4 +211,53 @@
   font-weight: 100;
   color: #00a2ff95;
   gap: 5px;
+}
+
+.avatarSelection {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: #19191972;
+  border: 1.8px solid #00a2ff;
+  padding: 8px;
+}
+
+.avatarSelect{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  padding-left: 17px;
+  padding-top: 5px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  color:  rgb(202, 202, 202);
+  gap: 10px;
+  cursor: pointer; /* Agregado para indicar que es interactivo */
+  transition: color 0.3s ease, background-color 0.3s ease;
+  transition: 3s;
+}
+
+.avatarSelect:hover {
+  color: white;
+}
+
+.avatarSelection.active {
+  transition: transform 0.3s ease; /* Agrega una transición suave */
+  transform: translateY(0); /* La posición inicial, puede ajustarse según sea necesario */
+} 
+
+.avatarOption {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(17.33% - 5px);
+  text-align: center;
+  padding: 5px;
+}
+
+.avatarImage {
+  width: 30px;
 }

@@ -17,7 +17,6 @@ import Picachu from "../../../assets/usersPixelArt/picachu.png";
 import Skull from "../../../assets/usersPixelArt/skull.png";
 import Ufo from "../../../assets/usersPixelArt/ufo.png";
 import Fungus from "../../../assets/usersPixelArt/fungus.png";
-
 import Kirby from "../../../assets/usersPixelArt/kirby.png";
 import Charizard from "../../../assets/usersPixelArt/charizard.png";
 import Computer from "../../../assets/usersPixelArt/computer.png";

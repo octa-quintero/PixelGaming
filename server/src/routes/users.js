@@ -15,12 +15,12 @@ const {
 
 router.post("/users", createUser);
 router.post('/login', login);
-router.get("/user/:userId", verifyToken, getUserById);
+router.get("/user/:userId", getUserById);
 router.put("/user/:userId", verifyToken, updateUser);
 
 // restore password
 router.put('/forgot-password', forgotPassword);
-router.put('/reset-password', resetPassword);
-router.post('/refresh-token', refreshToken);
+router.put('/reset-password/:resetToken', resetPassword);
+router.put('/refresh-token', refreshToken);
 
 module.exports = router;

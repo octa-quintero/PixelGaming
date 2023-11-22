@@ -8,5 +8,7 @@ const transporter = nodemailer.createTransport({
   auth: {
     user: 'octa.quinteroo@gmail.com',
     pass: process.env.API_PASSWORD,
-  }
+  },
 });
+
+module.exports = transporter;

@@ -171,7 +171,7 @@ const forgotPassword = async (req, res) => {
     const { email } = req.body;
 
     // Busca al usuario por su correo electrónico
-    const user = await Users.findOne({ email });
+    const user = await Users.findOne({ where: { email } });
 
     if (!user) {
       return res.status(404).json({ message: 'Usuario no encontrado' });
@@ -185,22 +185,22 @@ const forgotPassword = async (req, res) => {
     user.resetPasswordExpires = Date.now() + 3600000; // Válido por 1 hora
     await user.save();
 
-    // Ennlace de verificación
+    // Enlace de verificación
     const verificationLink = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
 
     const info = await transporter.sendMail({
-      from: '"Forgot Password" <pixelgaming@gmail.com>', // sender address
-      to: user.user.email,
-      subject: "Forgot Password",
+      from: '"Forgot Password" <octa.quinteroo@gmail.com>', // sender address
+      to: user.email,
+      subject: 'Forgot Password',
       html: `
-      <b>Haz click en el link para restablecer tu contraseña</b>
-      <a href="${verificationLink}">${verificationLink}</a>
+        <b>Haz clic en el enlace para restablecer tu contraseña</b>
+        <a href="${verificationLink}">${verificationLink}</a>
       `,
     });
 
     res.status(200).json({ message: 'Se ha enviado un enlace de restablecimiento de contraseña a tu correo electrónico.' });
   } catch (error) {
-    console.error(error);
+    console.error('Error al solicitar el restablecimiento de contraseña:', error);
     res.status(500).json({ message: 'Error al solicitar el restablecimiento de contraseña.' });
   }
 };
@@ -209,13 +209,21 @@ const resetPassword = async (req, res) => {
   try {
     const { resetToken, newPassword } = req.body;
 
+    console.log('Reset Token received on the server:', resetToken);
+
     // Busca al usuario por el token de restablecimiento de contraseña
-    const user = await Users.findOne({ resetPasswordToken: resetToken, resetPasswordExpires: { $gt: Date.now() } });
+    const user = await Users.findOne({ 
+      where: {
+        resetPasswordToken: resetToken,
+        resetPasswordExpires: { $gt: new Date() }
+      }
+    });
 
     if (!user) {
       return res.status(400).json({ message: 'Enlace de restablecimiento de contraseña no válido o ha expirado.' });
     }
 
+    // Verifica el token utilizando el secreto correcto (usando process.env.JWT_SECRET)
     const decodedToken = jwt.verify(resetToken, process.env.JWT_SECRET);
 
     // Actualiza la contraseña y limpia los campos relacionados con el restablecimiento
@@ -227,7 +235,7 @@ const resetPassword = async (req, res) => {
 
     res.status(200).json({ message: 'Contraseña restablecida con éxito.' });
   } catch (error) {
-    console.error(error);
+    console.error('Error al restablecer la contraseña:', error);
     res.status(500).json({ message: 'Error al restablecer la contraseña.' });
   }
 };
@@ -241,8 +249,8 @@ const refreshToken = async (req, res) => {
       return res.status(401).json({ message: 'Token de actualización no proporcionado.' });
     }
 
-    // Verifica y decodifica el token de actualización
-    const decodedToken = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
+    // Verifica y decodifica el token de actualización utilizando el secreto correcto
+    const decodedToken = jwt.verify(refreshToken, process.env.JWT_SECRET);
 
     // Busca al usuario por el ID del token decodificado
     const user = await Users.findByPk(decodedToken.userId);
@@ -263,10 +271,11 @@ const refreshToken = async (req, res) => {
     // Envia el nuevo token de acceso
     res.status(200).json({ accessToken });
   } catch (error) {
-    console.error(error);
+    console.error('Error al procesar el token de actualización:', error);
     res.status(500).json({ message: 'Error al procesar el token de actualización.' });
   }
 };
+
 
 
 

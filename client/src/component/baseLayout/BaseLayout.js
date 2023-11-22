@@ -8,7 +8,8 @@ import GameDetail from '../gameDetail/gameDetail.js'
 import Users from '../users/users.js'
 import UserProfile from '../userProfile/userProfile.js'
 import Login from '../login/login.js'
-import ResetPasswordPage from '../passwordRestore/passwordRestore.js'
+import ForgotPasswordPage from '../passwordRestore/passwordRestore.js'
+import ResetPasswordPage from '../passwordRestore/passwordRestoreConfirm.js'
 import { Route, Routes } from "react-router-dom";
 import { Box, Grid } from "@mui/material";
 
@@ -39,7 +40,8 @@ export default function BaseLayout() {
                         <Route path={'/login'} element={<Login />} />
                         <Route path={'/games/:gameId'} element={<GameDetail />} />
                         {/* Agrega la ruta de restablecimiento de contraseña sin Navbar ni Footer */}
-                        <Route path={'/reset-password/:email'} element={<ResetPasswordPage/>} />
+                        <Route path={'/forgot-password/:email'} element={<ForgotPasswordPage/>} />
+                        <Route path={'/reset-password/:resetToken'} element={<ResetPasswordPage />} />
                     </Routes>
                 </Grid>
                 {/* Condición para mostrar el pie de página */}

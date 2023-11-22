@@ -1,16 +1,15 @@
 import axios from '../config/axiosConfig.js'
 
-// ACTIONS USERS // // ACTIONS USERS // // ACTIONS USERS // 
-
-// Acción para indicar que el proceso de restablecimiento de contraseña fue exitoso
 export const resetPasswordSuccess = () => ({
   type: "RESET_PASSWORD_SUCCESS",
 });
 
 // Acción asíncrona para enviar la solicitud de restablecimiento de contraseña
-export const resetPassword = (resetToken, newPassword) => async (dispatch) => {
+export const resetPassword = ( resetToken , newPassword ) => async (dispatch) => {
   try {
-    const response = await axios.post('/reset-password', { resetToken, newPassword });
+
+
+    const response = await axios.put(`/reset-password/${ resetToken }`, { newPassword });
 
     if (response.status === 200) {
       dispatch(resetPasswordSuccess());
@@ -22,11 +21,29 @@ export const resetPassword = (resetToken, newPassword) => async (dispatch) => {
   }
 };
 
+// Acción para indicar que el proceso de actualización de contraseña fue exitoso
+export const refreshPasswordSuccess = () => ({
+  type: "REFRESH_PASSWORD_SUCCESS",
+});
+
+// Acción asíncrona para enviar la solicitud de actualización de la contraseña
+export const refreshPassword = ( refreshToken ) => async (dispatch) => {
+  try {
+    const response = await axios.put('/refresh-token', { refreshToken });
+    if (response.status === 200) {
+      dispatch(refreshPasswordSuccess());
+    } else {
+      console.error('Error en la solicitud de actualización de contraseña:', response.data.message);
+    }
+  } catch (error) {
+    console.error('Error en la solicitud de actualización de contraseña:', error.message);
+  }
+};
+
 // Acción para indicar que el proceso de olvido de contraseña fue exitoso
 export const forgotPasswordSuccess = () => ({
   type: "FORGOT_PASSWORD_SUCCESS",
 });
-
 // Acción asíncrona para enviar la solicitud de olvido de contraseña
 export const forgotPassword = (email) => async (dispatch) => {
   try {
@@ -41,24 +58,6 @@ export const forgotPassword = (email) => async (dispatch) => {
   }
 };
 
-// Acción para indicar que el proceso de actualización de contraseña fue exitoso
-export const refreshPasswordSuccess = () => ({
-  type: "REFRESH_PASSWORD_SUCCESS",
-});
-
-// Acción asíncrona para enviar la solicitud de actualización de la contraseña
-export const refreshPassword = (refreshToken) => async (dispatch) => {
-  try {
-    const response = await axios.post('/api/refresh-token', { refreshToken });
-    if (response.status === 200) {
-      dispatch(refreshPasswordSuccess());
-    } else {
-      console.error('Error en la solicitud de actualización de contraseña:', response.data.message);
-    }
-  } catch (error) {
-    console.error('Error en la solicitud de actualización de contraseña:', error.message);
-  }
-};
 
 // Acciones para crear usuario
 export function createUser(user) {

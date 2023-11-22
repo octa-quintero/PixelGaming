@@ -1,64 +1,45 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { resetPassword, forgotPassword, refreshPassword } from '../../redux/action.js';
+import { forgotPassword } from '../../redux/action.js';
 import { useParams } from 'react-router-dom';
 import style from './passwordRestoreStyle.module.css';
 
-function ResetPasswordPage() {
+function ForgotPasswordPage() {
   const dispatch = useDispatch();
   const { email } = useParams();
-  const { resetToken } = useParams();
-  const [newPassword, setNewPassword] = useState('');
-  const [showResetFields, setShowResetFields] = useState(false);
+  const [showResetFields] = useState(false);
+  const [emailSent, setEmailSent] = useState(false); // Nuevo estado para controlar el mensaje
 
   const handleSendToken = async () => {
     try {
       await dispatch(forgotPassword(email));
-
-      // Después de enviar el token, muestra los campos para cambiar la contraseña
-      setShowResetFields(true);
+      setEmailSent(true); // Actualizar el estado para mostrar el mensaje
     } catch (error) {
       console.error('Error al enviar el token:', error.message);
-      // Maneja el error según sea necesario
     }
   };
 
-  const handleResetPassword = async () => {
-    try {
-      // Aquí podrías llamar a la acción para restablecer la contraseña
-      // Ajusta la lógica según tus necesidades
-      await dispatch(resetPassword(resetToken, newPassword));
-
-      // Después de restablecer la contraseña, podrías realizar alguna acción adicional si es necesario
-    } catch (error) {
-      console.error('Error al restablecer la contraseña:', error.message);
-      // Maneja el error según sea necesario
-    }
-  };
-
-  // ... Resto del código
 
   return (
     <div>
       <h1>Restablecer Contraseña</h1>
 
       {showResetFields ? (
-        // Campos para ingresar la nueva contraseña
         <>
-          <input
-            type="password"
-            placeholder="Nueva Contraseña"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-          />
-          <button onClick={handleResetPassword}>Restablecer Contraseña</button>
+          <h1>Revisa Tu Correo</h1>
         </>
       ) : (
-        // Botón para enviar el token
-        <button onClick={handleSendToken}>Enviar Token</button>
+        <div>
+          {emailSent ? (
+            <p>Se ha enviado un correo electrónico a {email}. Por favor, revisa tu correo para modificar la contraseña.</p>
+          ) : (
+            <p>Haz clic en "Enviar Token" para recibir un correo electrónico con las instrucciones para restablecer tu contraseña.</p>
+          )}
+          <button onClick={handleSendToken} disabled={emailSent}>Enviar Token</button>
+        </div>
       )}
     </div>
   );
 }
 
-export default ResetPasswordPage;
+export default ForgotPasswordPage;
