@@ -66,7 +66,6 @@
           };
 
           case "LOGOUT":
-            // Limpiar el token y el usuario al cerrar sesión
             return {
               ...state,
               token: null,

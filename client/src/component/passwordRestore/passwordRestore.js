@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { forgotPassword } from '../../redux/action.js';
 import { useParams } from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faKey } from '@fortawesome/free-solid-svg-icons';
 import style from './passwordRestoreStyle.module.css';
+import logo from "../../../src/assets/logo/logoPixelGaming1.png";
 
 function ForgotPasswordPage() {
   const dispatch = useDispatch();
@@ -21,23 +24,26 @@ function ForgotPasswordPage() {
 
 
   return (
-    <div>
-      <h1>Restablecer Contraseña</h1>
+    <div className={style.forgotPassword}>
+      <h1 className={style.h1}><FontAwesomeIcon icon={faKey} />Restablecer Contraseña</h1>
 
       {showResetFields ? (
         <>
           <h1>Revisa Tu Correo</h1>
         </>
       ) : (
-        <div>
+        <div className={style.forgotContent}>
           {emailSent ? (
-            <p>Se ha enviado un correo electrónico a {email}. Por favor, revisa tu correo para modificar la contraseña.</p>
+            <p>Se ha enviado un correo electrónico a <b>{email}</b>. Por favor, revisa tu correo para modificar la contraseña.</p>
           ) : (
-            <p>Haz clic en "Enviar Token" para recibir un correo electrónico con las instrucciones para restablecer tu contraseña.</p>
+            <p>Haz clic en "Enviar Token" para recibir un correo electrónico a <b>{email}</b> con las instrucciones para restablecer tu contraseña.</p>
           )}
-          <button onClick={handleSendToken} disabled={emailSent}>Enviar Token</button>
         </div>
       )}
+      <button  className={style.cardBtn}  onClick={handleSendToken} disabled={emailSent}>Enviar Token</button>
+      <div className={style.logo}>
+        <img className={style.logo1} src={logo} alt="logo" />
+      </div>
     </div>
   );
 }

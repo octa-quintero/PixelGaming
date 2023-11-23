@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserProfile, updateUserProfile } from '../../redux/action.js';
-import { NavLink, useParams } from 'react-router-dom';
+import { fetchUserProfile, updateUserProfile, logout } from '../../redux/action.js';
+import { NavLink, useParams, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
         faUser,
@@ -9,6 +9,7 @@ import {
         faX,
         faPaperclip,
         faKey,
+        faRightFromBracket
 } from '@fortawesome/free-solid-svg-icons';
 
 import Duck from "../../assets/usersPixelArt/duck.png";
@@ -34,6 +35,7 @@ import style from './userProfileStyle.module.css';
 
 function UserProfile() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const userProfile = useSelector((state) => state.userProfile);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -41,6 +43,13 @@ function UserProfile() {
   const [showAvatarSelection, setShowAvatarSelection] = useState(false);
 
   const { userId } = useParams();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    localStorage.removeItem('token');
+    navigate('/');
+    window.location.reload();
+  };
 
   useEffect(() => {
     dispatch(fetchUserProfile(userId));
@@ -200,6 +209,9 @@ function UserProfile() {
               Cancelar  <FontAwesomeIcon icon={faX} />
             </button>
           )}
+          <button onClick={handleLogout} className={style.logoutBtn}>
+            Logout<FontAwesomeIcon icon={faRightFromBracket} />
+          </button>
         </div>
       </div>
     </div>

@@ -10,17 +10,17 @@ const {
   updateUser,
   resetPassword,
   forgotPassword,
-  refreshToken
+  logout
 } = require("../controllers/users-controller.js")
 
 router.post("/users", createUser);
 router.post('/login', login);
+router.post('/logout', verifyToken, logout);
 router.get("/user/:userId", getUserById);
 router.put("/user/:userId", verifyToken, updateUser);
 
 // restore password
 router.put('/forgot-password', forgotPassword);
 router.put('/reset-password/:resetToken', resetPassword);
-router.put('/refresh-token', refreshToken);
 
 module.exports = router;

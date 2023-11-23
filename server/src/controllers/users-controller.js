@@ -8,10 +8,8 @@ const transporter = require("../config/mailer");
 // Crear User
 const createUser = async (req, res, next) => {
   try {
-    // Extraer los datos del cuerpo de la solicitud
     const { name, last_name, name_user, password, email, avatar } = req.body;
 
-    // Verificar si el usuario ya existe  
     const existingUser = await Users.findOne({ where: { name_user } });
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -20,7 +18,6 @@ const createUser = async (req, res, next) => {
       return res.status(400).json({ error: "El nombre de usuario ya está en uso" });
     }
 
-    // Crear un nuevo usuario en la base de datos
     const newUser = await Users.create({
       name,
       last_name,
@@ -75,15 +72,6 @@ const login = async (req, res, next) => {
     if (!passwordMatch) {
       return res.status(401).json({ error: "Contraseña incorrecta" });
     }
-    
-    // Autenticación exitosa, generar un token JWT con información adicional
-    const token = jwt.sign(
-      { userId: user.id, username: user.name_user, avatar: user.avatar },
-      process.env.SECRET_KEY,
-      {
-        expiresIn: '168h' // Puedes ajustar la expiración del token según tus necesidades
-      }
-    );
 
       // Autenticación exitosa, generar un token JWT con información adicional
       const refreshToken = jwt.sign(
@@ -101,10 +89,8 @@ const login = async (req, res, next) => {
       console.error('Error al guardar el refresh token:', error);
       return res.status(500).json({ message: 'Error al guardar el refresh token' });
     }
-    
-    console.log('Token generado:', token);
 
-    res.status(200).json({ message: "Inicio de sesión exitoso", token });
+    res.status(200).json({ message: "Inicio de sesión exitoso", token: refreshToken });
   } catch (error) {
     console.error("Error en el inicio de sesión:", error);
     
@@ -112,6 +98,32 @@ const login = async (req, res, next) => {
     next(error);
   }
 };
+
+const logout = async (req, res, next) => {
+  try {
+    const user = req.user;
+
+    // Verificar si el usuario tiene un refreshToken almacenado
+    if (!user.refreshToken) {
+      return res.status(401).json({ error: 'No hay token para invalidar' });
+    }
+
+    user.refreshToken = null;
+
+    try {
+      await user.save();
+    } catch (error) {
+      console.error('Error al guardar la invalidación del token:', error);
+      return res.status(500).json({ error: 'Error al guardar la invalidación del token' });
+    }
+    res.status(200).json({ message: 'Cierre de sesión exitoso' });
+  } catch (error) {
+    console.error('Error al cerrar sesión:', error);
+    res.status(500).json({ error: 'Error del servidor al cerrar sesión' });
+    next(error);
+  }
+};
+
 
 // Modificar información del usuario
 const updateUser = async (req, res, next) => {
@@ -207,7 +219,8 @@ const forgotPassword = async (req, res) => {
 
 const resetPassword = async (req, res) => {
   try {
-    const { resetToken, newPassword } = req.body;
+    const { resetToken } = req.params;
+    const { newPassword } = req.body;
 
     console.log('Reset Token received on the server:', resetToken);
 
@@ -215,7 +228,6 @@ const resetPassword = async (req, res) => {
     const user = await Users.findOne({ 
       where: {
         resetPasswordToken: resetToken,
-        resetPasswordExpires: { $gt: new Date() }
       }
     });
 
@@ -228,57 +240,24 @@ const resetPassword = async (req, res) => {
 
     // Actualiza la contraseña y limpia los campos relacionados con el restablecimiento
     const hashedPassword = await bcrypt.hash(newPassword, 10);
+    const refreshToken = jwt.sign(
+      { userId: user.id, username: user.name_user, avatar: user.avatar },
+      process.env.JWT_SECRET,
+      { expiresIn: '168h' }
+      );
+      user.refreshToken = refreshToken;
+    
     user.password = hashedPassword;
     user.resetPasswordToken = undefined;
     user.resetPasswordExpires = undefined;
     await user.save();
 
-    res.status(200).json({ message: 'Contraseña restablecida con éxito.' });
+    res.status(200).json({ message: 'Contraseña restablecida con éxito.' , token: refreshToken });
   } catch (error) {
     console.error('Error al restablecer la contraseña:', error);
     res.status(500).json({ message: 'Error al restablecer la contraseña.' });
   }
 };
-
-const refreshToken = async (req, res) => {
-  try {
-    const { refreshToken } = req.body;
-
-    // Verifica si se proporcionó un token de actualización
-    if (!refreshToken) {
-      return res.status(401).json({ message: 'Token de actualización no proporcionado.' });
-    }
-
-    // Verifica y decodifica el token de actualización utilizando el secreto correcto
-    const decodedToken = jwt.verify(refreshToken, process.env.JWT_SECRET);
-
-    // Busca al usuario por el ID del token decodificado
-    const user = await Users.findByPk(decodedToken.userId);
-
-    // Verifica si el usuario existe
-    if (!user) {
-      return res.status(404).json({ message: 'Usuario no encontrado.' });
-    }
-
-    // Verifica si el token de actualización almacenado coincide con el proporcionado
-    if (user.refreshToken !== refreshToken) {
-      return res.status(401).json({ message: 'Token de actualización no válido.' });
-    }
-
-    // Genera un nuevo token de acceso
-    const accessToken = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '168h' });
-
-    // Envia el nuevo token de acceso
-    res.status(200).json({ accessToken });
-  } catch (error) {
-    console.error('Error al procesar el token de actualización:', error);
-    res.status(500).json({ message: 'Error al procesar el token de actualización.' });
-  }
-};
-
-
-
-
 
 
 module.exports = { 
@@ -287,6 +266,6 @@ module.exports = {
   updateUser,
   forgotPassword,
   resetPassword,
-  refreshToken,
-  login
+  login,
+  logout
 };

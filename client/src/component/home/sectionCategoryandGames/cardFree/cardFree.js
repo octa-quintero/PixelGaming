@@ -30,7 +30,7 @@ function CardFree() {
     <div className={style.cardsGamesContainer}>
       <div className={style.cards}>
       <div className={style.masJuegos}>
-          <h1 className={style.text}><FontAwesomeIcon className={style.crown} icon={faRobot} />Top recomendados por la comunidad</h1>
+          <h1 className={style.text}><FontAwesomeIcon className={style.crown} icon={faRobot} />Juegos gratis destacados</h1>
               <NavLink to="/games" className={style.btnRegistro}>
                 <h1>Ver Mas</h1>
               </NavLink>
