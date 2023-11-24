@@ -4,13 +4,16 @@ import { fetchUserProfile, updateUserProfile, logout } from '../../redux/action.
 import { NavLink, useParams, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-        faUser,
-        faPenToSquare,
-        faX,
-        faPaperclip,
-        faKey,
-        faRightFromBracket
+  faUser,
+  faPenToSquare,
+  faX,
+  faPaperclip,
+  faKey,
+  faRightFromBracket,
+  faCheck,
+  faBan
 } from '@fortawesome/free-solid-svg-icons';
+
 
 import Duck from "../../assets/usersPixelArt/duck.png";
 import Ghost from "../../assets/usersPixelArt/ghost.png";
@@ -62,6 +65,7 @@ function UserProfile() {
       last_name: userProfile.last_name,
       name_user: userProfile.name_user,
       email: userProfile.email,
+      avatar: userProfile.avatar
     });
   }, [userProfile]);
 
@@ -72,26 +76,41 @@ function UserProfile() {
     setIsEditing(!isEditing);
   };
 
+  const handleEditAvatar = async () => {
+    try {
+      await dispatch(updateUserProfile(userId, editedData));
+      window.location.reload();
+    } catch (error) {
+      console.error('Error al actualizar el avatar:', error);
+    }
+  };
+
+  const handleCancelAvatarSelection = () => {
+    setShowAvatarSelection(false);
+    setSelectedAvatar(null);
+  };
+  
+
   const handleInputChange = (e) => {
-    // Actualizar el estado de los datos editados al cambiar un campo
     const { name, value } = e.target;
     setEditedData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleCancel = () => {
-    // Restablecer los datos editados a los valores originales del perfil
+
     setEditedData({
       name: userProfile.name,
       last_name: userProfile.last_name,
       name_user: userProfile.name_user,
       email: userProfile.email,
+      avatar: userProfile.avatar
     });
 
     setIsEditing(false);
   };
 
   const handleAvatarSelect = (avatar) => {
-    setSelectedAvatar(avatar.image);
+    setSelectedAvatar({ name: avatar.name, image: avatar.image });
     setEditedData({ ...editedData, avatar: avatar.image });
   };
 
@@ -158,41 +177,16 @@ function UserProfile() {
                     }}
                     className={style.editInput}
                     placeholder={field.placeholder}
-                    />
+                  />
                 ) : (
                   userProfile[field.key]
                 )}
               </h4>
             ))}
+        <div className={style.editButtonContainer}>
             <NavLink to={`/forgot-password/${userProfile.email}`} className={style.btnRegistro} target="_blank">
               <h1>Actualizar Contraseña<FontAwesomeIcon icon={faKey} /></h1>
             </NavLink>
-        <h1
-          className={style.avatarSelect}
-          onClick={() => setShowAvatarSelection(!showAvatarSelection)} // Cambio aquí
-          >
-          Editar Avatar<FontAwesomeIcon icon={faPenToSquare}/><img src={userProfile.avatar} alt="Avatar" className={style.avatarImage} />
-        </h1>
-        {showAvatarSelection && (
-          <div className={style.avatarSelection}>
-            {avatarImages.map((avatar, index) => (
-              <div
-                key={index}
-                className={`${style.avatarOption} ${selectedAvatar === avatar.image ? style.selectedAvatar : ''}`}
-                onClick={() => handleAvatarSelect(avatar.image)}
-              >
-                <img
-                  src={avatar.image}
-                  alt={avatar.name}
-                  className={style.avatarImage}
-                />
-              </div>
-            ))}
-          </div>
-        )}
-          </div>
-        )}
-        <div className={style.editButtonContainer}>
           <button onClick={handleEditToggle} className={style.cardBtn}>
             {isEditing ? (
               <>
@@ -209,10 +203,47 @@ function UserProfile() {
               Cancelar  <FontAwesomeIcon icon={faX} />
             </button>
           )}
+        </div>
+        <div className={style.avatarSelectContent}>
+            <h4 className={style.avatarSelect} onClick={() => setShowAvatarSelection(!showAvatarSelection)}>
+              Editar Avatar<FontAwesomeIcon icon={faPenToSquare} /></h4>
+              {selectedAvatar && (
+                <span className={style.selectedAvatarName}>{selectedAvatar.name}</span>
+                )}
+                <img src={selectedAvatar ? selectedAvatar.image : userProfile.avatar} alt="Avatar" className={style.avatarImage} />
+        </div>
+            {showAvatarSelection && (
+              <div className={style.avatarSelection}>
+                {avatarImages.map((avatar, index) => (
+                  <div
+                    key={index}
+                    className={`${style.avatarOption} ${selectedAvatar === avatar.image ? style.selectedAvatar : ''}`}
+                    onClick={() => handleAvatarSelect(avatar)}
+                  >
+                    <img
+                      src={avatar.image}
+                      alt={avatar.name}
+                      className={style.avatarImage}
+                    />
+                  </div>
+                ))}
+                <div className={style.btn}>
+                  <button onClick={handleCancelAvatarSelection} className={style.cancelBtn}>
+                    <FontAwesomeIcon icon={faBan}/>
+                  </button>
+                <button onClick={handleEditAvatar} className={style.confirmBtn}>
+                  <FontAwesomeIcon icon={faCheck} />Confirmar Avatar
+                </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+        <div className={style.contentLogout}>
           <button onClick={handleLogout} className={style.logoutBtn}>
             Logout<FontAwesomeIcon icon={faRightFromBracket} />
           </button>
-        </div>
+          </div>
       </div>
     </div>
   );

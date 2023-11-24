@@ -2,7 +2,7 @@ require('dotenv').config();
 const { Users } = require("../db")
 
 const jwt = require('jsonwebtoken');
-const secretKey = process.env.SECRET_KEY;
+const secretKey = process.env.JWT_SECRET;
 
 async function verifyToken(req, res, next) {
   const authHeader = req.header('Authorization');

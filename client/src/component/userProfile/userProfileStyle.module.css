@@ -140,7 +140,7 @@
 
 .editButtonContainer{
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   flex-direction: row;
@@ -160,6 +160,7 @@
   padding: 10px;
   font-size: 18px;
   font-weight: bold;
+  cursor: pointer;
   outline: none;
   border: none;
   gap: 5px;
@@ -182,6 +183,7 @@
   height: 40px;
   padding: 10px;
   font-size: 18px;
+  cursor: pointer;
   font-weight: bold;
   outline: none;
   border: none;
@@ -193,10 +195,18 @@
   background-color: rgb(212, 19, 19);
 }
 
+.contentLogout{
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
+}
+
 .btnRegistro{
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   flex-direction: row;
 }
 
@@ -206,13 +216,14 @@
   justify-content: center;
   flex-direction: row;
   width: auto;
-  height: 30px;
+  height: 100%;
   background-color: transparent;
   font-family: 'Ubuntu', sans-serif;
   border: 1.5px solid #00a2ff;
   border-radius: 3px;
   color: #00a2ff;
   font-size: 1vw;
+  cursor: pointer;
   font-weight: 400;
   padding: 10px;
   transition: 0.3s;
@@ -247,30 +258,60 @@
   padding: 8px;
 }
 
-.avatarSelect{
+.cancelBtn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: auto;
+  height: 30px;
+  background-color: transparent;
+  font-family: 'Ubuntu', sans-serif;
+  border: 1.5px solid rgb(173, 36, 3);
+  border-radius: 3px;
+  color: rgb(173, 36, 3);
+  font-size: 1vw;
+  font-weight: 400;
+  padding: 10px;
+  transition: 0.3s;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.cancelBtn:hover{
+  color: rgb(218, 47, 4);
+  border: 1.5px solid rgb(218, 47, 4);
+}
+
+.btn{
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.avatarSelectContent{
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
-  padding-left: 17px;
-  padding-top: 5px;
+  font-weight: 900;
+  width: 40%;
+  height: 45px;
   font-family: 'Ubuntu', sans-serif;
-  font-weight: bold;
+  background-color: #19191972;
   color:  rgb(202, 202, 202);
-  gap: 10px;
-  cursor: pointer; /* Agregado para indicar que es interactivo */
-  transition: color 0.3s ease, background-color 0.3s ease;
-  transition: 3s;
+  border-radius: 8px;
+  border-bottom: 1.8px solid #00a2ff;
+}
+
+.avatarSelect{
+  cursor: pointer;
+  transition: 1s; 
 }
 
 .avatarSelect:hover {
   color: white;
 }
-
-.avatarSelection.active {
-  transition: transform 0.3s ease; /* Agrega una transición suave */
-  transform: translateY(0); /* La posición inicial, puede ajustarse según sea necesario */
-} 
 
 .avatarOption {
   display: flex;
@@ -283,4 +324,36 @@
 
 .avatarImage {
   width: 30px;
+  cursor: pointer;
+}
+
+.selectedAvatar {
+  background-color: #151515bb;
+  width: 30px;
+  border-radius: 3px; /* Bordes redondeados (puedes ajustar esto) */
+}
+
+.confirmBtn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: auto;
+  height: 30px;
+  background-color: transparent;
+  font-family: 'Ubuntu', sans-serif;
+  border: 1.5px solid rgb(36, 192, 19);
+  border-radius: 3px;
+  color: rgb(36, 192, 19);
+  font-size: 1vw;
+  font-weight: 400;
+  padding: 10px;
+  transition: 0.3s;
+  cursor: pointer;
+  gap: 10px;
+}
+
+.confirmBtn:hover{
+  color: rgb(26, 255, 0);
+  border: 1.5px solid rgb(26, 255, 0);
 }

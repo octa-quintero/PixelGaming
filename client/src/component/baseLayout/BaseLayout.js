@@ -32,7 +32,7 @@ export default function BaseLayout() {
                         <Navbar />
                     </Grid>
                 )}
-                <Grid item flexGrow={1} display={'flex'} justifyContent={'center'} alignItems={'center'} minHeight={'100vh'}>
+                <Grid item flexGrow={1} display={'flex'} justifyContent={'center'} alignItems={'flex-start'} minHeight={'100vh'}>
                     <Routes>
                         <Route exact path={'/'} element={<Home />} />
                         <Route path={'/games'} element={<Games />} />
