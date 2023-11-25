@@ -10,6 +10,7 @@ import UserProfile from '../userProfile/userProfile.js'
 import Login from '../login/login.js'
 import ForgotPasswordPage from '../passwordRestore/passwordRestore.js'
 import ResetPasswordPage from '../passwordRestore/passwordRestoreConfirm.js'
+import Contact from '../contact/contact.js'
 import { Route, Routes } from "react-router-dom";
 import { Box, Grid } from "@mui/material";
 
@@ -22,11 +23,12 @@ export default function BaseLayout() {
     const isForgotPasswordPage = currentPath.includes('/forgot-password');
     const isLoginPage = currentPath.includes('/login');
 
+    
+
     return (
         <Box>
             <Grid container display={'flex'} flexDirection={'column'}  minHeight={'100vh'}
                 justifyContent={'space-between'}>
-                {/* Condición para mostrar la barra de navegación */}
                 {!isResetPasswordPage && !isForgotPasswordPage && !isLoginPage && (
                     <Grid item>
                         <Navbar />
@@ -34,23 +36,22 @@ export default function BaseLayout() {
                 )}
                 <Grid item flexGrow={1} display={'flex'} justifyContent={'center'} alignItems={'flex-start'} minHeight={'100vh'}>
                     <Routes>
-                        <Route exact path={'/'} element={<Home />} />
-                        <Route path={'/games'} element={<Games />} />
-                        <Route path={'/top2023'} element={<Top2023 />} />
-                        <Route path={'/register'} element={<Users />} />
-                        <Route path={'/user-profile/:userId'} element={<UserProfile />} />
-                        <Route path={'/games/:gameId'} element={<GameDetail />} />
-                        {/* Agrega la ruta de restablecimiento de contraseña sin Navbar ni Footer */}
-                        <Route path={'/login'} element={<Login />} />
-                        <Route path={'/forgot-password/:email'} element={<ForgotPasswordPage/>} />
-                        <Route path={'/reset-password/:resetToken'} element={<ResetPasswordPage />} />
+                        <Route exact path={'/'} element={<Home/>}/>
+                        <Route path={'/games'} element={<Games />}/>
+                        <Route path={'/contact'} element={<Contact/>} />
+                        <Route path={'/top2023'} element={<Top2023/>}/>
+                        <Route path={'/games/:gameId'} element={<GameDetail/>} />
+                        <Route path={'/register'} element={<Users/>}/>
+                        <Route path={'/user-profile/:userId'} element={<UserProfile/>}/>
+                        <Route path={'/login'} element={<Login/>} />
+                        <Route path={'/forgot-password/:email'} element={<ForgotPasswordPage/>}/>
+                        <Route path={'/reset-password/:resetToken'} element={<ResetPasswordPage/>}/>
                     </Routes>
                 </Grid>
-                {/* Condición para mostrar el pie de página */}
                 {!isResetPasswordPage && !isForgotPasswordPage && !isLoginPage && (
-                  <Grid item>
-                        <Footer />
-                    </Grid>
+                <Grid item>
+                  <Footer />
+                </Grid>
                 )}
             </Grid>
         </Box>

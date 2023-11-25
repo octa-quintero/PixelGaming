@@ -23,14 +23,12 @@ function NavBar() {
   const [userData, setUserData] = useState(null);
   const dispatch = useDispatch();
 
+  
   useEffect(() => {
-    // Suponiendo que tienes el token almacenado en localStorage
     const token = localStorage.getItem('token');
 
     if (token) {
-      // Decodificar el token para obtener la información del usuario
       const decodedToken = jwtDecode(token);
-      // Puedes acceder a la información del usuario desde decodedToken
       setUserData(decodedToken);
       if (decodedToken.userId) {
         dispatch(fetchUserProfile(decodedToken.userId));
@@ -57,7 +55,7 @@ function NavBar() {
               <NavLink to="/games" className={style.btn}>
               <h1><FontAwesomeIcon icon={faGamepad} />{' '}Juegos</h1>
           </NavLink>
-          <NavLink to="/activitySearch" className={style.btn}>
+          <NavLink to="/contact" className={style.btn}>
               <h1><FontAwesomeIcon icon={faTowerObservation} />{' '}Contacto</h1>
           </NavLink>
           <NavLink to="/activity" className={style.btn}>
