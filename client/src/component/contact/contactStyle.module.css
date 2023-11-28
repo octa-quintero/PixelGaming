@@ -1,0 +1,103 @@
+.contactContainer{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+  width: 80%;
+  height: 100vh;
+  margin-top: 30px;
+  padding: 0;
+  background-color: #2a2a2abb;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transition: 0.3s;
+  border-radius: 5px;
+  gap: 15px;
+  padding: 30px;
+  color:  rgb(202, 202, 202);
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.userContent{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  gap: 10px;
+  transition: 0.3s;
+}
+
+.userContent > :last-child {
+  margin-top: auto;
+}
+
+.userContent p{
+  margin-top: 10px;
+  margin-bottom: 30px;
+  font-weight: 300;
+  font-size: 18px;
+  text-align: justify;
+}
+
+.title{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+}
+
+.pixel{
+  width: 20px;
+}
+
+.iconConctact{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: row;
+  width: 100%;
+}
+
+.iconDate{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.Icon{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  width: auto;
+  font-family: 'Pixelify Sans', sans-serif;
+  gap: 20px;
+  margin-bottom: 25px;
+  color: inherit;
+}
+
+.Icon img{
+  width: 40px;
+}
+
+.logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.logo img{
+  width: 80px;
+}
