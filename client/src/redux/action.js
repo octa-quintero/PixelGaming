@@ -261,10 +261,10 @@ export function createReview(values) {
   };
 }
 
-// Acciones asincrónicas para obtener reseñas
-export function getReviews(order) {
+// Acciones asincrónicas para obtener reseñas por ID de juego
+export function getReviewsByGameId(gameId) {
   return dispatch => {
-    axios.get(`/reviews?order=${order}`)
+    axios.get(`/games/${gameId}/reviews`)
       .then(response => {
         console.log(response);
         dispatch({ type: "GET_REVIEWS", payload: response.data });

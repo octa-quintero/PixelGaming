@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getGamesId, createReview } from '../../redux/action.js';
+import { getGamesId, createReview, fetchUserProfile, getReviewsByGameId } from '../../redux/action.js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPaperPlane,
-  faGlobe
 } from '@fortawesome/free-solid-svg-icons';
 import RatingInput from './rating/rating.js';
 import style from './gameDetailStyle.module.css';
@@ -14,6 +13,8 @@ import Duck from "../../../src/assets/logo/duck.gif";
 function GameDetail() {
   const dispatch = useDispatch();
   const gameInfo = useSelector(state => state.gameDetail);
+  const userProfile = useSelector((state) => state.userProfile);
+  const reviews = useSelector(state => state.reviews);
   const [reviewText, setReviewText] = useState("");
 
   const handleReviewSubmit = () => {
@@ -21,7 +22,9 @@ function GameDetail() {
       const reviewData = {
         text: reviewText,
         gameId: gameInfo.id,
-        rating: 3,
+        userId: userProfile.id,
+        avatar: userProfile.avatar,
+        name_user: userProfile.name_user,
       };
       dispatch(createReview(reviewData));
       setReviewText("");
@@ -32,11 +35,19 @@ function GameDetail() {
     const pathname = window.location.pathname;
     const gameId = pathname.split('/games/')[1];
 
+    dispatch(fetchUserProfile(userProfile.id));
+  
     if (gameId) {
       console.log("Dispatching getGamesId with gameId:", gameId);
       dispatch(getGamesId(gameId));
     }
-  }, [dispatch]);
+  }, [dispatch, userProfile.id]);
+
+  useEffect(() => {
+    const pathname = window.location.pathname;
+    const gameId = pathname.split('/games/')[1];
+    dispatch(getReviewsByGameId(gameId));
+  }, [dispatch, userProfile.id]);
 
   return (
     <div className={style.cardsGamesContainer}>
@@ -45,8 +56,7 @@ function GameDetail() {
           <div className={style.cardContent}>
             <div className={style.image}>
               <img src={gameInfo.thumbnail} alt={gameInfo.title} className={style.cardImage} />
-              <a href={gameInfo.game_url} className={style.cardBtn}>Play Now!</a>
-              <RatingInput onRatingChange={(rating) => {}} />
+              <a href={gameInfo.game_url} className={style.cardBtn}>Play Now!</a> 
             </div>  
             <div className={style.title}>
               <div className={style.Favorite}>
@@ -71,12 +81,23 @@ function GameDetail() {
                   </button>
               </div>
             </div>
+
           </div>
         ) : (
           <p>Loading game details...</p>
           )}
       </div>
-    </div>
+        <div className={style.reviewsContainer}>
+          <h2>Reseñas:</h2>
+            {reviews.map(review => (
+              <div key={review.id}>
+                <p>{review.name_user}</p>
+                <p>{review.text}</p>
+                <img src={review.avatar} alt="Avatar" className={style.avatarImage} />
+              </div>
+            ))}
+        </div>
+      </div>
   );
 }
 

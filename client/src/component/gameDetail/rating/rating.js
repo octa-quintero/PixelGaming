@@ -5,9 +5,6 @@ import Emoticon3 from "../../../assets/pixelArt/emoticon4.png";
 import style from "./ratingStyle.module.css";
 
 function RatingInput({ onRatingChange }) {
-  const [rating1, setRating1] = useState(0);
-  const [rating2, setRating2] = useState(0);
-  const [rating3, setRating3] = useState(0);
   const [emoticon1, setEmoticon1] = useState(Emoticon);
   const [emoticon2, setEmoticon2] = useState(Emoticon2);
   const [emoticon3, setEmoticon3] = useState(Emoticon3);
@@ -24,17 +21,17 @@ function RatingInput({ onRatingChange }) {
         <img
           src={emoticon1}
           alt="Emoticon"
-          onClick={() => handleRatingClick(1, setRating1, setEmoticon1)}
+          onClick={() => handleRatingClick(1, setEmoticon1)}
         />
         <img
           src={emoticon2}
           alt="Emoticon"
-          onClick={() => handleRatingClick(2, setRating2, setEmoticon2)}
+          onClick={() => handleRatingClick(2, setEmoticon2)}
         />
         <img
           src={emoticon3}
           alt="Emoticon"
-          onClick={() => handleRatingClick(3, setRating3, setEmoticon3)}
+          onClick={() => handleRatingClick(3, setEmoticon3)}
         />
       </div>
     </div>

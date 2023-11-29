@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  sequelize.define('Review', {
+  const Review = sequelize.define('Review', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -14,10 +14,10 @@ module.exports = (sequelize) => {
     },
     rating: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       validate: {
         min: 1,
-        max: 5,
+        max: 2,
       },
     },
     publicationDate: {
@@ -25,5 +25,31 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    GameId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    name_user: {
+      type: DataTypes.STRING(40),
+      allowNull: false,
+    },
+    avatar: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+  }, {
+    indexes: [
+      {
+        unique: true,
+        fields: ['UserId', 'GameId'],
+        name: 'unique_review',
+      },
+    ],
   });
+
+  return Review;
 };

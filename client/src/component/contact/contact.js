@@ -32,8 +32,8 @@ function Contact() {
         <p>
         Desarrollada con tecnologías líderes como <b>Node.js</b>, <b>React.js</b> y <b>PostgreSQL</b>, PixelGaming se distingue por su enfoque 
         innovador. La estructura organizativa, dividida en dos sectores. El backend  esta potenciado por <b>Node.js</b>, <b>Express</b> y
-        <b> Sequelize</b>. En el frontend utilize <b>React.js</b> para asegurar una experiencia de usuario excepcional. El diseño visual fue creado con
-        <b>Illustrator</b> agregando un toque estético, ofreciendo a los usuarios una interfaz atractiva y fácil de explorar.
+        <b> Sequelize</b>. En el frontend utilize <b>React.js</b> para asegurar una experiencia de usuario excepcional. El diseño visual fue creado con  
+        {' '}<b>Illustrator</b> agregando un toque estético, ofreciendo a los usuarios una interfaz atractiva y fácil de explorar.
         </p>
         <p className={style.logo}>
         Si buscas un <>desarrollador</> comprometido, creativo y orientado a resultados, estás en el lugar correcto. Mi
