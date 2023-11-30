@@ -13,12 +13,34 @@
     getReviews: [],
     forgotPasswordSuccess: false,
     resetPasswordSuccess: false,
-    refreshPasswordSuccess: false
+    refreshPasswordSuccess: false,
+    library: [],
+    getLibrarySuccess: false,
+    getLibraryError: null,
   };
 
   // Reducer de Redux para manejar el estado global
   function reducer(state = initialState, action) {
     switch (action.type) {
+      case "GET_LIBRARY_SUCCESS":
+        return {
+          ...state,
+          library: action.payload,
+          getLibrarySuccess: true,
+          getLibraryError: null,
+        };
+        case "GET_LIBRARY_ERROR":
+          return {
+            ...state,
+            library: [],
+            getLibrarySuccess: false,
+            getLibraryError: action.payload,
+          };
+      case "ADD_TO_LIBRARY_SUCCESS":
+        return {
+          ...state,
+          library: action.payload,
+        };
       case "FORGOT_PASSWORD_SUCCESS":
         return {
           ...state,

@@ -2,7 +2,7 @@ const { Games, Users, Review, Op } = require("../db");
 const axios = require("axios");
 
 
-// Cargar datos de países desde una API externa
+// Cargar datos de juegos desde una API externa
 async function data() {
   try {
     const response = await axios.get("https://www.freetogame.com/api/games");
@@ -10,7 +10,7 @@ async function data() {
 
     console.log(gamesData.length);
 
-    // Actualizar o insertar países en la base de datos
+    // Actualizar o insertar juegos en la base de datos
     const upsertPromises = gamesData.map((gamesData) => {
       return Games.upsert({
         id: gamesData.id,
@@ -35,7 +35,7 @@ async function data() {
   }
 }
 
-// Obtener todos los países
+// Obtener todos los juegos
 async function getAllGames(req, res, next) {
   try {
     const allGamesData = await Games.findAll();

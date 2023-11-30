@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getGamesId, createReview, fetchUserProfile, getReviewsByGameId } from '../../redux/action.js';
+import { getGamesId, createReview, fetchUserProfile, getReviewsByGameId, addToLibrary } from '../../redux/action.js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPaperPlane,
@@ -49,6 +49,14 @@ function GameDetail() {
     dispatch(getReviewsByGameId(gameId));
   }, [dispatch, userProfile.id]);
 
+  const handleAddToLibrary = () => {
+    const libraryData = {
+      userId: userProfile.id,
+      gameId: gameInfo.id,
+    };
+    dispatch(addToLibrary(libraryData));
+  };
+
   return (
     <div className={style.cardsGamesContainer}>
       <div className={style.cardContent1} key={gameInfo.id}>
@@ -61,7 +69,12 @@ function GameDetail() {
             <div className={style.title}>
               <div className={style.Favorite}>
                 <h2 className={style.cardTitle}>{gameInfo.title}</h2>
-                <img src={Heart} className={style.heart}></img> 
+                <img
+                  src={Heart}
+                  className={style.heart}
+                  alt="Favorite"
+                  onClick={handleAddToLibrary}
+                />
               </div>
               <h3 className={style.description}>{gameInfo.short_description}</h3>
               <h3 className={style.shortDescription}>Publicado:<h3>{gameInfo.publisher}</h3></h3>
@@ -80,6 +93,18 @@ function GameDetail() {
                     <h1><FontAwesomeIcon icon={faPaperPlane}/></h1>
                   </button>
               </div>
+          <h2 className={style.Coments}>Comentarios</h2>
+        <div className={style.reviewsContainer}>
+            {reviews.map(review => (
+              <div key={review.id} className={style.reviewComponent}>
+                <div className={style.reviewUser}>
+                  <p>{review.name_user}</p>
+                  <img src={review.avatar} alt="Avatar" className={style.avatarImage} />
+                </div>
+                <p className={style.text}>{review.text}</p>
+              </div>
+            ))}
+        </div>
             </div>
 
           </div>
@@ -87,16 +112,6 @@ function GameDetail() {
           <p>Loading game details...</p>
           )}
       </div>
-        <div className={style.reviewsContainer}>
-          <h2>Reseñas:</h2>
-            {reviews.map(review => (
-              <div key={review.id}>
-                <p>{review.name_user}</p>
-                <p>{review.text}</p>
-                <img src={review.avatar} alt="Avatar" className={style.avatarImage} />
-              </div>
-            ))}
-        </div>
       </div>
   );
 }

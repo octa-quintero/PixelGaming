@@ -245,7 +245,31 @@ export function getGamesId(gameId) {
   };
 }
 
+// Acción asincrónica para obtener la biblioteca de juegos de un usuario
+export function getLibraryByUserId(userId) {
+  return async dispatch => {
+    try {
+      const response = await axios.get(`/library/${userId}`);
+      dispatch({ type: "GET_LIBRARY_SUCCESS", payload: response.data });
+    } catch (error) {
+      console.error("Error occurred:", error);
+      dispatch({ type: "GET_LIBRARY_ERROR", payload: error.message });
+    }
+  };
+}
 
+// Acción asincrónica para agregar un juego a la biblioteca
+export function addToLibrary(values) {
+  return async dispatch => {
+    try {
+      const response = await axios.post("/library/add", values);
+      dispatch({ type: "ADD_TO_LIBRARY_SUCCESS", payload: response.data });
+    } catch (error) {
+      console.error("Error occurred:", error);
+      dispatch({ type: "ADD_TO_LIBRARY_ERROR", payload: error.message });
+    }
+  };
+}
 
 // Acciones asincrónicas para crear una nueva reseña
 export function createReview(values) {
