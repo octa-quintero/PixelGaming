@@ -271,6 +271,27 @@ export function addToLibrary(values) {
   };
 }
 
+// Acción asincrónica para verificar si un juego está en la biblioteca del usuario
+export function checkGameInLibrary(userId, gameId) {
+  return async dispatch => {
+    try {
+      const response = await axios.get(`/library/${userId}/${gameId}`);
+      const isInLibrary = response.data.isInLibrary;
+
+      dispatch({
+        type: "CHECK_GAME_IN_LIBRARY_SUCCESS",
+        payload: { userId, gameId, isInLibrary },
+      });
+    } catch (error) {
+      console.error("Error occurred:", error);
+      dispatch({
+        type: "CHECK_GAME_IN_LIBRARY_ERROR",
+        payload: error.message,
+      });
+    }
+  };
+}
+
 // Acciones asincrónicas para crear una nueva reseña
 export function createReview(values) {
   return dispatch => {
