@@ -1,14 +1,14 @@
 const { Games, Users, Review } = require("../db");
 
-// Agregar juego a la biblioteca personal del usuario
-const addToLibrary = async (req, res, next) => {
+// Agregar o quitar juego de la biblioteca personal del usuario
+const manageLibrary = async (req, res, next) => {
   try {
-    console.log("Adding game to library...");
+    console.log("Managing game in library...");
 
-    const { userId, gameId } = req.body;
+    const { userId, gameId, action } = req.body;
     console.log("Data OK:", req.body);
 
-    // Validar que el usuario y el juego existan antes de agregar a la biblioteca
+    // Validar que el usuario y el juego existan antes de manipular la biblioteca
     const user = await Users.findByPk(userId);
     const game = await Games.findByPk(gameId);
 
@@ -16,25 +16,43 @@ const addToLibrary = async (req, res, next) => {
       return res.status(404).json({ error: "Usuario o juego no encontrado" });
     }
 
-    // Verificar si el juego ya está en la biblioteca del usuario
-    const isInLibrary = await user.hasGame(game);
+    // Obtener la lista de juegos favoritos del usuario
+    let favoriteGames = user.favoriteGames || [];
 
-    if (isInLibrary) {
-      return res.status(400).json({ error: "El juego ya está en la biblioteca del usuario" });
+    // Verificar si el juego ya está en la lista de favoritos del usuario
+    const isInFavorites = favoriteGames.includes(gameId);
+
+    if (action === "add") {
+      // Agregar el juego a la lista de favoritos del usuario si no está presente
+      if (!isInFavorites) {
+        favoriteGames.push(gameId);
+        await user.update({ favoriteGames });
+        console.log("Game added to favorites");
+        res.status(201).json({ message: "Game added to favorites" });
+      } else {
+        res.status(400).json({ error: "El juego ya está en la lista de favoritos del usuario" });
+      }
+    } else if (action === "remove") {
+      // Quitar el juego de la lista de favoritos del usuario si está presente
+      if (isInFavorites) {
+        favoriteGames = favoriteGames.filter((id) => id !== gameId);
+        await user.update({ favoriteGames });
+        console.log("Game removed from favorites");
+        res.status(200).json({ message: "Game removed from favorites" });
+      } else {
+        res.status(400).json({ error: "El juego no está en la lista de favoritos del usuario" });
+      }
+    } else {
+      res.status(400).json({ error: "Acción no válida. Use 'add' o 'remove'" });
     }
-
-    // Agregar el juego a la biblioteca del usuario
-    await user.addGame(game);
-
-    console.log("Game added to library");
-
-    res.status(201).json({ message: "Game added to library" });
   } catch (error) {
-    console.error('Error al agregar juego a la biblioteca:', error);
-    res.status(500).json({ error: 'Error al agregar juego a la biblioteca' });
+    console.error('Error al gestionar juego en la biblioteca:', error);
+    res.status(500).json({ error: 'Error al gestionar juego en la biblioteca' });
     next(error);
   }
 };
+
+
 
 // Obtener la biblioteca de juegos de un usuario
 const getUserLibrary = async (req, res, next) => {
@@ -66,22 +84,32 @@ const getUserLibrary = async (req, res, next) => {
   }
 };
 
-// Verificar si un juego está en la biblioteca del usuario
-const isGameInLibrary = async (userId, gameId) => {
+// Controlador para verificar si un juego está en la biblioteca del usuario logueado
+const gameInLibrary = async (req, res, next) => {
   try {
-    const user = await Users.findByPk(userId, {
-      include: [{
-        model: Games,
-        where: { id: gameId },
-      }],
-    });
+    console.log("Verifying if game is in library...");
 
-    return !!user && user.Games.length > 0;
+    const { gameId } = req.params; // Obtener el ID del juego de la URL
+    const userId = req.user.userId; // Obtener el ID del usuario del token
+
+    // Validar que el usuario y el juego existan antes de realizar la verificación
+    const user = await Users.findByPk(userId);
+    const game = await Games.findByPk(gameId);
+
+    if (!user || !game) {
+      return res.status(404).json({ error: "Usuario o juego no encontrado" });
+    }
+
+    // Verificar si el juego está en la biblioteca del usuario
+    const isInLibrary = await user.hasGame(game);
+
+    res.status(200).json({ isInLibrary });
   } catch (error) {
-    console.error('Error al verificar si el juego está en la biblioteca del usuario:', error);
-    throw error;
+    console.error('Error al verificar juego en la biblioteca:', error);
+    res.status(500).json({ error: 'Error al verificar juego en la biblioteca' });
+    next(error);
   }
 };
 
 
-module.exports = { addToLibrary, getUserLibrary, isGameInLibrary };
+module.exports = { manageLibrary, getUserLibrary, gameInLibrary };

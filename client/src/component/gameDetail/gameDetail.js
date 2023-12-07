@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getGamesId, createReview, fetchUserProfile, getReviewsByGameId, addToLibrary } from '../../redux/action.js';
+import {
+  getGamesId,
+  createReview,
+  fetchUserProfile,
+  getReviewsByGameId,
+  addToLibrary,
+  gameInLibrary,
+  removeFromLibrary
+} from '../../redux/action.js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPaperPlane,
@@ -15,8 +23,9 @@ function GameDetail() {
   const gameInfo = useSelector(state => state.gameDetail);
   const userProfile = useSelector((state) => state.userProfile);
   const reviews = useSelector(state => state.reviews);
+  const library = useSelector(state => state.library);
   const [reviewText, setReviewText] = useState("");
-
+  
   const handleReviewSubmit = () => {
     if (reviewText.trim() !== "") {
       const reviewData = {
@@ -30,31 +39,47 @@ function GameDetail() {
       setReviewText("");
     }
   };
-  
+
   useEffect(() => {
     const pathname = window.location.pathname;
     const gameId = pathname.split('/games/')[1];
-
+  
     dispatch(fetchUserProfile(userProfile.id));
   
     if (gameId) {
       console.log("Dispatching getGamesId with gameId:", gameId);
       dispatch(getGamesId(gameId));
+      dispatch(gameInLibrary(userProfile.id, gameId));
     }
   }, [dispatch, userProfile.id]);
+  
+
 
   useEffect(() => {
     const pathname = window.location.pathname;
     const gameId = pathname.split('/games/')[1];
     dispatch(getReviewsByGameId(gameId));
+    dispatch(gameInLibrary(userProfile.id, gameId));
   }, [dispatch, userProfile.id]);
-
-  const handleAddToLibrary = () => {
+  
+  const handleToggleLibrary = () => {
     const libraryData = {
       userId: userProfile.id,
       gameId: gameInfo.id,
     };
-    dispatch(addToLibrary(libraryData));
+  
+    const isInLibrary = Array.isArray(library) && library.some((item) => item.id === gameInfo.id);
+  
+    const isInFavorites = Array.isArray(library) && library.some((item) => item.id === gameInfo.id && item.isInLibrary);
+  
+    if (isInFavorites) {
+      libraryData.action = "remove";
+      dispatch(removeFromLibrary(libraryData));
+    } else {
+      libraryData.action = "add";
+      dispatch(addToLibrary(libraryData));
+    }
+    dispatch(gameInLibrary(userProfile.id, gameInfo.id));
   };
 
   return (
@@ -66,16 +91,16 @@ function GameDetail() {
               <img src={gameInfo.thumbnail} alt={gameInfo.title} className={style.cardImage} />
               <a href={gameInfo.game_url} className={style.cardBtn}>Play Now!</a> 
             </div>  
-            <div className={style.title}>
-              <div className={style.Favorite}>
-                <h2 className={style.cardTitle}>{gameInfo.title}</h2>
-                <img
-                  src={Heart}
-                  className={style.heart}
-                  alt="Favorite"
-                  onClick={handleAddToLibrary}
-                />
-              </div>
+              <div className={style.title}>
+                <div className={style.Favorite}>
+                  <h2 className={style.cardTitle}>{gameInfo.title}</h2>
+                    <img
+                    src={Heart}
+                    className={library.some(item => item.id === gameInfo.id) ? style.heartInLibrary : style.heart}
+                    alt="Favorite"
+                    onClick={handleToggleLibrary}
+                    />
+                </div>
               <h3 className={style.description}>{gameInfo.short_description}</h3>
               <h3 className={style.shortDescription}>Publicado:<h3>{gameInfo.publisher}</h3></h3>
               <h3 className={style.shortDescription}>Desarrollo: <h3>{gameInfo.developer}</h3></h3>

@@ -46,6 +46,11 @@ module.exports = (sequelize) => {
       resetPasswordExpires: {
         type: DataTypes.DATE,
         allowNull: true
-      }
+      },
+      favoriteGames: {
+        type: DataTypes.ARRAY(DataTypes.INTEGER),
+        allowNull: true,
+        defaultValue: [],
+      },
     });
 };

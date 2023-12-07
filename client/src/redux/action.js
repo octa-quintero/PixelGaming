@@ -271,16 +271,30 @@ export function addToLibrary(values) {
   };
 }
 
-// Acción asincrónica para verificar si un juego está en la biblioteca del usuario
-export function checkGameInLibrary(userId, gameId) {
+// Acción asincrónica para eliminar un juego de la biblioteca
+export function removeFromLibrary(gameId) {
   return async dispatch => {
     try {
-      const response = await axios.get(`/library/${userId}/${gameId}`);
+      const response = await axios.delete(`/library/remove/${gameId}`);
+      dispatch({ type: "REMOVE_FROM_LIBRARY_SUCCESS", payload: response.data });
+    } catch (error) {
+      console.error("Error occurred:", error);
+      dispatch({ type: "REMOVE_FROM_LIBRARY_ERROR", payload: error.message });
+    }
+  };
+}
+
+
+// Acción asincrónica para verificar si un juego está en la biblioteca del usuario
+export function gameInLibrary(userId, gameId) {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`/library/game/${gameId}`);
       const isInLibrary = response.data.isInLibrary;
 
       dispatch({
         type: "CHECK_GAME_IN_LIBRARY_SUCCESS",
-        payload: { userId, gameId, isInLibrary },
+        payload: { gameId, isInLibrary },
       });
     } catch (error) {
       console.error("Error occurred:", error);
@@ -291,6 +305,7 @@ export function checkGameInLibrary(userId, gameId) {
     }
   };
 }
+
 
 // Acciones asincrónicas para crear una nueva reseña
 export function createReview(values) {

@@ -22,6 +22,29 @@
   // Reducer de Redux para manejar el estado global
   function reducer(state = initialState, action) {
     switch (action.type) {
+      
+      case "CHECK_GAME_IN_LIBRARY_SUCCESS":
+        const { gameId, isInLibrary } = action.payload;
+        return {
+          ...state,
+          library: state.library.map((game) => {
+            if (game.id === gameId) {
+              return {
+                ...game,
+                isInLibrary,
+              };
+            }
+            return game;
+          }),
+        };
+  
+      case "CHECK_GAME_IN_LIBRARY_ERROR":
+        return {
+          ...state,
+          getLibrarySuccess: false,
+          getLibraryError: action.payload,
+        };
+        
       case "GET_LIBRARY_SUCCESS":
         return {
           ...state,
@@ -29,18 +52,27 @@
           getLibrarySuccess: true,
           getLibraryError: null,
         };
-        case "GET_LIBRARY_ERROR":
-          return {
-            ...state,
-            library: [],
-            getLibrarySuccess: false,
-            getLibraryError: action.payload,
-          };
+  
+      case "GET_LIBRARY_ERROR":
+        return {
+          ...state,
+          library: [],
+          getLibrarySuccess: false,
+          getLibraryError: action.payload,
+        };
+  
       case "ADD_TO_LIBRARY_SUCCESS":
         return {
           ...state,
           library: action.payload,
         };
+  
+      case "REMOVE_FROM_LIBRARY_SUCCESS":
+        return {
+          ...state,
+          library: action.payload,
+        };
+        
       case "FORGOT_PASSWORD_SUCCESS":
         return {
           ...state,
