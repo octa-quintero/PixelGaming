@@ -36,7 +36,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Games, Users, Review } = sequelize.models;
 
 // Definir relaciones entre modelos
-Users.belongsToMany(Games, { through: 'games-users' });
+Users.belongsToMany(Games, { through: 'games-users', as: 'userFavoriteGames' });
 Games.belongsToMany(Users, { through: 'games-users' });
 
 Users.hasMany(Review);

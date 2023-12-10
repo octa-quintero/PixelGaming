@@ -5,9 +5,7 @@ import {
   createReview,
   fetchUserProfile,
   getReviewsByGameId,
-  addToLibrary,
-  gameInLibrary,
-  removeFromLibrary
+  addGameToLibrary
 } from '../../redux/action.js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -40,51 +38,41 @@ function GameDetail() {
     }
   };
 
-  useEffect(() => {
-    const pathname = window.location.pathname;
-    const gameId = pathname.split('/games/')[1];
-  
-    dispatch(fetchUserProfile(userProfile.id));
-  
-    if (gameId) {
-      console.log("Dispatching getGamesId with gameId:", gameId);
-      dispatch(getGamesId(gameId));
-      dispatch(gameInLibrary(userProfile.id, gameId));
-    }
-  }, [dispatch, userProfile.id]);
-  
-
-
-  useEffect(() => {
-    const pathname = window.location.pathname;
-    const gameId = pathname.split('/games/')[1];
-    dispatch(getReviewsByGameId(gameId));
-    dispatch(gameInLibrary(userProfile.id, gameId));
-  }, [dispatch, userProfile.id]);
-  
-  const handleToggleLibrary = () => {
-    const libraryData = {
-      userId: userProfile.id,
-      gameId: gameInfo.id,
-    };
-  
-    const isInLibrary = Array.isArray(library) && library.some((item) => item.id === gameInfo.id);
-  
-    const isInFavorites = Array.isArray(library) && library.some((item) => item.id === gameInfo.id && item.isInLibrary);
-  
-    if (isInFavorites) {
-      libraryData.action = "remove";
-      dispatch(removeFromLibrary(libraryData));
-    } else {
-      libraryData.action = "add";
-      dispatch(addToLibrary(libraryData));
-    }
-    dispatch(gameInLibrary(userProfile.id, gameInfo.id));
+  const handleAddToLibrary = () => {
+    console.log("Adding game to library with userId:", userProfile.id, "and gameId:", gameInfo.id);
+    dispatch(addGameToLibrary({ userId: userProfile.id, gameId: gameInfo.id }));
   };
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      const pathname = window.location.pathname;
+      const gameId = pathname.split('/games/')[1];
+
+      await dispatch(fetchUserProfile(userProfile.id));
+
+      if (gameId) {
+        console.log("Dispatching getGamesId with gameId:", gameId);
+        await dispatch(getGamesId(gameId));
+      }
+    };
+
+    fetchData();
+  }, [dispatch, userProfile.id]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const pathname = window.location.pathname;
+      const gameId = pathname.split('/games/')[1];
+      await dispatch(getReviewsByGameId(gameId));
+    };
+
+    fetchData();
+  }, [dispatch, userProfile.id]);
+
 
   return (
     <div className={style.cardsGamesContainer}>
-      <div className={style.cardContent1} key={gameInfo.id}>
+      <div className={style.cardContent1} key={gameInfo?.id}>
         {gameInfo ? (
           <div className={style.cardContent}>
             <div className={style.image}>
@@ -98,7 +86,7 @@ function GameDetail() {
                     src={Heart}
                     className={library.some(item => item.id === gameInfo.id) ? style.heartInLibrary : style.heart}
                     alt="Favorite"
-                    onClick={handleToggleLibrary}
+                    onClick={handleAddToLibrary}
                     />
                 </div>
               <h3 className={style.description}>{gameInfo.short_description}</h3>

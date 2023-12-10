@@ -245,66 +245,27 @@ export function getGamesId(gameId) {
   };
 }
 
-// Acción asincrónica para obtener la biblioteca de juegos de un usuario
-export function getLibraryByUserId(userId) {
-  return async dispatch => {
-    try {
-      const response = await axios.get(`/library/${userId}`);
-      dispatch({ type: "GET_LIBRARY_SUCCESS", payload: response.data });
-    } catch (error) {
-      console.error("Error occurred:", error);
-      dispatch({ type: "GET_LIBRARY_ERROR", payload: error.message });
-    }
-  };
-}
-
-// Acción asincrónica para agregar un juego a la biblioteca
-export function addToLibrary(values) {
-  return async dispatch => {
-    try {
-      const response = await axios.post("/library/add", values);
-      dispatch({ type: "ADD_TO_LIBRARY_SUCCESS", payload: response.data });
-    } catch (error) {
-      console.error("Error occurred:", error);
-      dispatch({ type: "ADD_TO_LIBRARY_ERROR", payload: error.message });
-    }
-  };
-}
-
-// Acción asincrónica para eliminar un juego de la biblioteca
-export function removeFromLibrary(gameId) {
-  return async dispatch => {
-    try {
-      const response = await axios.delete(`/library/remove/${gameId}`);
-      dispatch({ type: "REMOVE_FROM_LIBRARY_SUCCESS", payload: response.data });
-    } catch (error) {
-      console.error("Error occurred:", error);
-      dispatch({ type: "REMOVE_FROM_LIBRARY_ERROR", payload: error.message });
-    }
-  };
-}
-
-
-// Acción asincrónica para verificar si un juego está en la biblioteca del usuario
-export function gameInLibrary(userId, gameId) {
+// Cambia el payload de la acción para que no necesite un valor específico
+export function addGameToLibrary({ userId, gameId }) {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`/library/game/${gameId}`);
-      const isInLibrary = response.data.isInLibrary;
+      const token = localStorage.getItem('token'); // Obtén el token del almacenamiento local
+      console.log("Sending request with userId:", userId, "and gameId:", gameId);
+      console.log("Using token:", token); // Agregado para mostrar el token en la consola
 
-      dispatch({
-        type: "CHECK_GAME_IN_LIBRARY_SUCCESS",
-        payload: { gameId, isInLibrary },
+      const response = await axios.post(`/add-favorite/${gameId}`, { userId }, {
+        headers: {
+          Authorization: token,
+        },
       });
+
+      dispatch({ type: "ADD_GAME_TO_LIBRARY" });
     } catch (error) {
       console.error("Error occurred:", error);
-      dispatch({
-        type: "CHECK_GAME_IN_LIBRARY_ERROR",
-        payload: error.message,
-      });
     }
   };
 }
+
 
 
 // Acciones asincrónicas para crear una nueva reseña

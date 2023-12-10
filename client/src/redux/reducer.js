@@ -23,56 +23,13 @@
   function reducer(state = initialState, action) {
     switch (action.type) {
       
-      case "CHECK_GAME_IN_LIBRARY_SUCCESS":
-        const { gameId, isInLibrary } = action.payload;
-        return {
-          ...state,
-          library: state.library.map((game) => {
-            if (game.id === gameId) {
-              return {
-                ...game,
-                isInLibrary,
-              };
-            }
-            return game;
-          }),
-        };
-  
-      case "CHECK_GAME_IN_LIBRARY_ERROR":
-        return {
-          ...state,
-          getLibrarySuccess: false,
-          getLibraryError: action.payload,
-        };
-        
-      case "GET_LIBRARY_SUCCESS":
-        return {
-          ...state,
-          library: action.payload,
-          getLibrarySuccess: true,
-          getLibraryError: null,
-        };
-  
-      case "GET_LIBRARY_ERROR":
-        return {
-          ...state,
-          library: [],
-          getLibrarySuccess: false,
-          getLibraryError: action.payload,
-        };
-  
-      case "ADD_TO_LIBRARY_SUCCESS":
-        return {
-          ...state,
-          library: action.payload,
-        };
-  
-      case "REMOVE_FROM_LIBRARY_SUCCESS":
-        return {
-          ...state,
-          library: action.payload,
-        };
-        
+
+    case "ADD_GAME_TO_LIBRARY":
+      return {
+      ...state,
+      library: [...state.library],
+      };
+
       case "FORGOT_PASSWORD_SUCCESS":
         return {
           ...state,
@@ -111,20 +68,19 @@
         };
 
         case "LOGIN_SUCCESS":
-          localStorage.setItem("token", action.payload.token)
-          // Actualizar el estado con el token y el usuario
-          return {
-          ...state,
-          token: action.payload.token,
-          user: action.payload.user,
-          };
+        localStorage.setItem("token", action.payload.token)
+        return {
+        ...state,
+        token: action.payload.token,
+        user: action.payload.user,
+        };
 
-          case "LOGOUT":
-            return {
-              ...state,
-              token: null,
-              user: null,
-            };
+        case "LOGOUT":
+        return {
+          ...state,
+            token: null,
+            user: null,
+          };
 
     case "CREATE_USER":
       return {
@@ -133,7 +89,6 @@
       };
 
     case "GET_TOP3_GAMES":
-      // Actualizar el estado con la lista de los primeros 3 juegos
       return {
         ...state,
         topGames: action.payload

@@ -3,9 +3,7 @@ const verifyToken = require('../middleware/middleware.js');
 const router = Router();
 
 const {
-  manageLibrary,
-  getUserLibrary,
-  gameInLibrary
+  addFavoriteGame
   } = require("../controllers/games-library.js");
   
 // Importar controladores existentes
@@ -29,9 +27,7 @@ router.put("/user/:userId", verifyToken, updateUser);
 router.put('/forgot-password', forgotPassword);
 router.put('/reset-password/:resetToken', resetPassword);
 
-// Nueva ruta para agregar juego a la biblioteca
-router.post('/library/add', verifyToken, manageLibrary);
-router.get('/library/user/:userId', verifyToken, getUserLibrary);
-router.get('/library/game/:gameId', verifyToken, gameInLibrary);
+// Nueva ruta para agregar un juego a los favoritos
+router.post('/add-favorite/:gameId', verifyToken,  addFavoriteGame);
 
 module.exports = router;
