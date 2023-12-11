@@ -5,13 +5,13 @@ import {
   createReview,
   fetchUserProfile,
   getReviewsByGameId,
-  addGameToLibrary
+  addGameToLibrary,
+  checkGameInLibrary
 } from '../../redux/action.js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPaperPlane,
 } from '@fortawesome/free-solid-svg-icons';
-import RatingInput from './rating/rating.js';
 import style from './gameDetailStyle.module.css';
 import Heart from "../../../src/assets/pixelArt/heart.png";
 import Duck from "../../../src/assets/logo/duck.gif";
@@ -38,10 +38,14 @@ function GameDetail() {
     }
   };
 
-  const handleAddToLibrary = () => {
-    console.log("Adding game to library with userId:", userProfile.id, "and gameId:", gameInfo.id);
-    dispatch(addGameToLibrary({ userId: userProfile.id, gameId: gameInfo.id }));
+  const handleAddToLibrary = async () => {
+    await dispatch(addGameToLibrary({ userId: userProfile.id, gameId: gameInfo.id }));
+    
+    await new Promise(resolve => setTimeout(resolve, 5000));
+
+    await dispatch(checkGameInLibrary({ userId: userProfile.id, gameId: gameInfo.id }));
   };
+  
   
   useEffect(() => {
     const fetchData = async () => {
@@ -53,6 +57,7 @@ function GameDetail() {
       if (gameId) {
         console.log("Dispatching getGamesId with gameId:", gameId);
         await dispatch(getGamesId(gameId));
+        
       }
     };
 
@@ -64,6 +69,7 @@ function GameDetail() {
       const pathname = window.location.pathname;
       const gameId = pathname.split('/games/')[1];
       await dispatch(getReviewsByGameId(gameId));
+      
     };
 
     fetchData();
@@ -82,12 +88,12 @@ function GameDetail() {
               <div className={style.title}>
                 <div className={style.Favorite}>
                   <h2 className={style.cardTitle}>{gameInfo.title}</h2>
-                    <img
+                  <img
                     src={Heart}
                     className={library.some(item => item.id === gameInfo.id) ? style.heartInLibrary : style.heart}
                     alt="Favorite"
                     onClick={handleAddToLibrary}
-                    />
+                  />
                 </div>
               <h3 className={style.description}>{gameInfo.short_description}</h3>
               <h3 className={style.shortDescription}>Publicado:<h3>{gameInfo.publisher}</h3></h3>

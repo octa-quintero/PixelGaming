@@ -78,7 +78,7 @@
   transition: 0.5s;
 }
 
-.inLibrary{
+.heartInLibrary{
 filter: grayscale(0%);
 }
 

@@ -266,6 +266,34 @@ export function addGameToLibrary({ userId, gameId }) {
   };
 }
 
+export function checkGameInLibrary({ userId, gameId }) {
+  return async (dispatch) => {
+    try {
+      const token = localStorage.getItem('token');
+      console.log("Checking if game is in library with userId:", userId, "and gameId:", gameId);
+      console.log("Using token:", token);
+
+      const response = await axios.get(`/check-library/${gameId}/${userId}`, {
+        headers: {
+          Authorization: token,
+        },
+      });
+
+      console.log("Server response:", response.data);
+
+      dispatch({
+        type: 'CHECK_GAME_IN_LIBRARY_SUCCESS',
+        payload: { isGameInLibrary: response.data.isGameInLibrary },
+      });
+    } catch (error) {
+      console.error("Error occurred", error);
+    }
+  };
+}
+
+
+
+
 
 
 // Acciones asincrónicas para crear una nueva reseña

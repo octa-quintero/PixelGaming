@@ -15,15 +15,26 @@
     resetPasswordSuccess: false,
     refreshPasswordSuccess: false,
     library: [],
-    getLibrarySuccess: false,
-    getLibraryError: null,
+    isGameInLibrary: false,
+    error: null,
   };
 
   // Reducer de Redux para manejar el estado global
   function reducer(state = initialState, action) {
     switch (action.type) {
-      
-
+      case 'CHECK_GAME_IN_LIBRARY_SUCCESS':
+        return {
+          ...state,
+          isGameInLibrary: action.payload.isGameInLibrary,
+          error: null,
+        };
+  
+      case 'CHECK_GAME_IN_LIBRARY_ERROR':
+        return {
+          ...state,
+          isGameInLibrary: false,
+          error: action.payload.error,
+        };
     case "ADD_GAME_TO_LIBRARY":
       return {
       ...state,

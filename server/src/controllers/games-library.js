@@ -7,7 +7,6 @@ const addFavoriteGame = async (req, res) => {
 
     console.log("Adding favorite game. UserId:", userId, "GameId:", gameId);
 
-    // Busca al usuario en la base de datos
     const user = await Users.findByPk(userId);
 
     if (!user) {
@@ -15,7 +14,6 @@ const addFavoriteGame = async (req, res) => {
       return res.status(404).json({ error: 'Usuario no encontrado' });
     }
 
-    // Busca el juego en la base de datos
     const game = await Games.findByPk(gameId);
 
     if (!game) {
@@ -23,22 +21,56 @@ const addFavoriteGame = async (req, res) => {
       return res.status(404).json({ error: 'Juego no encontrado' });
     }
 
-    // Añade el id del juego al array de juegos favoritos del usuario
+    const isGameInFavorites = user.favoriteGames.includes(game.id);
+
+    let updatedFavorites;
+    if (isGameInFavorites) {
+      updatedFavorites = user.favoriteGames.filter((favGameId) => favGameId !== game.id);
+    } else {
+      updatedFavorites = [...user.favoriteGames, game.id];
+    }
+
     await user.update({
-      favoriteGames: [...user.favoriteGames, game.id],
+      favoriteGames: updatedFavorites,
     });
 
     // Actualiza el usuario para reflejar el nuevo juego favorito
     const updatedUser = await Users.findByPk(userId, {
       include: [{ model: Games, as: 'userFavoriteGames' }],
     });
-
-    console.log("Game added successfully. Updated user:", updatedUser);
     res.status(200).json(updatedUser);
   } catch (error) {
-    console.error(`Error al agregar juego favorito: ${error.message}`);
-    res.status(500).json({ error: `Error al agregar juego favorito: ${error.message}` });
+    console.error(`Error al actualizar juegos favoritos: ${error.message}`);
+    res.status(500).json({ error: `Error al actualizar juegos favoritos: ${error.message}` });
   }
 };
 
-module.exports = { addFavoriteGame };
+const checkGameInLibrary = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const gameId = req.params.gameId;
+
+    console.log("Received userId:", userId, "and gameId:", gameId);
+
+    const user = await Users.findByPk(userId);
+
+    if (!user) {
+      console.error('Usuario no encontrado');
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+
+    const isGameInLibrary = user.favoriteGames.includes(gameId);
+
+    console.log("Response sent:", { isGameInLibrary });
+
+    res.status(200).json({ isGameInLibrary });
+  } catch (error) {
+    console.error(`Error al verificar el juego en la biblioteca: ${error.message}`);
+    res.status(500).json({ error: `Error al verificar el juego en la biblioteca: ${error.message}` });
+  }
+};
+
+
+
+
+module.exports = { addFavoriteGame, checkGameInLibrary};
