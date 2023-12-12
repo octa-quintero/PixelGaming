@@ -47,7 +47,6 @@ function Cards() {
     async function fetchData() {
       try {
         await dispatch(getAllGames());
-        console.log('Datos cargados correctamente');
         setIsLoading(false); // Marcar que los datos se han cargado
       } catch (error) {
         console.error('Error al obtener los juegos:', error);

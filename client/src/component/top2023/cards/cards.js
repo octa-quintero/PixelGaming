@@ -16,14 +16,11 @@ const top10Games = useSelector((state) => state.top10Games) || []; // Inicializa
 useEffect(() => {
   dispatch(getTop10Games())
     .then((response) => {
-      console.log('Datos cargados correctamente:', response);
     })
     .catch((error) => {
       console.error('Error al obtener el top 10 de juegos:', error);
     });
   },[dispatch]);
-
-  console.log('Renderizando top10Games:', top10Games);
 
   return (
     <div className={style.cardsGamesContainer}>

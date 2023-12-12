@@ -21,8 +21,8 @@ function GameDetail() {
   const gameInfo = useSelector(state => state.gameDetail);
   const userProfile = useSelector((state) => state.userProfile);
   const reviews = useSelector(state => state.reviews);
-  const library = useSelector(state => state.library);
   const [reviewText, setReviewText] = useState("");
+  const isGameInLibrary = useSelector(state => state.isGameInLibrary)
   
   const handleReviewSubmit = () => {
     if (reviewText.trim() !== "") {
@@ -40,9 +40,6 @@ function GameDetail() {
 
   const handleAddToLibrary = async () => {
     await dispatch(addGameToLibrary({ userId: userProfile.id, gameId: gameInfo.id }));
-    
-    await new Promise(resolve => setTimeout(resolve, 5000));
-
     await dispatch(checkGameInLibrary({ userId: userProfile.id, gameId: gameInfo.id }));
   };
   
@@ -51,29 +48,27 @@ function GameDetail() {
     const fetchData = async () => {
       const pathname = window.location.pathname;
       const gameId = pathname.split('/games/')[1];
-
+  
+      while (!userProfile.id) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+      }
+  
       await dispatch(fetchUserProfile(userProfile.id));
-
+  
       if (gameId) {
-        console.log("Dispatching getGamesId with gameId:", gameId);
         await dispatch(getGamesId(gameId));
-        
+        await dispatch(getReviewsByGameId(gameId));
+  
+        while (!gameInfo.id) {
+          await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        await dispatch(checkGameInLibrary({ userId: userProfile.id, gameId: gameInfo.id }));
       }
     };
-
+  
     fetchData();
-  }, [dispatch, userProfile.id]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const pathname = window.location.pathname;
-      const gameId = pathname.split('/games/')[1];
-      await dispatch(getReviewsByGameId(gameId));
-      
-    };
-
-    fetchData();
-  }, [dispatch, userProfile.id]);
+  }, [dispatch, userProfile.id, gameInfo.id]);
+  
 
 
   return (
@@ -90,7 +85,7 @@ function GameDetail() {
                   <h2 className={style.cardTitle}>{gameInfo.title}</h2>
                   <img
                     src={Heart}
-                    className={library.some(item => item.id === gameInfo.id) ? style.heartInLibrary : style.heart}
+                    className={isGameInLibrary ? style.heartInLibrary : style.heart}
                     alt="Favorite"
                     onClick={handleAddToLibrary}
                   />

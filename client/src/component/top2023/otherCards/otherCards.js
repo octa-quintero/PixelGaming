@@ -14,7 +14,6 @@ function OtherCards() {
   useEffect(() => {
     dispatch(getRandomGames())
       .then((response) => {
-        console.log('Datos cargados correctamente:', response);
       })
       .catch((error) => {
         console.error('Error al obtener el top 3 de juegos:', error);

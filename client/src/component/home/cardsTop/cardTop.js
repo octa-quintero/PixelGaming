@@ -14,15 +14,7 @@ function CardsTop() {
 
   useEffect(() => {
     dispatch(getTop3Games())
-      .then((response) => {
-        console.log('Datos cargados correctamente:', response);
-      })
-      .catch((error) => {
-        console.error('Error al obtener el top 3 de juegos:', error);
-      });
   }, [dispatch]);
-
-  console.log('Renderizando topGames:', topGames);
 
   return (
     <div className={style.cardsTopContainer}>

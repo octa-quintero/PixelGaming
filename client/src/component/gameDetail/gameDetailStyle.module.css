@@ -75,11 +75,14 @@
   width: 40px;
   cursor: pointer;
   filter: grayscale(100%);
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
 .heartInLibrary{
-filter: grayscale(0%);
+  width: 40px;
+  cursor: pointer;
+  filter: grayscale(0%);
+  transition: 0.3s;
 }
 
 .description{

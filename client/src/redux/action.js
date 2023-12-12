@@ -175,7 +175,6 @@ export function getTop3Games() {
   return (dispatch) => {
     return axios.get("/games/top3")
       .then((response) => {
-        console.log(response.data); // Agrega esto para verificar los datos
         dispatch({ type: "GET_TOP3_GAMES", payload: response.data });
       })
       .catch((error) => {
@@ -190,7 +189,6 @@ export function getTop10Games() {
   return (dispatch) => {
     return axios.get("/games/top10")
       .then((response) => {
-        console.log(response.data); // Agrega esto para verificar los datos
         dispatch({ type: "GET_TOP10_GAMES", payload: response.data });
       })
       .catch((error) => {
@@ -206,7 +204,6 @@ export function getRandomGames() {
   return (dispatch) => {
     return axios.get("/games/freegames")
       .then((response) => {
-        console.log(response.data);
         dispatch({ type: "GET_FREE_GAMES", payload: response.data });
       })
       .catch((error) => {
@@ -232,8 +229,6 @@ export function getAllGames(page) {
 // Acciones asincrónicas para obtener el detalle de un juego por ID
 export function getGamesId(gameId) {
   return dispatch => {
-    console.log("Fetching game details for id:", gameId);
-    
     axios.get(`/games/${gameId}`)
       .then(response => {
         dispatch({ type: "GET_GAME_ID", payload: response.data });
@@ -249,10 +244,7 @@ export function getGamesId(gameId) {
 export function addGameToLibrary({ userId, gameId }) {
   return async (dispatch) => {
     try {
-      const token = localStorage.getItem('token'); // Obtén el token del almacenamiento local
-      console.log("Sending request with userId:", userId, "and gameId:", gameId);
-      console.log("Using token:", token); // Agregado para mostrar el token en la consola
-
+      const token = localStorage.getItem('token');
       const response = await axios.post(`/add-favorite/${gameId}`, { userId }, {
         headers: {
           Authorization: token,
@@ -266,21 +258,16 @@ export function addGameToLibrary({ userId, gameId }) {
   };
 }
 
-export function checkGameInLibrary({ userId, gameId }) {
+export function checkGameInLibrary({ gameId, userId }) {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('token');
-      console.log("Checking if game is in library with userId:", userId, "and gameId:", gameId);
-      console.log("Using token:", token);
 
       const response = await axios.get(`/check-library/${gameId}/${userId}`, {
         headers: {
           Authorization: token,
         },
       });
-
-      console.log("Server response:", response.data);
-
       dispatch({
         type: 'CHECK_GAME_IN_LIBRARY_SUCCESS',
         payload: { isGameInLibrary: response.data.isGameInLibrary },
@@ -315,7 +302,6 @@ export function getReviewsByGameId(gameId) {
   return dispatch => {
     axios.get(`/games/${gameId}/reviews`)
       .then(response => {
-        console.log(response);
         dispatch({ type: "GET_REVIEWS", payload: response.data });
       })
       .catch(error => {

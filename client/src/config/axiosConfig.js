@@ -7,7 +7,6 @@ const instance = axios.create({
 // Agrega un interceptor para configurar los encabezados antes de cada solicitud
 instance.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
-  console.log(token, "token") // Obtén el token de localStorage
   if (token) {
     if (!config.headers) {
       config.headers = {}; // Inicializa config.headers si no está definido

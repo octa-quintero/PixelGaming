@@ -16,15 +16,7 @@ function CardFree() {
 
   useEffect(() => {
     dispatch(getRandomGames())
-      .then((response) => {
-        console.log('Datos cargados correctamente:', response);
-      })
-      .catch((error) => {
-        console.error('Error al obtener juegos:', error);
-      });
   }, [dispatch]);
-
-  console.log('Renderizando topGames:', gamesFree);
 
   return (
     <div className={style.cardsGamesContainer}>

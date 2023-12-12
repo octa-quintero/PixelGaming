@@ -50,8 +50,6 @@ const checkGameInLibrary = async (req, res) => {
     const userId = req.params.userId;
     const gameId = req.params.gameId;
 
-    console.log("Received userId:", userId, "and gameId:", gameId);
-
     const user = await Users.findByPk(userId);
 
     if (!user) {
@@ -59,16 +57,19 @@ const checkGameInLibrary = async (req, res) => {
       return res.status(404).json({ error: 'Usuario no encontrado' });
     }
 
-    const isGameInLibrary = user.favoriteGames.includes(gameId);
+    const isGameInLibrary = user.favoriteGames.includes(parseInt(gameId, 10));
+    const response = { isGameInLibrary };
 
-    console.log("Response sent:", { isGameInLibrary });
+    console.log("Response sent:", response);
 
-    res.status(200).json({ isGameInLibrary });
+    res.status(200).json(response);
   } catch (error) {
     console.error(`Error al verificar el juego en la biblioteca: ${error.message}`);
     res.status(500).json({ error: `Error al verificar el juego en la biblioteca: ${error.message}` });
   }
 };
+
+
 
 
 
