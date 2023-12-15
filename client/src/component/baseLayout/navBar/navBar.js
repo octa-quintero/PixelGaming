@@ -58,7 +58,7 @@ function NavBar() {
           <NavLink to="/contact" className={style.btn}>
               <h1><FontAwesomeIcon icon={faTowerObservation} />{' '}Contacto</h1>
           </NavLink>
-          <NavLink to="/activity" className={style.btn}>
+          <NavLink to={`/library/${userData && userData.userId}`} className={style.btn}>
               <h1><FontAwesomeIcon icon={faLayerGroup}/>{' '}Biblioteca</h1>
           </NavLink>
           <NavLink to="/top2023" className={style.btnTOP}>

@@ -10,6 +10,7 @@ import UserProfile from '../userProfile/userProfile.js'
 import Login from '../login/login.js'
 import ForgotPasswordPage from '../passwordRestore/passwordRestore.js'
 import ResetPasswordPage from '../passwordRestore/passwordRestoreConfirm.js'
+import Library from '../library/library.js'
 import Contact from '../contact/contact.js'
 import { Route, Routes } from "react-router-dom";
 import { Box, Grid } from "@mui/material";
@@ -23,7 +24,6 @@ export default function BaseLayout() {
     const isForgotPasswordPage = currentPath.includes('/forgot-password');
     const isLoginPage = currentPath.includes('/login');
 
-    
 
     return (
         <Box>
@@ -40,6 +40,7 @@ export default function BaseLayout() {
                         <Route path={'/games'} element={<Games />}/>
                         <Route path={'/contact'} element={<Contact/>} />
                         <Route path={'/top2023'} element={<Top2023/>}/>
+                        <Route path={'/library/:userId'} element={<Library/>}/>
                         <Route path={'/games/:gameId'} element={<GameDetail/>} />
                         <Route path={'/register'} element={<Users/>}/>
                         <Route path={'/user-profile/:userId'} element={<UserProfile/>}/>
