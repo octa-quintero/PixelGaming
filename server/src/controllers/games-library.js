@@ -34,7 +34,6 @@ const addFavoriteGame = async (req, res) => {
       favoriteGames: updatedFavorites,
     });
 
-    // Actualiza el usuario para reflejar el nuevo juego favorito
     const updatedUser = await Users.findByPk(userId, {
       include: [{ model: Games, as: 'userFavoriteGames' }],
     });
@@ -69,9 +68,39 @@ const checkGameInLibrary = async (req, res) => {
   }
 };
 
+const getFavoriteGames = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    console.log("ID del usuario:", userId);
+
+    const user = await Users.findByPk(userId);
+
+    if (!user) {
+      console.error('Usuario no encontrado');
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+
+    // Utiliza la información ya presente en la base de datos
+    const favoriteGamesIds = user.favoriteGames || [];
+
+    // Consulta directa para obtener la información completa de los juegos favoritos
+    const favoriteGames = await Games.findAll({
+      where: {
+        id: favoriteGamesIds,
+      },
+    });
+
+    console.log("Datos de juegos favoritos:", favoriteGames);
+
+    res.status(200).json({ favoriteGames });
+  } catch (error) {
+    console.error(`Error al obtener juegos favoritos: ${error.message}`);
+    res.status(500).json({ error: `Error al obtener juegos favoritos: ${error.message}` });
+  }
+};
 
 
 
 
 
-module.exports = { addFavoriteGame, checkGameInLibrary};
+module.exports = { addFavoriteGame, checkGameInLibrary, getFavoriteGames};

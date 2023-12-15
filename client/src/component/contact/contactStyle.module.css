@@ -18,6 +18,10 @@
   font-family: 'Ubuntu', sans-serif;
 }
 
+.contact{
+  filter: contrast(1.2);
+}
+
 .userContent{
   display: flex;
   align-items: flex-start;
@@ -29,6 +33,8 @@
   gap: 10px;
   transition: 0.3s;
 }
+
+
 
 .userContent > :last-child {
   margin-top: auto;

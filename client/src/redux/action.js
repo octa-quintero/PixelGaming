@@ -278,9 +278,17 @@ export function checkGameInLibrary({ gameId, userId }) {
   };
 }
 
-
-
-
+export function getFavoriteGames(userId) {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`/library/${userId}`);
+      dispatch({ type: "GET_FAVORITE_GAMES", payload: response.data.favoriteGames });
+    } catch (error) {
+      console.error("Error occurred:", error);
+      dispatch({ type: "GET_FAVORITE_GAMES_ERROR", payload: error.message });
+    }
+  };
+}
 
 
 // Acciones asincrónicas para crear una nueva reseña

@@ -11,6 +11,7 @@
     filteredGames: [],
     reviews: [],
     getReviews: [],
+    favoriteGames: [],
     forgotPasswordSuccess: false,
     resetPasswordSuccess: false,
     refreshPasswordSuccess: false,
@@ -22,6 +23,18 @@
   // Reducer de Redux para manejar el estado global
   function reducer(state = initialState, action) {
     switch (action.type) {
+      case 'GET_FAVORITE_GAMES':
+        return {
+          ...state,
+          favoriteGames: action.payload,
+          error: null,
+        };
+      case 'GET_FAVORITE_GAMES_ERROR':
+        return {
+          ...state,
+          favoriteGames: [],
+          error: action.payload.error,
+        };
       case 'CHECK_GAME_IN_LIBRARY_SUCCESS':
         return {
           ...state,

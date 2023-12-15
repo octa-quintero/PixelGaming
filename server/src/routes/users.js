@@ -4,7 +4,8 @@ const router = Router();
 
 const {
   addFavoriteGame,
-  checkGameInLibrary
+  checkGameInLibrary,
+  getFavoriteGames
   } = require("../controllers/games-library.js");
   
 // Importar controladores existentes
@@ -31,6 +32,7 @@ router.put('/reset-password/:resetToken', resetPassword);
 // Nueva ruta para agregar un juego a los favoritos
 router.post('/add-favorite/:gameId', verifyToken,  addFavoriteGame);
 router.get('/check-library/:gameId/:userId', verifyToken, checkGameInLibrary);
+router.get('/library/:userId', verifyToken, getFavoriteGames);
 
 
 module.exports = router;

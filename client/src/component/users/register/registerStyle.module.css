@@ -26,6 +26,7 @@
   align-items: flex-start;
   width: 35%;
   padding: 30px;
+  filter: contrast(1.2);
 }
 
 .GameBoy{

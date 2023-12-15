@@ -11,15 +11,10 @@ import style from "./cardsStyle.module.css"
 
 function Top2023() {
 const dispatch = useDispatch();
-const top10Games = useSelector((state) => state.top10Games) || []; // Inicializa como un array vacío
+const top10Games = useSelector((state) => state.top10Games) || [];
 
 useEffect(() => {
   dispatch(getTop10Games())
-    .then((response) => {
-    })
-    .catch((error) => {
-      console.error('Error al obtener el top 10 de juegos:', error);
-    });
   },[dispatch]);
 
   return (
