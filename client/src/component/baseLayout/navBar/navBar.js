@@ -66,7 +66,7 @@ function NavBar() {
           </NavLink>
         </div>
           <div className={style.registro}>
-            <NavLink to="/biblioteca" className={style.btnUser}>
+            <NavLink to={`/library/${userData && userData.userId}`} className={style.btnUser}>
               <p><FontAwesomeIcon icon={faLayerGroup}/></p>
             </NavLink>
             <NavLink to="/games" className={style.btnUser}>

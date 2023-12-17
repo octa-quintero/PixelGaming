@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { getFavoriteGames } from '../../redux/action.js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { NavLink } from 'react-router-dom';
 import { faLayerGroup, faComputer, faGlobe, faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import {
   addGameToLibrary,
@@ -41,7 +42,12 @@ function Library() {
         <div className={style.cards}>
           <div className={style.cardContent}>
             {favoriteGames.map((games, index) => (
-              <div className={style.cardContent1} key={games.id}>
+                            <NavLink
+              key={games.id}
+              to={`/games/${games.id}`}
+              className={style.cardContent1}
+              id={games.id}
+            >
                 <img src={games.thumbnail} alt={games.title} className={style.cardImage} />
                 <div className={style.content1}>
                   <h2 className={style.title}>
@@ -76,7 +82,7 @@ function Library() {
                     </a>
                   </div>
                 </div>
-              </div>
+              </NavLink>
             ))}
           </div>
         </div>

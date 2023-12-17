@@ -64,7 +64,7 @@ function Cards() {
     setSearchResults(filtered);
   }, [allGames, searchTerm]);
 
-  // Obtener juegos aleatorios de acuerdo a si se ha realizado una búsqueda o no
+  
   const randomGames = (() => {
     if (searchTerm.length === 0 && filteredGames.length === 0) {
       return getRandomGames(allGames, 30);
