@@ -56,7 +56,7 @@ function Library() {
                     <h4 className={style.cardNumber}>{index + 1}</h4>
                     <img
                     src={Heart}
-                    className={isGameInLibrary ? style.heartInLibrary : style.heart}
+                    className={isGameInLibrary ? style.heart : style.heartInLibrary}
                     alt="Favorite"
                     onClick={handleAddToLibrary}
                   />

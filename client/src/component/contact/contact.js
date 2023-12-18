@@ -26,13 +26,13 @@ function Contact() {
         Mi idea fue simplificar la búsqueda de juegos gratuitos para los amantes del gaming.  Quería crear un espacio
         interactivo donde los usuarios pudieran compartir conocimientos y descubrimientos, facilitando así la elección de juegos. 
         Además, implementé la función de registro y biblioteca personal para ofrecer a cada usuario la posibilidad de personalizar 
-        su experiencia, guardar sus juegos favoritos y construir una colección digital. En PixelGaming, la libertad de
-        explorar, comentar y coleccionar es la clave de una experiencia de juego sin igual.
+        su experiencia, guardar sus juegos favoritos y construir una colección digital. PixelGaming se destaca por ofrecer una experiencia
+        donde podes buscar , interactuara través de reseñas y guardar tus juegos favoritos en tu biblioteca, ademas de personalizar tu perfil.
         </p>
         <p>
         Desarrollada con tecnologías líderes como <b>Node.js</b>, <b>React.js</b> y <b>PostgreSQL</b>, PixelGaming se distingue por su enfoque 
         innovador. La estructura organizativa, dividida en dos sectores. El backend  esta potenciado por <b>Node.js</b>, <b>Express</b> y
-        <b> Sequelize</b>. En el frontend utilize <b>React.js</b> para asegurar una experiencia de usuario excepcional. El diseño visual fue creado con  
+        <b> Sequelize</b>. En el frontend utilize <b>React.js</b> para asegurar una experiencia de usuario fluida. El diseño visual fue creado con  
         {' '}<b>Illustrator</b> agregando un toque estético, ofreciendo a los usuarios una interfaz atractiva y fácil de explorar.
         </p>
         <p className={style.logo}>
