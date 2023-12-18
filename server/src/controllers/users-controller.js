@@ -200,14 +200,69 @@ const forgotPassword = async (req, res) => {
     // Enlace de verificación
     const verificationLink = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
 
+
+    // URL de la imagen que deseas incluir
+    const imageUrl = 'https://i.imgur.com/plmrbXp.png';
+
+    const emailStyle = `
+    <div style="
+      font-family: 'Arial', sans-serif;
+      color: black;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: space-evenly;
+      font-family: 'Ubuntu', sans-serif;
+      background-color: #2a2a2abb;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+      flex-direction: column;
+      gap: 50px;
+      height: 35vh;
+    ">
+      <div style="
+      text-align: center;
+      margin: 20px 0;
+      ">
+        <p style="
+          margin-bottom: 30px;
+          font-size: 18px;">
+          <b>Haz clic en el botón para restablecer tu contraseña</b></p>
+        <a href="${verificationLink}" style="
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;"
+        >
+          <button style="
+            border-radius: 5px;
+            color: black;
+            background-color: #2464ad;
+            width: 30%;
+            height: 40px;
+            margin: 10px auto;
+            font-size: 18px;
+            font-weight: bold;
+            outline: none;
+            border: none;
+            gap: 5px;
+            cursor: pointer;
+          ">Restablecer Contraseña</button>
+        </a>
+        <p style="margin: 0;"><img src="${imageUrl}" alt="Tu imagen" style="
+          max-width: 30%;
+          height: auto;"></p>
+      </div>
+    </div>
+  `;
+    
+
+
     const info = await transporter.sendMail({
-      from: '"Forgot Password" <octa.quinteroo@gmail.com>', // sender address
+      from: '"Forgot Password" <octa.quinteroo@gmail.com>',
       to: user.email,
-      subject: 'Forgot Password',
-      html: `
-        <b>Haz clic en el enlace para restablecer tu contraseña</b>
-        <a href="${verificationLink}">${verificationLink}</a>
-      `,
+      subject: 'Forgot Password - PixelGaming',
+      html: emailStyle,
     });
 
     res.status(200).json({ message: 'Se ha enviado un enlace de restablecimiento de contraseña a tu correo electrónico.' });
@@ -216,6 +271,7 @@ const forgotPassword = async (req, res) => {
     res.status(500).json({ message: 'Error al solicitar el restablecimiento de contraseña.' });
   }
 };
+
 
 const resetPassword = async (req, res) => {
   try {
