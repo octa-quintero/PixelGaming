@@ -34,3 +34,19 @@ img {
 ul {
     list-style-type: none;
 }
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Estilos para el riel de la barra de desplazamiento */
+::-webkit-scrollbar-track {
+  background: #353535;
+  border-radius: 5px;
+}
+
+/* Estilos para el pulgar de la barra de desplazamiento */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to top, #4e00c2,#c310ba);
+  border-radius: 5px;
+}

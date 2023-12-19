@@ -1,33 +1,37 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-import { getFavoriteGames } from '../../redux/action.js';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NavLink } from 'react-router-dom';
-import { faLayerGroup, faComputer, faGlobe, faPaperclip } from '@fortawesome/free-solid-svg-icons';
+import { NavLink, useLocation, useParams } from "react-router-dom";
 import {
+  getFavoriteGames,
   addGameToLibrary,
-  checkGameInLibrary
+  removeGameFromLibrary, // Agrega esta importación
 } from '../../redux/action.js';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLayerGroup, faComputer, faGlobe, faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import style from "./libraryStyle.module.css";
 import Heart from "../../assets/pixelArt/heart.png"
 import biblioteca from '../../assets/pixelArt/library.gif';
 
 function Library() {
   const dispatch = useDispatch();
-  const location = useLocation();
-  const userId = parseInt(location.pathname.split("/")[2], 10);
+  const { userId } = useParams();
+  const parsedUserId = parseInt(userId, 10);
   const favoriteGames = useSelector(state => state.favoriteGames);
-  const gameInfo = useSelector(state => state.gameDetail);
-  const isGameInLibrary = useSelector(state => state.isGameInLibrary)
 
   useEffect(() => {
-    dispatch(getFavoriteGames(userId));
-  }, [dispatch, userId]);
+    dispatch(getFavoriteGames(parsedUserId));
+  }, [dispatch, parsedUserId]);
 
-  const handleAddToLibrary = async () => {
-    await dispatch(addGameToLibrary({ userId: userId.id, gameId: gameInfo.id }));
-    await dispatch(checkGameInLibrary({ userId: userId.id, gameId: gameInfo.id }));
+  const handleAddToLibrary = async (gameId) => {
+    if (favoriteGames) {
+      const confirmDelete = window.confirm("¿Estás seguro de que quieres eliminar este juego de tus favoritos?");
+      if (confirmDelete) {
+        await dispatch(addGameToLibrary({ userId: parsedUserId, gameId })); // Usa la acción para eliminar el juego
+        dispatch(getFavoriteGames(parsedUserId)); // Actualiza la lista después de eliminar el juego
+      }
+    } else {
+      await dispatch(addGameToLibrary({ userId: parsedUserId, gameId }));
+    }
   };
 
   return (
@@ -36,30 +40,36 @@ function Library() {
         <h1 className={style.title1}>
           <FontAwesomeIcon icon={faLayerGroup} />Biblioteca
         </h1>
-          <h1 className={style.textInfo}><FontAwesomeIcon icon={faPaperclip} />{' '} Agrega y elimina juegos cuando quieras!
-          Experimenta la libertad de construir tu colección perfecta. Para una experiencia sin restricciones explora nuestras
-          opciones premium y lleva tu biblioteca al siguiente nivel.</h1>
+        <h1 className={style.textInfo}><FontAwesomeIcon icon={faPaperclip} />{' '} Agrega y elimina juegos cuando quieras!
+        Experimenta la libertad de construir tu colección perfecta. Para una experiencia sin restricciones explora nuestras
+        opciones premium y lleva tu biblioteca al siguiente nivel.</h1>
         <div className={style.cards}>
           <div className={style.cardContent}>
             {favoriteGames.map((games, index) => (
-                            <NavLink
-              key={games.id}
-              to={`/games/${games.id}`}
-              className={style.cardContent1}
-              id={games.id}
-            >
-                <img src={games.thumbnail} alt={games.title} className={style.cardImage} />
+              <div
+                key={games.id}
+                to={`/games/${games.id}`}
+                className={style.cardContent1}
+                id={games.id}
+              >
+                <NavLink
+                  key={games.id}
+                  to={`/games/${games.id}`}
+                  id={games.id}
+                  className={style.cardImage2}>
+                  <img src={games.thumbnail} alt={games.title} className={style.cardImage}/>
+                </NavLink>
                 <div className={style.content1}>
                   <h2 className={style.title}>
                     {games.title}
                     <div className={style.cardNumbertHeart}>
-                    <h4 className={style.cardNumber}>{index + 1}</h4>
-                    <img
-                    src={Heart}
-                    className={isGameInLibrary ? style.heart : style.heartInLibrary}
-                    alt="Favorite"
-                    onClick={handleAddToLibrary}
-                  />
+                      <h4 className={style.cardNumber}>{index + 1}</h4>
+                      <img
+                        src={Heart}
+                        className={ style.heartInLibrary}
+                        alt="Favorite"
+                        onClick={() => handleAddToLibrary(games.id)}
+                      />
                     </div>
                   </h2>
                   <h3 className={style.shortDescription}>{games.short_description}</h3>
@@ -82,7 +92,7 @@ function Library() {
                     </a>
                   </div>
                 </div>
-              </NavLink>
+              </div>
             ))}
           </div>
         </div>
