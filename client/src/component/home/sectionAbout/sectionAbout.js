@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { jwtDecode }  from  "jwt-decode"
+import { fetchUserProfile } from "../../../redux/action.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGhost
@@ -9,6 +12,21 @@ import style from './sectionAboutStyle.module.css';
 
 
 function SectionAbout() {
+  const dispatch = useDispatch();
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      setUserData(decodedToken);
+      if (decodedToken.userId) {
+        dispatch(fetchUserProfile(decodedToken.userId));
+      }
+    }
+  }, [dispatch]);
+  
   return (
     <div className={style.sectionAbout} style={{ backgroundImage: `url(${PixelGaming})` }}>
       <div className={style.text}>
@@ -17,9 +35,12 @@ function SectionAbout() {
               Explora nuestra amplia biblioteca y comparte tus valoraciones sobre
               los juegos. ¡Bienvenido a <span className={style.pixelGaming}>PixelGaming</span>!
           </p>
-              <NavLink to="/login" className={style.btnRegistro}>
+            <NavLink 
+              to={userData ? `/user-profile/${userData.userId}` : "/login"} 
+              className={style.btnRegistro}
+              >
                 <h1>Comenzá tu experiencia</h1>
-              </NavLink>
+            </NavLink>
       </div>
     </div>  
   );
