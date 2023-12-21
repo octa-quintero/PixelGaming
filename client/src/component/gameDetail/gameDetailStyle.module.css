@@ -71,6 +71,22 @@
   width: 100%;
 }
 
+.reseÑa{
+  font-size: 15px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 100;
+  color: #00a2ff95;
+  margin: 10px;
+}
+
+.textInfo{
+  font-size: 15x;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 100;
+  color: #00a2ff95;
+  margin: 10px;
+}
+
 .heart{
   width: 40px;
   cursor: pointer;

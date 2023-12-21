@@ -1,5 +1,8 @@
 @import "../../variables.modules.scss";
 
+html {
+  overflow-x: hidden;
+}
 
 footer {
   color: $dark;

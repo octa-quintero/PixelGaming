@@ -38,7 +38,6 @@
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
   overflow: hidden;
   transition: 0.3s;
-
   view-timeline-name: --image;
   view-timeline-axis: block;
   animation-timeline: --image;
@@ -50,13 +49,14 @@
 @keyframes show {
   from {
     opacity: 0;
-    scale: 90%;
+    scale: 85%;
   }
   to{
     opacity: 1;
     scale: 100%;
   }
 }
+
 
 
 

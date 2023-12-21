@@ -11,6 +11,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPaperPlane,
+  faTriangleExclamation,
+  faPaperclip
 } from '@fortawesome/free-solid-svg-icons';
 import style from './gameDetailStyle.module.css';
 import Heart from "../../../src/assets/pixelArt/heart.png";
@@ -78,7 +80,9 @@ function GameDetail() {
           <div className={style.cardContent}>
             <div className={style.image}>
               <img src={gameInfo.thumbnail} alt={gameInfo.title} className={style.cardImage} />
-              <a href={gameInfo.game_url} className={style.cardBtn}>Play Now!</a> 
+              <a href={gameInfo.game_url} className={style.cardBtn}>Play Now!</a>
+              <p className={style.reseÑa}>{' '}<FontAwesomeIcon icon={faTriangleExclamation} />Tenga en cuenta que
+                este juego gratuito puede ofrecer o no compras opcionales dentro del juego.</p>
             </div>  
               <div className={style.title}>
                 <div className={style.Favorite}>

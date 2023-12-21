@@ -24,6 +24,27 @@
   gap: 30px;
 }
 
+.card {
+  view-timeline-name: --image;
+  view-timeline-axis: block;
+  animation-timeline: --image;
+  animation-name: slideFromLeft;
+  animation-range: entry 0% cover 30%;
+  animation-fill-mode: both;
+}
+
+@keyframes slideFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
 .cardCategory{
   display: flex;
   justify-content: center;
