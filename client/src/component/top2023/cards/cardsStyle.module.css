@@ -48,7 +48,7 @@
 @keyframes show {
   from {
     opacity: 0;
-    scale: 80%;
+    scale: 115%;
   }
   to{
     opacity: 1;

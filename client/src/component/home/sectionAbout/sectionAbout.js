@@ -36,7 +36,7 @@ function SectionAbout() {
               los juegos. ¡Bienvenido a <span className={style.pixelGaming}>PixelGaming</span>!
           </p>
             <NavLink 
-              to={userData ? `/user-profile/${userData.userId}` : "/login"} 
+              to={`/register`} 
               className={style.btnRegistro}
               >
                 <h1>Comenzá tu experiencia</h1>
