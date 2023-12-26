@@ -6,10 +6,25 @@ const morgan = require('morgan');
 const path = require('path');
 const routes = require('./routes/index.js');
 const PORT = process.env.PORT || 3001;
+const { Pool } = require('pg');
 require('./db.js');
 
 const server = express(); // Creación de la instancia del servidor
 server.use(cors()); // Habilitar CORS
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+});
+
+pool.connect((err, client, done) => {
+  if (err) {
+    console.error('Error al conectar con la base de datos:', err);
+  } else {
+    console.log('Conexión exitosa con la base de datos!');
+    done(); // liberar el cliente al pool
+  }
+});
 
 // Servir archivos estáticos en producción
 if (process.env.NODE_ENV === 'production') {
