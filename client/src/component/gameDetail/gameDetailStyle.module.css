@@ -6,7 +6,6 @@
   width: 80%;
   height: 100vh;
   margin-top: 30px;
-  padding: 0;
   color: rgb(202, 202, 202);
   background-color: #2a2a2abb;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
@@ -224,6 +223,24 @@
   color: #00ccff;
   border: 1.8px solid #00ccff;
 } 
+
+.noReviews{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  color: rgb(146, 146, 146);
+  font-size: 20px;
+  gap: 20px;
+  text-align: center;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 200;
+}
+
+.noReviews hr{
+  width: 20%;
+  height: 2px;
+}
 
 .cardBtn{
   display: flex;

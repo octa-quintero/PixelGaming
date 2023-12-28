@@ -16,7 +16,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import style from './gameDetailStyle.module.css';
 import Heart from "../../../src/assets/pixelArt/heart.png";
+import Mouse from "../../../src/assets/pixelArt/mouse.gif";
 import Duck from "../../../src/assets/logo/duck.gif";
+
 
 function GameDetail() {
   const dispatch = useDispatch();
@@ -112,17 +114,29 @@ function GameDetail() {
                   </button>
               </div>
           <h2 className={style.Coments}>Comentarios</h2>
-        <div className={style.reviewsContainer}>
-            {reviews.map(review => (
-              <div key={review.id} className={style.reviewComponent}>
-                <div className={style.reviewUser}>
-                  <p>{review.name_user}</p>
-                  <img src={review.avatar} alt="Avatar" className={style.avatarImage} />
+          <div className={style.reviewsContainer}>
+            {reviews.length > 0 ? (
+              reviews.map(review => (
+                <div key={review.id} className={style.reviewComponent}>
+                  <div className={style.reviewUser}>
+                    <p>{review.name_user}</p>
+                    <img src={review.avatar} alt="Avatar" className={style.avatarImage} />
+                  </div>
+                  <p className={style.text}>{review.text}</p>
                 </div>
-                <p className={style.text}>{review.text}</p>
-              </div>
-            ))}
-        </div>
+              ))
+            ) : (
+<p className={style.noReviews}>
+  Que te parecio este juego??
+  <img 
+    src={Mouse} 
+    alt="Mouse Icon" 
+    style={{ width: '15%' }} // Añadido el estilo directamente aquí
+  />
+</p>
+
+            )}
+          </div>
             </div>
 
           </div>
