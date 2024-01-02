@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedinIn, faGithub, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import logo from "../../../assets/logo/pixel.gif";
@@ -21,12 +22,15 @@ function Footer() {
         <div className={style.icons}>
           <p>Social</p>
             <h1>
-              <FontAwesomeIcon icon={faInstagram } />
-              <FontAwesomeIcon icon={faLinkedinIn} />
-              <FontAwesomeIcon icon={faGithub}/>
+            <a href="https://www.instagram.com/octa.quintero/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faInstagram} /></a>
+            <a href="https://www.linkedin.com/in/octavio-quintero/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faLinkedinIn} /></a>
+            <a href="https://github.com/octa-quintero" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faGithub} /></a>
             </h1>
         </div>
-        <img src={logo1} className={style.logo1}></img>
+        <a href="https://octavioquintero.vercel.app/" target="_blank" rel="noopener noreferrer">
+  <img src={logo1} className={style.logo1} alt="Logo" />
+</a>
+
       </div>
     </div>
   );
