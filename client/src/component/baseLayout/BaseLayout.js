@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useLocation  } from "react-router-dom";
 import { Box, Grid } from "@mui/material";
 import Navbar from './navBar/navBar.js';
 import Footer from './footer/footer.js';
@@ -18,13 +18,17 @@ import Contact from '../contact/contact.js';
 export default function BaseLayout() {
     // Verifica si el token existe en localStorage
     const isAuthenticated = !!localStorage.getItem('token');
+    const location = useLocation();
+    const isPasswordRelatedRoute = location.pathname.includes('/forgot-password') || location.pathname.includes('/reset-password');
 
     return (
         <Box>
             <Grid container display={'flex'} flexDirection={'column'} minHeight={'100vh'} justifyContent={'space-between'}>
-                <Grid item>
-                    <Navbar />
-                </Grid>
+            {!isPasswordRelatedRoute && ( // Oculta el Navbar en las rutas de "forgot password" y "reset password"
+                    <Grid item>
+                        <Navbar />
+                    </Grid>
+                )}
                 <Grid item flexGrow={1} display={'flex'} justifyContent={'center'} alignItems={'flex-start'} minHeight={'100vh'}>
                     <Routes>
                         <Route exact path={'/'} element={<Home />} />

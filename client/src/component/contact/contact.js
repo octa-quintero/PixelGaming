@@ -42,13 +42,13 @@ function Contact() {
         <img src={Logo}></img>
         </p>
           <div className={style.iconDate}>
-            <NavLink to="/" className={style.Icon}>
+            <NavLink to="https://www.instagram.com/octa.quintero/" className={style.Icon}>
               <img src={Instagram} ></img><h1>Instagram</h1>
             </NavLink>
-            <NavLink to="/" className={style.Icon}>
+            <NavLink to="https://github.com/octa-quintero" className={style.Icon}>
               <img src={Github} ></img><h1>Github</h1>
             </NavLink>
-            <NavLink to="/" className={style.Icon}>
+            <NavLink to="https://www.linkedin.com/in/octavio-quintero/" className={style.Icon}>
               <img src={Linkedin} ></img><h1>Linkedin</h1>
             </NavLink>
           </div>

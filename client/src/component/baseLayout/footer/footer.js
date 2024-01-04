@@ -22,13 +22,16 @@ function Footer() {
         <div className={style.icons}>
           <p>Social</p>
             <h1>
-            <a href="https://www.instagram.com/octa.quintero/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faInstagram} /></a>
-            <a href="https://www.linkedin.com/in/octavio-quintero/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faLinkedinIn} /></a>
-            <a href="https://github.com/octa-quintero" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faGithub} /></a>
+              <a className={style.icon} href="https://www.instagram.com/octa.quintero/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faInstagram} /></a>
+              <a className={style.icon} href="https://www.linkedin.com/in/octavio-quintero/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faLinkedinIn} /></a>
+              <a className={style.icon} href="https://github.com/octa-quintero" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faGithub} /></a>
             </h1>
         </div>
         <a href="https://octavioquintero.vercel.app/" target="_blank" rel="noopener noreferrer">
+        <a href="https://octavioquintero.vercel.app/" target="_blank" rel="noopener noreferrer" className={style.navLink}>
   <img src={logo1} className={style.logo1} alt="Logo" />
+</a>
+
 </a>
 
       </div>

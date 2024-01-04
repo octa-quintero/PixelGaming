@@ -90,14 +90,31 @@
   align-items: flex-start;
   flex-direction: column;
   font-family: 'Ubuntu', sans-serif;
-  font-weight: bold;
+  font-weight: bold;  
+}
+
+.icons a{
+  text-decoration: none;
   color: rgb(202, 202, 202);
-  font-size: 25px;
+  font-size: 35px;
   font-weight: 600;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+.icons a:hover{
+  transform: scale(1.2);
+  color: rgb(255, 255, 255);
 }
 
 .info p{
   margin-bottom: 10px;
+  text-decoration: none;
+  text-decoration: none;
+  color: rgb(202, 202, 202);
+  font-size: 25px;
+  font-weight: 600;
+  text-decoration: none;
 }
 
 .info h1{
@@ -112,4 +129,9 @@
 
 .logo1{
   width: 100px;
+  transition: 0.5s;
+}
+
+.logo1:hover{
+  transform: scale(1.1);
 }

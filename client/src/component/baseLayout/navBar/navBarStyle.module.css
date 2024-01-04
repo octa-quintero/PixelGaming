@@ -173,7 +173,18 @@
 }
 
 .avatarImage{
-  width: 25px;
+  width: 30px;
+}
+
+@keyframes zoomInAndOut {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+
+.avatarImage:hover {
+  animation: zoomInAndOut 0.6s ease-in-out;
 }
 
 .lineDivisor{
