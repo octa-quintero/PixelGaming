@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+  import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedinIn, faGithub, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import logo from "../../../assets/logo/pixel.gif";
 import logo1 from "../../../assets/logo/logo.png"
@@ -16,7 +16,7 @@ function Footer() {
         <div className={style.info}>
           <p>Informacion y contacto</p>
             <h1>mail: octa.quinteroo@gmail.com</h1>
-            <h1>tel: +54 3585106603</h1>
+            <h1>tel: +54 3585106603 </h1>
             <h1>Cordoba, Argentina</h1>
         </div>
         <div className={style.icons}>
