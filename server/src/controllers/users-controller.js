@@ -61,7 +61,14 @@ const getUserById = async (req, res, next) => {
 
 const login = async (req, res, next) => {
   try {
+    // Imprimir en la consola los parámetros recibidos
+    console.log('Body de la solicitud:', req.body);
+    
     const { name_user, password } = req.body;
+
+    // Imprimir en la consola los valores de name_user y password
+    console.log('Nombre de usuario recibido:', name_user);
+    console.log('Contraseña recibida:', password);
 
     const user = await Users.findOne({ where: { name_user } });
     if (!user) {
@@ -73,12 +80,12 @@ const login = async (req, res, next) => {
       return res.status(401).json({ error: "Contraseña incorrecta" });
     }
 
-      // Autenticación exitosa, generar un token JWT con información adicional
-      const refreshToken = jwt.sign(
-        { userId: user.id, username: user.name_user, avatar: user.avatar },
-        process.env.JWT_SECRET,
-        { expiresIn: '168h' }
-      );
+    // Autenticación exitosa, generar un token JWT con información adicional
+    const refreshToken = jwt.sign(
+      { userId: user.id, username: user.name_user, avatar: user.avatar },
+      process.env.JWT_SECRET,
+      { expiresIn: '168h' }
+    );
 
     user.refreshToken = refreshToken;
 
@@ -98,6 +105,7 @@ const login = async (req, res, next) => {
     next(error);
   }
 };
+
 
 const logout = async (req, res, next) => {
   try {

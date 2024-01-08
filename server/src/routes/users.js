@@ -1,5 +1,6 @@
 const { Router } = require("express");
-const verifyToken = require('../middleware/middleware.js');
+const verifyToken = require('../middleware/tokenAuthorization.js');
+const isAdmin = require('../middleware/adminAuthorization.js')
 const router = Router();
 
 const {

@@ -20,7 +20,7 @@ console.log(__dirname, 'client/build');
 // Sincronización de la base de datos y inicio del servidor
 async function startServer() {
   try {
-    await conn.sync({ force: false });
+    await conn.sync({ force: true });
     await server.listen(PORT);
     console.log('Server listening on port', PORT);
     await data();

@@ -131,7 +131,7 @@ function GameDetail() {
   <img 
     src={Mouse} 
     alt="Mouse Icon" 
-    style={{ width: '15%' }} // Añadido el estilo directamente aquí
+    style={{ width: '15%' }}
   />
 </p>
 

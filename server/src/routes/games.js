@@ -1,6 +1,5 @@
 const { Router } = require ("express");
 const router = Router();  // Crear instancia del router
-const verifyToken = require("../middleware/middleware.js");
 
 // Importar controladores
 const {

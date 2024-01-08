@@ -103,8 +103,7 @@ function NavBar() {
             <li><NavLink to="/actividades">Contacto</NavLink></li>
             <li><NavLink to="/actividades">Biblioteca</NavLink></li>
             <li><NavLink to="/activity" className={style.btnTOPDrop}><h1>Top 2023</h1></NavLink></li>
-            <li><NavLink to="/activity" className={style.btnRegistroDrop}><p>Acceso Gratuito</p>
-            </NavLink></li>
+            <li><NavLink to="/activity" className={style.btnRegistroDrop}><p>Acceso Gratuito</p></NavLink></li>
           </ul>
         </div>
       )}
