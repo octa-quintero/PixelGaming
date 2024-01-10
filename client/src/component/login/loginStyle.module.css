@@ -11,8 +11,14 @@
   background-color: #2a2a2abb;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
   overflow: hidden;
-  transition: 0.3s;
+  transition: 0.5s;
   border-radius: 5px;
+}
+
+.errorMessage{
+  position: fixed;
+  bottom: 187px;
+  color: #0475f6;
 }
 
 .gameBoyContent{
@@ -96,8 +102,64 @@
   outline: none;
   border: none;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .cardBtn:hover{
   background-color: #0475f6;
 }
+
+.forgotPasswordAndCreateAccount{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  gap: 5px;
+  }
+
+.forgotPasswordAndCreateAccount h3{
+  font-size: 20px;
+  font-weight: 400;
+  color: #2464ad;
+  padding: 5px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.o{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 90%;
+}
+
+.oc{
+  width: 100%;
+  height: 1px;
+  background-color: #2464ad;
+}
+
+  .btnRegistro{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+  }
+  
+  .btnRegistro h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    background-color: transparent;
+    font-family: 'Ubuntu', sans-serif;
+    border-radius: 3px;
+    color: #2464ad;
+    font-size: 15px;
+    font-weight: 400;
+    transition: 0.3s;
+  }
+  
+  .btnRegistro h1:hover{
+    color: #00ccff;
+  }

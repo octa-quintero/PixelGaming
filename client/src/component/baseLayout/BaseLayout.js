@@ -10,6 +10,7 @@ import GameDetail from '../gameDetail/gameDetail.js';
 import Users from '../users/users.js';
 import UserProfile from '../userProfile/userProfile.js';
 import Login from '../login/login.js';
+import ForgotPassword from '../passwordRestore/forgotPassword.js';
 import ForgotPasswordPage from '../passwordRestore/passwordRestore.js';
 import ResetPasswordPage from '../passwordRestore/passwordRestoreConfirm.js';
 import Library from '../library/library.js';
@@ -37,6 +38,7 @@ export default function BaseLayout() {
                         <Route path={'/top2023'} element={<Top2023 />} />
                         <Route path={'/library/:userId'} element={<Library />} />
                         <Route path={'/games/:gameId'} element={<GameDetail />} />
+                        <Route path={'/restore-password'} element={<ForgotPassword />} />
                         
                         {/* Rutas protegidas por autenticación */}
                         {isAuthenticated ? (
