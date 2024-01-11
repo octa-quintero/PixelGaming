@@ -88,7 +88,7 @@ function NavBar() {
           </>
         )}
             <NavLink to={userData ? `/user-profile/${userData.userId}` : "/register"} className={style.btnRegistro}>
-              <h1>Acceso Gratuito</h1>
+              <h1>Obtener Acceso</h1>
             </NavLink>
           </div>
         <div className={style.toggleBtn} onClick={toggleMenu}>

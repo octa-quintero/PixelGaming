@@ -22,8 +22,8 @@ fs.readdirSync(path.join(__dirname, '/models'))
   .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
   .forEach((file) => {
     modelDefiners.push(require(path.join(__dirname, '/models', file)));
-  });
-
+  })
+  
   // Asociar modelos a la instancia de Sequelize
 modelDefiners.forEach(model => model(sequelize));
 
@@ -35,12 +35,21 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Definición de modelos específicos
 const { Games, Users, Review } = sequelize.models;
 
-// Definir relaciones entre modelos
-Users.belongsToMany(Games, { through: 'games-users', as: 'userFavoriteGames' });
-Games.belongsToMany(Users, { through: 'games-users' });
-
-Users.hasMany(Review);
-Games.hasMany(Review);
+Users.belongsToMany(Games, { 
+  through: 'games-users', 
+  as: 'userFavoriteGames',
+  onDelete: 'CASCADE'
+});
+Games.belongsToMany(Users, { 
+  through: 'games-users',
+  onDelete: 'CASCADE'
+});
+Users.hasMany(Review, {
+  onDelete: 'CASCADE'
+});
+Games.hasMany(Review, {
+  onDelete: 'CASCADE'
+});
 Review.belongsTo(Users);
 Review.belongsTo(Games);
 

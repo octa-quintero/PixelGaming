@@ -17,8 +17,11 @@
 
 .errorMessage{
   position: fixed;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
   bottom: 187px;
-  color: #0475f6;
+  color: #dc0909;
 }
 
 .gameBoyContent{

@@ -237,11 +237,6 @@
   font-weight: 200;
 }
 
-.noReviews hr{
-  width: 20%;
-  height: 2px;
-}
-
 .cardBtn{
   display: flex;
   margin: 10px;

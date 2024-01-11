@@ -274,3 +274,24 @@
   gap: 10px;
   flex-direction: row;
 }
+
+.noGamesMessage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  color: rgb(146, 146, 146);
+  font-size: 20px;
+  gap: 20px;
+  text-align: center;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 200;
+}
+
+.noGamesMessage img {
+  width: 100px;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 30%;
+  border-top-left-radius: 30%; 
+}
