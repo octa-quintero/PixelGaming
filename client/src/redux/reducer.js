@@ -1,10 +1,12 @@
   // Estado inicial del store
   const initialState = {
     games: [],
+    gamesAdmin: [],
     token: null,
     user: null,
     userProfile: [],
     users: [],
+    usersAdmin: [],
     freeGames: [],
     gameDetail: {},
     allGames: [],
@@ -29,6 +31,51 @@
           favoriteGames: action.payload,
           error: null,
         };
+        case 'GET_ALL_GAMES_SUCCESS':
+          return {
+            ...state,
+            gamesAdmin: action.payload,
+            error: null,
+          };
+        case 'GET_ALL_GAMES_FAILURE':
+          return {
+            ...state,
+            error: action.payload,
+          };
+        case 'DELETE_GAME_SUCCESS':
+          return {
+            ...state,
+            gamesAdmin: state.gamesAdmin.filter(game => game.id !== action.payload),
+            error: null,
+          };
+        case 'DELETE_GAME_FAILURE':
+          return {
+            ...state,
+            error: action.payload,
+          };
+        case 'GET_ALL_USERS_SUCCESS':
+          return {
+            ...state,
+            usersAdmin: action.payload,
+            error: null,
+          };
+        case 'GET_ALL_USERS_FAILURE':
+          return {
+            ...state,
+            error: action.payload,
+          };
+        case 'DELETE_USER_SUCCESS':
+          return {
+            ...state,
+            usersAdmin: state.usersAdmin.filter(user => user.id !== action.payload),
+            error: null,
+          };
+        case 'DELETE_USER_FAILURE':
+          return {
+            ...state,
+            error: action.payload,
+          };
+          
       case 'GET_FAVORITE_GAMES_ERROR':
         return {
           ...state,

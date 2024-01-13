@@ -13,6 +13,7 @@ import Login from '../login/login.js';
 import ForgotPassword from '../passwordRestore/forgotPassword.js';
 import ForgotPasswordPage from '../passwordRestore/passwordRestore.js';
 import ResetPasswordPage from '../passwordRestore/passwordRestoreConfirm.js';
+import Admin from '../admin/admin.js'
 import Library from '../library/library.js';
 import Contact from '../contact/contact.js';
 
@@ -39,8 +40,7 @@ export default function BaseLayout() {
                         <Route path={'/library/:userId'} element={<Library />} />
                         <Route path={'/games/:gameId'} element={<GameDetail />} />
                         <Route path={'/restore-password'} element={<ForgotPassword />} />
-                        
-                        {/* Rutas protegidas por autenticación */}
+                        <Route path={'/admin'} element={<Admin />} />
                         {isAuthenticated ? (
                             <>
                                 <Route path={'/user-profile/:userId'} element={<UserProfile />} />

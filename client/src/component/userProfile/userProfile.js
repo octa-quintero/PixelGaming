@@ -59,7 +59,6 @@ function UserProfile() {
   }, [dispatch, userId]);
 
   useEffect(() => {
-    // Actualizar el estado de los datos editados cuando el perfil de usuario cambia
     setEditedData({
       name: userProfile.name,
       last_name: userProfile.last_name,

@@ -319,6 +319,95 @@ export function getReviewsByGameId(gameId) {
   };
 }
 
+// Obtener todos los juegos desde panel admin
+// Obtener todos los juegos desde panel admin
+
+
+// Obtener todos los juegos para admin
+export function getAllGamesAdmin() {
+  return dispatch => {
+    console.log('Fetching all games for admin');  // Añade este log
+    axios.get("/admin/games")
+      .then(response => {
+        dispatch({
+          type: 'GET_ALL_GAMES_SUCCESS',
+          payload: response.data
+        });
+      })
+      .catch(error => {
+        console.error("Error occurred:", error);
+        dispatch({
+          type: 'GET_ALL_GAMES_FAILURE',
+          payload: error.message
+        });
+      });
+  };
+}
+
+// Obtener todos los usuarios
+export function getAllUsersAdmin() {
+  return dispatch => {
+    console.log('Fetching all users for admin');  // Añade este log
+    axios.get("/admin/users")
+      .then(response => {
+        dispatch({
+          type: 'GET_ALL_USERS_SUCCESS',
+          payload: response.data
+        });
+      })
+      .catch(error => {
+        console.error("Error occurred:", error);
+        dispatch({
+          type: 'GET_ALL_USERS_FAILURE',
+          payload: error.message
+        });
+      });
+  };
+}
+
+
+// Eliminar juego por ID
+export function deleteGame(gameId) {
+  return dispatch => {
+    axios.delete(`/admin/games/${gameId}`)
+      .then(() => {
+        dispatch({
+          type: 'DELETE_GAME_SUCCESS',
+          payload: gameId
+        });
+      })
+      .catch(error => {
+        console.error("Error occurred:", error);
+        dispatch({
+          type: 'DELETE_GAME_FAILURE',
+          payload: error.message
+        });
+      });
+  };
+}
+
+
+// Eliminar usuario por ID
+export function deleteUser(userId) {
+  return dispatch => {
+    axios.delete(`/admin/users/${userId}`)
+      .then(() => {
+        dispatch({
+          type: 'DELETE_USER_SUCCESS',
+          payload: userId
+        });
+      })
+      .catch(error => {
+        console.error("Error occurred:", error);
+        dispatch({
+          type: 'DELETE_USER_FAILURE',
+          payload: error.message
+        });
+      });
+  };
+}
+
+
 
 // Acciones para remover la lista de países
 export const removeGames = () => ({

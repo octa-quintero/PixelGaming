@@ -1,19 +1,21 @@
-const { Games, Users, Op } = require("../db");
+const { Games, Users } = require("../db");
 
-async function getAllUsers(req, res, next) {
+async function getAllUsersAdmin(req, res, next) {
   try {
     const allUsersData = await Users.findAll();
     res.json(allUsersData);
   } catch (error) {
+    console.error("Error fetching all users:", error);
     next(error);
   }
 }
 
-async function getAllGames(req, res, next) {
+async function getAllGamesAdmin(req, res, next) {
   try {
     const allGamesData = await Games.findAll();
     res.json(allGamesData);
   } catch (error) {
+    console.error("Error fetching all games:", error);
     next(error);
   }
 }
@@ -41,7 +43,7 @@ async function deleteGame(req, res, next) {
 
 module.exports = {
   deleteUser,
-  getAllUsers,
-  getAllGames,
-  deleteGame
+  deleteGame,
+  getAllGamesAdmin,
+  getAllUsersAdmin
 };

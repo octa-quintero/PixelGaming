@@ -1,0 +1,13 @@
+.container{
+  background-color: aliceblue;
+  width: 100vh;
+}
+
+.container li{
+  font-size: 30px;
+  background-color: aqua;
+}
+
+.container img{
+  width: 40px;
+}
