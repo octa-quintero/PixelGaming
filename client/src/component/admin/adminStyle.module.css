@@ -1,11 +1,91 @@
 .container{
-  background-color: aliceblue;
-  width: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: rgb(61, 61, 61);
+  color: white;
+  width: 50%;
+}
+
+.contentButton{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.contentButton button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 35px;
+  border-radius: 5px;
+  margin: 10px;
+  font-weight: bold;
+}
+
+.contentButton input{
+  width: 30%;
+  padding: 5px;
+}
+
+.container1{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: gray;
+  width: 100%;
+  font-size: 20px;
 }
 
 .container li{
   font-size: 30px;
-  background-color: aqua;
+  width: 100%;
+  border: 1px solid black;
+  padding: 5px;
+  
+}
+
+.boldText {
+  font-weight: bold;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.5);
+  margin-right: 10px;
+}
+.dates{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: row;
+  width: 100%;
+  font-size: 18px;
+}
+
+.dates .span{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.content{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.dates p img{
+  width: 25px;
 }
 
 .container img{

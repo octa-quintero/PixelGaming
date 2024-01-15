@@ -11,8 +11,8 @@ const {
 } = require("../controllers/admin-controllers.js");
 
 // Rutas para obtener y eliminar usuarios
-router.get("/admin/games", getAllGamesAdmin);
-router.get("/admin/users", getAllUsersAdmin);
+router.get("/admin/games", verifyToken, isAdmin, getAllGamesAdmin);
+router.get("/admin/users", verifyToken, isAdmin, getAllUsersAdmin);
 router.delete("/admin/games/:gameId", verifyToken, isAdmin, deleteGame);
 router.delete("/admin/users/:userId", verifyToken, isAdmin, deleteUser);
 
