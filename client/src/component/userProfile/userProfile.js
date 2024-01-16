@@ -11,6 +11,7 @@ import {
   faKey,
   faRightFromBracket,
   faCheck,
+  faChessQueen,
   faBan
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -182,35 +183,35 @@ function UserProfile() {
                 )}
               </h4>
             ))}
-        <div className={style.editButtonContainer}>
-            <NavLink to={`/forgot-password/${userProfile.email}`} className={style.btnRegistro} target="_blank">
-              <h1>Actualizar Contraseña<FontAwesomeIcon icon={faKey} /></h1>
-            </NavLink>
-          <button onClick={handleEditToggle} className={style.cardBtn}>
-            {isEditing ? (
-              <>
-                Guardar{'  '}<FontAwesomeIcon icon={faPenToSquare} />
-              </>
-            ) : (
-              <>
-                Editar Informacion<FontAwesomeIcon icon={faPenToSquare} />
-              </>
-            )}
-          </button>
-          {isEditing && (
-            <button onClick={handleCancel} className={style.cardBtn}>
-              Cancelar  <FontAwesomeIcon icon={faX} />
-            </button>
-          )}
-        </div>
-        <div className={style.avatarSelectContent}>
-            <h4 className={style.avatarSelect} onClick={() => setShowAvatarSelection(!showAvatarSelection)}>
-              Editar Avatar<FontAwesomeIcon icon={faPenToSquare} /></h4>
+            <div className={style.editButtonContainer}>
+              <NavLink to={`/forgot-password/${userProfile.email}`} className={style.btnRegistro} target="_blank">
+                <h1>Actualizar Contraseña<FontAwesomeIcon icon={faKey} /></h1>
+              </NavLink>
+              <button onClick={handleEditToggle} className={style.cardBtn}>
+                {isEditing ? (
+                  <>
+                    Guardar{'  '}<FontAwesomeIcon icon={faPenToSquare} />
+                  </>
+                ) : (
+                  <>
+                    Editar Informacion<FontAwesomeIcon icon={faPenToSquare} />
+                  </>
+                )}
+              </button>
+              {isEditing && (
+                <button onClick={handleCancel} className={style.cardBtn}>
+                  Cancelar  <FontAwesomeIcon icon={faX} />
+                </button>
+              )}
+            </div>
+            <div className={style.avatarSelectContent}>
+              <h4 className={style.avatarSelect} onClick={() => setShowAvatarSelection(!showAvatarSelection)}>
+                Editar Avatar<FontAwesomeIcon icon={faPenToSquare} /></h4>
               {selectedAvatar && (
                 <span className={style.selectedAvatarName}>{selectedAvatar.name}</span>
-                )}
-                <img src={selectedAvatar ? selectedAvatar.image : userProfile.avatar} alt="Avatar" className={style.avatarImage} />
-        </div>
+              )}
+              <img src={selectedAvatar ? selectedAvatar.image : userProfile.avatar} alt="Avatar" className={style.avatarImage} />
+            </div>
             {showAvatarSelection && (
               <div className={style.avatarSelection}>
                 {avatarImages.map((avatar, index) => (
@@ -230,22 +231,29 @@ function UserProfile() {
                   <button onClick={handleCancelAvatarSelection} className={style.cancelBtn}>
                     <FontAwesomeIcon icon={faBan}/>
                   </button>
-                <button onClick={handleEditAvatar} className={style.confirmBtn}>
-                  <FontAwesomeIcon icon={faCheck} />Confirmar Avatar
-                </button>
+                  <button onClick={handleEditAvatar} className={style.confirmBtn}>
+                    <FontAwesomeIcon icon={faCheck} />Confirmar Avatar
+                  </button>
                 </div>
               </div>
             )}
           </div>
         )}
-        <div className={style.contentLogout}>
-          <button onClick={handleLogout} className={style.logoutBtn}>
-            Logout<FontAwesomeIcon icon={faRightFromBracket} />
-          </button>
+        {userProfile && userProfile.is_admin && (
+          <div className={style.editButtonContainer}>
+            <NavLink to={`/admin`} className={style.btnRegistro} target="_blank">
+              <h1>ADMIN<FontAwesomeIcon icon={faChessQueen} /></h1>
+            </NavLink>
           </div>
+        )}
+      <div className={style.contentLogout}>
+        <button onClick={handleLogout} className={style.logoutBtn}>
+          Logout<FontAwesomeIcon icon={faRightFromBracket} />
+        </button>
+      </div>
       </div>
     </div>
   );
-}
+}  
 
 export default UserProfile;

@@ -17,7 +17,6 @@ import Admin from '../admin/admin.js';
 import Library from '../library/library.js';
 import Contact from '../contact/contact.js';
 
-// Función de verificación de autenticación
 const ProtectedRoute = ({ element: Element, ...rest }) => {
   const isAuthenticated = !!localStorage.getItem('token');
   const location = useLocation();
@@ -30,7 +29,6 @@ const ProtectedRoute = ({ element: Element, ...rest }) => {
   // Renderiza el componente si el usuario está autenticado
   return <Element {...rest} />;
 };
-
 export default function BaseLayout() {
   const isAuthenticated = !!localStorage.getItem('token');
   const location = useLocation();
@@ -54,8 +52,7 @@ export default function BaseLayout() {
             <Route path={'/library/:userId'} element={<Library />} />
             <Route path={'/games/:gameId'} element={<GameDetail />} />
             <Route path={'/restore-password'} element={<ForgotPassword />} />
-            {/* Ruta protegida para la administración */}
-            <Route path={'/admin'} element={<ProtectedRoute element={<Admin />} />} />
+            <Route path={'/admin'} element={isAuthenticated ? <Admin /> : <Navigate to="/login" />} />
             {isAuthenticated ? (
               <>
                 <Route path={'/user-profile/:userId'} element={<UserProfile />} />
