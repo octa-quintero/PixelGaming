@@ -27,7 +27,7 @@ function CardsTop() {
               <FontAwesomeIcon className={style.crown} icon={faCrown} />Top recomendados por la comunidad
             </h1>
             <NavLink to="/top2023" className={style.btnRegistro}>
-              <h1>Ver Mas</h1>
+              <h1 className={style.text}>Ver Mas</h1>
             </NavLink>
           </div>
         </div>

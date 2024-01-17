@@ -202,3 +202,22 @@
 .cardBtn:hover{
   background-color: #0475f6;
 }
+
+  /* MEDIA *//* MEDIA *//* MEDIA *//* MEDIA */
+  
+  @media (max-width: 1200px) {
+    .navbar .links, .registro, 
+    .navbar .btnRegistro  {
+      display: none;
+    }
+    
+  .navbar .toggleBtn {
+    display: block;
+  }
+  
+  .dropdownMenu{
+    display: block;
+    z-index: 1;
+  }
+  }
+  
