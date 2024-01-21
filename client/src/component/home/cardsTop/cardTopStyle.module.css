@@ -178,13 +178,23 @@
       height: auto;
     }
     .textInfo{
-      font-size: 14px;
+      font-size: 20px;
     }
     .cardTitle{
-      font-size: 100px;
+      font-size: 22px;
     }
     .text{
       font-size: 25px;
       font-weight: bold;
+    }
+
+    .cardContent1{
+      width: 100%;
+    }
+
+    .btnRegistro h1{
+      width: 100px;
+      height: 40px;
+      font-size: 17px;
     }
   }

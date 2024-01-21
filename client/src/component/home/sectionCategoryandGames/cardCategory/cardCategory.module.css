@@ -44,7 +44,6 @@
   }
 }
 
-
 .cardCategory{
   display: flex;
   justify-content: center;
@@ -164,7 +163,12 @@
   transition: 5s;
 }
 
+@media (max-width: 1000px){
+  .text h1{
+    font-size: 28px;
+  }
 
-
-
-
+  .card {
+    animation-name: none;
+  }
+}
