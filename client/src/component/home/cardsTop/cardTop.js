@@ -20,7 +20,7 @@ function CardsTop() {
         <div className={style.textInfoCard}>
           <h1 className={style.textInfo}>
             <FontAwesomeIcon icon={faPaperclip} />{' '}
-            Inicia sesión para acceder a tu Biblioteca. Descubre juegos totalmente gratis!
+            Inicia sesión para acceder a tu Biblioteca. Descubre juegos totalmente gratis.
           </h1>
           <div className={style.masJuegos}>
             <h1 className={style.text}>
