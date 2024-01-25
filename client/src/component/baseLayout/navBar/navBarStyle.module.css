@@ -126,6 +126,27 @@
 
 /* DROPDOWN MENU *//* DROPDOWN MENU *//* DROPDOWN MENU *//* DROPDOWN MENU */
 
+.logoutBtn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Ubuntu', sans-serif;
+  border-radius: 3px;
+  color: rgb(202, 202, 202);
+  border: 1.8px solid rgb(173, 36, 36);
+  background-color: transparent;
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  font-size: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  outline: none;
+  gap: 5px;
+  transition: 0.3s;
+  color: rgb(173, 36, 36);
+}
+
 .toggleBtn{
   color: white;
   font-size: 1.5rem;
@@ -136,7 +157,6 @@
 .dropdownMenu{
   font-family: 'Ubuntu', sans-serif;
   font-weight: bold;
-  font-size: 2rem;
   display: none;
   position: absolute;
   right: 2rem;
@@ -148,12 +168,19 @@
   transition: height 0.2 cubic-bezier(0.175 , 0.885, 0.32, 1.275);
 }
 
-.dropdownMenu li{
+.dropdownMenu ul li{
   padding: 1rem;
   font-size: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #2464ad;
+  text-decoration: none;
+}
+
+.dropdownMenu ul li h1{
+  color: white;
+  font-size: 23px;
 }
 
 .dropdownMenu.open{
@@ -172,6 +199,25 @@
   border: 1.5px solid #2464ad;
   border-radius: 3px;
   padding: 10px;
+  text-decoration: none;
+  color: #2464ad;
+  font-size: 25px;
+}
+
+.userContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.userContainer p{
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 25px;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 1);
+  color: white;
+  transition: 0.2s;
 }
 
 .avatarImage{
