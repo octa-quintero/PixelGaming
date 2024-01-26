@@ -67,7 +67,7 @@ El proyecto PixelGaming está organizado de la siguiente manera:
 
       - **`assets/`:** Contenido multimedia
 
-      - **`components/`:** Componentes reutilizables de React.
+      - **`components/`:** Componentes reutilizables de React
 
       - **`config`:** Componentes reutilizables de React.
 
