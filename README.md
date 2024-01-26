@@ -1,18 +1,121 @@
-<h1 align="center">Hola 👋, Soy Octavio Quintero</h1>
-<h3 align="center">Desarrollador FullStack... Siempre activo con ganas de seguir aprendiendo y adaptándome a las nuevas tecnologías.</h3>
+<h1 align="center">¡Hola! Soy Octavio Quintero 👋</h1>
+<h1 align="center">Desarrollador FullStack </h1>
 
-- 👨‍💻 Todos mis proyectos podes encontrar en mi portafolio [https://octavioquintero.vercel.app/](https://octavioquintero.vercel.app/)
+- 👨‍💻 Encuentra mis proyectos en mi [portafolio](https://octavioquintero.vercel.app/)
 
-- 📫 Mi contacto **octa.quinteroo@gmail.com**
+- 📫 Contacto: **octa.quinteroo@gmail.com**
 
 <h3 align="left">Conéctate conmigo:</h3>
 <p align="left">
-<a href="https://linkedin.com/in/octavio-quintero" target="blank">< img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="octavio-quintero" altura="30" ancho="40" /></a>
-<a href="https://instagram.com/octa.quintero" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme -generator/master/src/images/icons/Social/instagram.svg" alt="octa.quintero" height="30" width="40" /></a> </p>
-<
+  <a href="https://linkedin.com/in/octavio-quintero" target="blank">
+    <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="octavio-quintero" height="30" width="40" />
+  </a>
+  <a href="https://instagram.com/octa.quintero" target="blank">
+    <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="octa.quintero" height="30" width="40" />
+  </a>
+</p>
 
-h3 align="left ">Idiomas y herramientas:</h3>
-<p align="left"> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent. com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https:// expressjs.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt= "express" ancho="40" alto="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width= "40" altura="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https: //raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href ="https://www.adobe.com/in/products/illustrator.html" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/adobe_illustrator/ icono-adobe_illustrator.svg" alt="illustrator" width="40" height="40"/> </a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target= "_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" altura="40"/> </a> <a href="https://jestjs.io" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/ logos/jestjsio/jestjsio-icon.svg" alt="jest" width="40" height="40"/> </a> <a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs " ancho="40" alto="40"/> </a> <a href="https://www.postgresql.org" target="_blank" rel="noreferrer"> <img src="https: //raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" alt="postgresql" width="40" height="40"/> </a> <a href ="https://postman.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="cartero" width="40" height="40"/> </a> <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </ a> <a href="https://redux.js.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons /redux/redux-original.svg" alt="redux" width="40" height="40"/> </a> <a href="https://sass-lang.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg" alt="sass" ancho ="40" altura="40"/> </a> <a href="https://webpack.js.org" target="_blank" rel="noreferrer"> <img src="https:// raw.githubusercontent.com/devicons/devicon/d00d0969292a6569d45b06d3f350f463a0107b0d/icons/webpack/webpack-original-wordmark.svg" alt="webpack" width="40" height="40"/> </a> </p>svg" alt="sass" width="40" height="40"/> </a> <a href="https://webpack.js.org" target="_blank" rel="noreferrer"> < img src="https://raw.githubusercontent.com/devicons/devicon/d00d0969292a6569d45b06d3f350f463a0107b0d/icons/webpack/webpack-original-wordmark.svg" alt="webpack" width="40" height="40"/> < /a> </p>svg" alt="sass" width="40" height="40"/> </a> <a href="https://webpack.js.org" target="_blank" rel="noreferrer"> < img src="https://raw.githubusercontent.com/devicons/devicon/d00d0969292a6569d45b06d3f350f463a0107b0d/icons/webpack/webpack-original-wordmark.svg" alt="webpack" width="40" height="40"/> < /a> </p>svg" alt="webpack" ancho="40" altura="40"/> </a> </p>svg" alt="webpack" width="40" height="40"/> </a> </p>
+<p><b>PixelGaming</b></p>
 
-<p><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=octa-quintero&show_icons=true&locale=en&layout=compact" alt="octa- quintero" /></p>
+PixelGaming es una plataforma innovadora para amantes de los juegos online, centrada en la búsqueda, personalización y interaccion de la comunidad. Descubre, crea tu biblioteca, y participa en la comunidad de jugadores.
+
+- **Descubre y Explora:** Encuentra emocionantes juegos online.
+  
+- **Crea tu Cuenta:** Personaliza tu experiencia y comparte con la comunidad.
+
+- **Biblioteca Personal:** Gestiona tus juegos favoritos fácilmente.
+
+- **Top 2023:** Destacamos los mejores juegos del año.
+
+- **Comunidad Activa:** Interactúa, comparte reseñas y descubre nuevas recomendaciones.
+
+## Instalación
+
+Para ejecutar el proyecto en tu entorno local, sigue estos sencillos pasos:
+
+1. **Clonar el Repositorio:**
+   ```bash
+    git clone https://github.com/octa-quintero/pixelgaming
+
+2. **Instalar Dependencias**
+
+   ```bash
+
+    Primero busca la raiz del proyecto
+
+    Para la parte del servidor
+
+    cd server
+    npm install
+    npm start
+
+    Y para la parte del cliente
+
+    cd client
+    npm install
+    npm start
+
+## Estructura del Proyecto
+
+El proyecto PixelGaming está organizado de la siguiente manera:
+
+- **`client/`:** Contiene el código del frontend de la aplicación.
+
+  - **`public/`:** Almacena archivos estáticos y de acceso público.
+
+  - **`src/`:** Contiene el código fuente principal.
+
+      - **`assets/`:** Contenido multimedia
+
+      - **`components/`:** Componentes reutilizables de React.
+
+      - **`config`:** Componentes reutilizables de React.
+
+  - **`config/`:** Contiene configuraciones esenciales y componentes reutilizables relacionados con la lógica de configuración de la aplicación.
+
+  - **`redux/`:** Contiene archivos relacionados con la implementación de Redux para gestionar el estado global de la aplicación.
+
+      - **`actions/`:** Almacena archivos que definen las acciones de Redux, que son eventos que desencadenan cambios en el estado.
+
+      - **`reducers/`:** Contiene archivos que definen los reducers de Redux. Los reducers especifican cómo cambia el estado en respuesta a las acciones enviadas.
+
+      - **`store.js`:** Archivo principal que crea y exporta la tienda Redux. La tienda es un objeto central que mantiene el estado global de la aplicación.
+
+  - **`App.js`:** Punto de entrada principal del frontend.
+
+  - **`index.js`:** Punto de entrada para renderizar la aplicación.
+
+  - **`package.json`:** Gestiona dependencias y scripts del frontend.
+
+  - **`webpack.config.js`:** Contiene la configuración principal de Webpack para empaquetar y construir tu aplicación.
+
+  - **`setupProxy.js`:** Contiene la configuración del servidor proxy para redirigir solicitudes durante el desarrollo.
+
+
+
+- **`server/`:** Contiene el código del backend de la aplicación.
+
+  - **`src/`:** Contiene el código fuente principal.
+
+  - **`controllers/`:** Contiene controladores que manejan la lógica de las llamadas a la api.
+
+  - **`middleware/`:** Contiene archivos relacionados con la implementación de middleware en tu aplicación.
+
+  - **`models/`:** Almacena modelos de datos o esquemas de la base de datos.
+
+  - **`routes/`:** Define las rutas de la API.
+
+  - **`server.js`:** Punto de entrada principal para el backend.
+
+  - **`app.js`:** Archivo principal de configuración de la aplicación, que incluye la habilitación de CORS y el manejo de middleware para errores.
+
+  - **`index.js`:** Archivo principal que inicia el servidor Express, configura middleware, maneja archivos estáticos y sincroniza la base de datos.
+
+- **`db.js`:** Archivo dedicado para la configuración de Sequelize, definición de modelos y sus relaciones en la base de datos.
+
+- **`package.json`:** Gestiona dependencias y scripts del backend.
+
+
+
+
 

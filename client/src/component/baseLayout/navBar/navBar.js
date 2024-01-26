@@ -53,13 +53,11 @@ function NavBar() {
   return (
     <div className={style.navbarContainer}>
       <div className={style.navbar}>
-        {/* Logo */}
         <NavLink to="/" className={style.logo}>
           <div className={style.logo}>
             <img className={style.logo1} src={logo} alt="logo" />
           </div>
         </NavLink>
-
         {/* Enlaces principales */}
         <div className={style.links}>
           <NavLink to="/" className={style.btn}>
