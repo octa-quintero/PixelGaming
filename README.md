@@ -15,7 +15,7 @@
   </a>
 </p>
 
-<p><b>PixelGaming</b></p>
+<h2><img src="./client/src/assets/logo/logoPixelGaming1.png" width="300"  alt="Logo del Proyecto"></h2>
 
 PixelGaming es una plataforma innovadora para amantes de los juegos online, centrada en la búsqueda, personalización y interaccion de la comunidad. Descubre, crea tu biblioteca, y participa en la comunidad de jugadores.
 
@@ -28,6 +28,16 @@ PixelGaming es una plataforma innovadora para amantes de los juegos online, cent
 - **Top 2023:** Destacamos los mejores juegos del año.
 
 - **Comunidad Activa:** Interactúa, comparte reseñas y descubre nuevas recomendaciones.
+
+## Capturas
+
+<h2><img src="./client/src/assets/readme/pixelGamingReadme.png" alt="Logo del Proyecto"></h2>
+
+
+<h2><img src="./client/src/assets/readme/pixelGames.png" alt="Logo del Proyecto"></h2>
+
+
+<h2><img src="./client/src/assets/readme/pixelGaming2.gif" alt="Logo del Proyecto"></h2>
 
 ## Instalación
 
@@ -69,17 +79,15 @@ El proyecto PixelGaming está organizado de la siguiente manera:
 
       - **`components/`:** Componentes reutilizables de React
 
-      - **`config`:** Componentes reutilizables de React.
+      - **`config/`:** Contiene configuraciones esenciales y componentes reutilizables relacionados con la lógica de configuración de la aplicación.
 
-  - **`config/`:** Contiene configuraciones esenciales y componentes reutilizables relacionados con la lógica de configuración de la aplicación.
+      - **`redux/`:** Contiene archivos relacionados con la implementación de Redux para gestionar el estado global de la aplicación.
 
-  - **`redux/`:** Contiene archivos relacionados con la implementación de Redux para gestionar el estado global de la aplicación.
+          - **`actions/`:** Almacena archivos que definen las acciones de Redux, que son eventos que desencadenan cambios en el estado.
 
-      - **`actions/`:** Almacena archivos que definen las acciones de Redux, que son eventos que desencadenan cambios en el estado.
+          - **`reducers/`:** Contiene archivos que definen los reducers de Redux. Los reducers especifican cómo cambia el estado en respuesta a las acciones enviadas.
 
-      - **`reducers/`:** Contiene archivos que definen los reducers de Redux. Los reducers especifican cómo cambia el estado en respuesta a las acciones enviadas.
-
-      - **`store.js`:** Archivo principal que crea y exporta la tienda Redux. La tienda es un objeto central que mantiene el estado global de la aplicación.
+         - **`store.js`:** Archivo principal que crea y exporta la tienda Redux. La tienda es un objeto central que mantiene el estado global de la aplicación.
 
   - **`App.js`:** Punto de entrada principal del frontend.
 
@@ -97,25 +105,55 @@ El proyecto PixelGaming está organizado de la siguiente manera:
 
   - **`src/`:** Contiene el código fuente principal.
 
-  - **`controllers/`:** Contiene controladores que manejan la lógica de las llamadas a la api.
+      - **`controllers/`:** Contiene controladores que manejan la lógica de las llamadas a la api.
 
-  - **`middleware/`:** Contiene archivos relacionados con la implementación de middleware en tu aplicación.
+      - **`middleware/`:** Contiene archivos relacionados con la implementación de middleware en tu aplicación.
 
-  - **`models/`:** Almacena modelos de datos o esquemas de la base de datos.
+      - **`models/`:** Almacena modelos de datos o esquemas de la base de datos.
 
-  - **`routes/`:** Define las rutas de la API.
-
-  - **`server.js`:** Punto de entrada principal para el backend.
+      - **`routes/`:** Define las rutas de la API.
 
   - **`app.js`:** Archivo principal de configuración de la aplicación, que incluye la habilitación de CORS y el manejo de middleware para errores.
 
-  - **`index.js`:** Archivo principal que inicia el servidor Express, configura middleware, maneja archivos estáticos y sincroniza la base de datos.
+  - **`db.js`:** Archivo dedicado para la configuración de Sequelize, definición de modelos y sus relaciones en la base de datos.
 
-- **`db.js`:** Archivo dedicado para la configuración de Sequelize, definición de modelos y sus relaciones en la base de datos.
+- **`index.js`:** Archivo principal que inicia el servidor Express, configura middleware, maneja archivos estáticos y sincroniza la base de datos.
 
 - **`package.json`:** Gestiona dependencias y scripts del backend.
 
 
+## API y Endpoints:
 
+Para obtener información sobre juegos gratuitos, esta aplicación utiliza la API proporcionada por FreeToGame. La API ofrece datos sobre diversos juegos gratuitos disponibles en su plataforma.
 
+Para obtener la lista completa de juegos, puedes realizar una solicitud GET al endpoint base:
+
+https://www.freetogame.com/api/games
+
+Esto devolverá un conjunto de datos JSON con información detallada sobre varios juegos gratuitos, incluyendo detalles como nombre, género, plataforma y más.
+
+Persistencia de Datos en el Backend
+
+Para mejorar la eficiencia y la capacidad de filtrado, la aplicación almacena los datos obtenidos de la API de FreeToGame en una base de datos en el backend. Este enfoque permite utilizar controladores y filtros personalizados para acceder y manipular la información de manera más efectiva.
+
+## Manejo del Estado y Componentes (Frontend):
+
+Implemente la gestión de estados utilizando Redux. La estructura de archivos y carpetas sigue un patrón organizativo común para facilitar la comprensión y el mantenimiento del código.
+
+## Autenticación y Autorización:
+
+El middleware adminAuthorization en la gestión de cuentas es una capa crítica de seguridad diseñada para restringir el acceso a funcionalidades específicas relacionadas con la administración de cuentas, reservando estas acciones solo para usuarios con el rol de administrador.
+
+En caso de que el usuario no sea un administrador, el middleware puede redirigir a una página de inicio o devolver una respuesta de error. Esto garantiza que solo los administradores tengan acceso a rutas o funciones específicas. (tokenAuthorization):
+
+El middleware tokenAuthorization se encarga de verificar la validez del token de autenticación de un usuario y, en caso de ser válido, proporciona acceso a ciertas rutas.
+
+El middleware Verificación de Token:
+Comprueba si el tokenAuthorization es válido y está firmado correctamente. Esto garantiza que la solicitud provenga de un usuario autenticado y que la sesión sea válida.
+
+Almacenamiento de Datos de Usuario:
+Si el token es válido, el middleware puede decodificar la información del usuario y almacenarla en el objeto de solicitud (req). Esto facilita el acceso a datos del usuario en las rutas subsiguientes sin necesidad de volver a autenticarse en cada solicitud.
+
+Gestión de Sesión:
+El middleware contribuye a la gestión de sesiones al validar la autenticidad del token. Permite que los usuarios permanezcan autenticados entre múltiples solicitudes sin la necesidad de ingresar credenciales en cada interacción.
 
