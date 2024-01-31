@@ -155,5 +155,5 @@ Almacenamiento de Datos de Usuario:
 Si el token es válido, el middleware puede decodificar la información del usuario y almacenarla en el objeto de solicitud (req). Esto facilita el acceso a datos del usuario en las rutas subsiguientes sin necesidad de volver a autenticarse en cada solicitud.
 
 Gestión de Sesión:
-El middleware contribuye a la gestión de sesiones al validar la autenticidad del token. Permite que los usuarios permanezcan autenticados entre múltiples solicitudes sin la necesidad de ingresar credenciales en cada interacción.
+El middleware contribuye a la gestión de sesiones al validar la autenticidad del token. Permite que los usuarios permanezcan autenticados entre múltiples solicitudes sin la necesidad de ingresar credenciales en cada interacción...
 

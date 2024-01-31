@@ -132,7 +132,6 @@
         };
 
       case "GET_GAMES_ORDER":
-      // Actualizar el estado con la lista de juegos ordenados
         return {
         ...state,
         games: action.payload
