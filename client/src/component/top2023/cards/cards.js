@@ -24,7 +24,7 @@ function Top2023() {
         <div className={style.text}>
           <h1>
             <span><FontAwesomeIcon icon={faCrown} /></span>{' '}
-            Top Games 2023
+            Top Games 2024
           </h1>
           <p>
             Descubre 10 juegos gratuitos más populares de septiembre,

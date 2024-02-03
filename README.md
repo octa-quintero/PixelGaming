@@ -20,12 +20,12 @@
 PixelGaming es una plataforma innovadora para amantes de los juegos online, centrada en la búsqueda, personalización y interaccion de la comunidad. Descubre, crea tu biblioteca, y participa en la comunidad de jugadores.
 
 - **Descubre y Explora:** Encuentra emocionantes juegos online.
-  
+
 - **Crea tu Cuenta:** Personaliza tu experiencia y comparte con la comunidad.
 
 - **Biblioteca Personal:** Gestiona tus juegos favoritos fácilmente.
 
-- **Top 2023:** Destacamos los mejores juegos del año.
+- **Top 2024:** Destacamos los mejores juegos del año.
 
 - **Comunidad Activa:** Interactúa, comparte reseñas y descubre nuevas recomendaciones.
 
@@ -119,7 +119,7 @@ El proyecto PixelGaming está organizado de la siguiente manera:
 
 - **`index.js`:** Archivo principal que inicia el servidor Express, configura middleware, maneja archivos estáticos y sincroniza la base de datos.
 
-- **`package.json`:** Gestiona dependencias y scripts del backend.
+- **`package.json`:** Gestiona dependencias y scripts del backend...
 
 
 ## API y Endpoints:
@@ -134,7 +134,7 @@ Esto devolverá un conjunto de datos JSON con información detallada sobre vario
 
 Persistencia de Datos en el Backend
 
-Para mejorar la eficiencia y la capacidad de filtrado, la aplicación almacena los datos obtenidos de la API de FreeToGame en una base de datos en el backend. Este enfoque permite utilizar controladores y filtros personalizados para acceder y manipular la información de manera más efectiva.
+Para mejorar la eficiencia y la capacidad de filtrado, la aplicación almacena los datos obtenidos de la API de FreeToGame en una base de datos en el backend. Este enfoque permite utilizar controladores y filtros personalizados para acceder y manipular la información de manera más efectiva...
 
 ## Manejo del Estado y Componentes (Frontend):
 
@@ -155,5 +155,79 @@ Almacenamiento de Datos de Usuario:
 Si el token es válido, el middleware puede decodificar la información del usuario y almacenarla en el objeto de solicitud (req). Esto facilita el acceso a datos del usuario en las rutas subsiguientes sin necesidad de volver a autenticarse en cada solicitud.
 
 Gestión de Sesión:
-El middleware contribuye a la gestión de sesiones al validar la autenticidad del token. Permite que los usuarios permanezcan autenticados entre múltiples solicitudes sin la necesidad de ingresar credenciales en cada interacción....
+El middleware contribuye a la gestión de sesiones al validar la autenticidad del token. Permite que los usuarios permanezcan autenticados entre múltiples solicitudes sin la necesidad de ingresar credenciales en cada interacción.
 
+## Base de Datos y Modelos (Backend):
+
+En la arquitectura del backend, la base de datos se ha diseñado con tres partes fundamentales: games-models, review-models, y users-models. Cada parte cumple un rol específico en la gestión y almacenamiento de datos, contribuyendo a la funcionalidad completa de la aplicación. A continuación, se explica la función de cada parte de la base de datos:
+
+
+<h2><b>games-models</b></h2>
+
+En esta sección, se gestionan los datos relacionados con los juegos obtenidos desde la API de FreeToGame.
+
+<b>Obtención de Datos desde la API</b>
+
+Se realizan solicitudes a la API de FreeToGame para obtener información sobre juegos gratuitos. Los datos recuperados incluyen detalles como nombre, género, plataforma, y más.
+
+<b>Almacenamiento en el Modelo de Juegos</b>
+
+Utilizando el modelo de games-models, los datos de los juegos se almacenan en la base de datos. Cada entrada en este modelo representa un juego individual con su información asociada.
+
+<b>Acceso desde el Frontend</b>
+
+Los datos almacenados en el modelo de juegos se utilizan para alimentar el frontend, permitiendo a los usuarios explorar y descubrir juegos disponibles en la plataforma.
+
+<h2><b>review-models</b></h2>
+
+En esta sección, se gestionan las revisiones y comentarios que los usuarios pueden dejar en los juegos.
+
+<b>Asociación con Usuarios y Juegos</b>
+
+Cada revisión se asocia a un usuario específico y al juego correspondiente. Esto permite rastrear quién dejó la revisión y a qué juego se refiere.
+
+<b>Almacenamiento en el Modelo de Revisiones</b>
+
+Utilizando el modelo de review-models, las revisiones se almacenan en la base de datos. Cada revisión contiene el texto del comentario, la puntuación asignada y la referencia al usuario y juego asociados.
+
+<b>Visualización en el Frontend</b>
+
+Las revisiones almacenadas se pueden mostrar en el frontend, permitiendo a los usuarios leer las opiniones de otros jugadores sobre un juego en particular.
+
+<h2><b>users-models</b></h2>
+
+En esta sección, se gestionan los datos de los usuarios, incluyendo la creación de nuevas cuentas.
+
+<b>Registro de Nuevos Usuarios</b>
+
+Cuando un usuario desea crearse una cuenta, los detalles proporcionados durante el registro se almacenan en el modelo de users-models.
+
+<b>Autenticación y Acceso Protegido</b>
+
+La información del usuario, incluyendo credenciales y roles, se utiliza para la autenticación. Las rutas y funciones protegidas se aseguran de que solo usuarios autenticados tengan acceso.
+
+<b>Gestión de Sesiones y Roles</b>
+
+El modelo de usuarios permite gestionar sesiones y roles, asegurando que las acciones administrativas estén reservadas para usuarios con privilegios adecuados.
+
+
+### Próximos Pasos:
+
+PixelGaming está en constante desarrollo, y hay muchas maneras de contribuir y mejorar la plataforma. Algunas áreas que estamos considerando para futuras mejoras incluyen:
+
+- Implementación de nuevas características.
+- Mejoras en la interfaz de usuario.
+- Optimizaciones de rendimiento.
+- Añadir soporte para más API de juegos.
+
+### Cómo Contribuir:
+
+1. Fork el repositorio.
+2. Crea una rama (`git checkout -b feature/nueva-funcionalidad`).
+3. Realiza cambios y haz commits (`git commit -am 'Añadir nueva funcionalidad'`).
+4. Haz push a la rama (`git push origin feature/nueva-funcionalidad`).
+5. [Abre un pull request](https://github.com/tuusuario/pixelgaming/pulls) con una descripción detallada de los cambios.
+
+## ¿Necesitas Ayuda?
+
+¡Gracias por explorar PixelGaming! Esperamos que encuentres la plataforma útil y emocionante. Si tienes alguna pregunta, problema o sugerencia, no dudes en contactarte conmigo **octa.quinteroo@gmail.com**...

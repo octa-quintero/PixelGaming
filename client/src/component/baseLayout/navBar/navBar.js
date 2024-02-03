@@ -73,7 +73,7 @@ function NavBar() {
             <h1><FontAwesomeIcon icon={faLayerGroup} />{' '}Biblioteca</h1>
           </NavLink>
           <NavLink to="/top2023" className={style.btnTOP}>
-            <h1>Top 2023 <FontAwesomeIcon className={style.nameIcon} icon={faCrown} /></h1>
+            <h1>Top 2024 <FontAwesomeIcon className={style.nameIcon} icon={faCrown} /></h1>
           </NavLink>
         </div>
 
@@ -119,7 +119,7 @@ function NavBar() {
             <li><NavLink to="/games" className={style.btn}><h1><FontAwesomeIcon icon={faGamepad} />{' '}Juegos</h1></NavLink></li>
             <li><NavLink to="/contact" className={style.btn}><h1><FontAwesomeIcon icon={faTowerObservation} />{' '}Contacto</h1></NavLink></li>
             <li><NavLink to={`/library/${userData && userData.userId}`} className={style.btn}><h1><FontAwesomeIcon icon={faLayerGroup} />{' '}Biblioteca</h1></NavLink></li>
-            <li><NavLink to="/top2023" className={style.btnTOP}><h1>Top 2023 <FontAwesomeIcon className={style.nameIcon} icon={faCrown} /></h1></NavLink></li>
+            <li><NavLink to="/top2023" className={style.btnTOP}><h1>Top 2024 <FontAwesomeIcon className={style.nameIcon} icon={faCrown} /></h1></NavLink></li>
             <li>
               <NavLink to={`/user-profile/${userData && userData.userId}`} className={style.btnUser}>
                 {userData && (
