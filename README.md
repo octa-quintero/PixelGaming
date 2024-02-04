@@ -230,4 +230,4 @@ PixelGaming está en constante desarrollo, y hay muchas maneras de contribuir y 
 
 ## ¿Necesitas Ayuda?
 
-¡Gracias por explorar PixelGaming! Esperamos que encuentres la plataforma útil y emocionante. Si tienes alguna pregunta, problema o sugerencia, no dudes en contactarte conmigo **octa.quinteroo@gmail.com**...
+¡Gracias por explorar PixelGaming! Esperamos que encuentres la plataforma útil y emocionante. Si tienes alguna pregunta, problema o sugerencia, no dudes en contactarte conmigo **octa.quinteroo@gmail.com**.
