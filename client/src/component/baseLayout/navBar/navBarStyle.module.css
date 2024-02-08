@@ -154,6 +154,10 @@
   display: none;
 }
 
+.userIcon{
+  font-size: 50px;
+}
+
 .dropdownMenu{
   font-family: 'Ubuntu', sans-serif;
   font-weight: bold;
