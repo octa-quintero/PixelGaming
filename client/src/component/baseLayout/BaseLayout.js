@@ -16,6 +16,7 @@ import ResetPasswordPage from '../passwordRestore/passwordRestoreConfirm.js';
 import Admin from '../admin/admin.js';
 import Library from '../library/library.js';
 import Contact from '../contact/contact.js';
+import Category from '../category/category.js';
 
 const ProtectedRoute = ({ element: Element, ...rest }) => {
   const isAuthenticated = !!localStorage.getItem('token');
@@ -49,6 +50,7 @@ export default function BaseLayout() {
             <Route path={'/games'} element={<Games />} />
             <Route path={'/contact'} element={<Contact />} />
             <Route path={'/top2023'} element={<Top2023 />} />
+            <Route path={'/category/:categoryName'} element={<Category />} />
             <Route path={'/library/:userId'} element={<Library />} />
             <Route path={'/games/:gameId'} element={<GameDetail />} />
             <Route path={'/restore-password'} element={<ForgotPassword />} />

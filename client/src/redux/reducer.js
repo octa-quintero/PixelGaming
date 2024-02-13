@@ -14,6 +14,7 @@
     reviews: [],
     getReviews: [],
     favoriteGames: [],
+    randomCategory: [],
     forgotPasswordSuccess: false,
     resetPasswordSuccess: false,
     refreshPasswordSuccess: false,
@@ -25,6 +26,12 @@
   // Reducer de Redux para manejar el estado global
   function reducer(state = initialState, action) {
     switch (action.type) {
+      case 'GET_RANDOM_GAMES_SUCCESS':
+        return {
+          ...state,
+          randomCategory: action.payload,
+          error: null,
+        };
       case 'GET_FAVORITE_GAMES':
         return {
           ...state,

@@ -8,7 +8,6 @@ export const resetPasswordSuccess = () => ({
 export const resetPassword = ( resetToken , newPassword ) => async (dispatch) => {
   try {
 
-
     const response = await axios.put(`/reset-password/${ resetToken }`, { newPassword });
 
     if (response.status === 200) {
@@ -44,6 +43,7 @@ export const refreshPassword = ( refreshToken ) => async (dispatch) => {
 export const forgotPasswordSuccess = () => ({
   type: "FORGOT_PASSWORD_SUCCESS",
 });
+
 // Acción asíncrona para enviar la solicitud de olvido de contraseña
 export const forgotPassword = (email) => async (dispatch) => {
   try {
@@ -55,6 +55,29 @@ export const forgotPassword = (email) => async (dispatch) => {
     }
   } catch (error) {
     console.error('Error en la solicitud de olvido de contraseña:', error.message);
+  }
+};
+
+// Acción para obtener juegos aleatorios por categoría
+export const getRandomGamesByCategory = (category) => async (dispatch) => {
+  try {
+    const apiUrl = `/games/random/${category}`;
+    const response = await axios.get(apiUrl);
+
+    if (response.status === 200) {
+      const games = response.data;
+      dispatch({  
+        type: 'GET_RANDOM_GAMES_SUCCESS',
+        payload: games,
+      });
+    } else {
+      throw new Error('No se pudo obtener la lista de juegos');
+    }
+  } catch (error) {
+    dispatch({
+      type: 'GET_RANDOM_GAMES_FAILURE',
+      payload: error.message,
+    });
   }
 };
 
@@ -76,7 +99,7 @@ export function fetchUserProfile(userId) {
   return async function (dispatch) {
     try {
       const token = localStorage.getItem('token');
-
+      
       const response = await axios.get(`/user/${userId}`, {
         headers: {
           Authorization: `${token}`,
@@ -115,7 +138,7 @@ export function login(credentials) {
       const response = await axios.post('/login', credentials);
       console.log (response,'Funciona')
       const { token, user } = response.data;
-
+      
       if (token) {
         dispatch(loginSuccess({ token, user }));
       } else {
@@ -154,33 +177,17 @@ export function logout() {
 
 // ACTIONS USERS // // ACTIONS USERS // // ACTIONS USERS // 
 
-
-// Acciones para obtener filtrado avanzado
-export function fetchGamesByTagsAndPlatform(tag, platform) {
-  return async dispatch => {
-    try {
-      const response = await axios.get(`/games/filter?tag=${tag}&platform=${platform}`);
-      console.log("Request to /games/filter was successful");
-      dispatch({ type: "GET_GAMES_BY_TAGS_PLATFORM", payload: response.data });
-    } catch (error) {
-      console.error("Error occurred:", error);
-      dispatch({ type: "FILTER_GAMES_BY_TAGS_PLATFORM_ERROR", payload: error.message });
-    }
-  };
-}
-
-
 // Acciones asincrónicas para obtener Top 3 Juegos
 export function getTop3Games() {
   return (dispatch) => {
     return axios.get("/games/top3")
-      .then((response) => {
-        dispatch({ type: "GET_TOP3_GAMES", payload: response.data });
-      })
-      .catch((error) => {
-        console.error("Error occurred:", error);
-        dispatch({ type: "GET_TOP3_GAMES_ERROR", payload: error.message });
-      });
+    .then((response) => {
+      dispatch({ type: "GET_TOP3_GAMES", payload: response.data });
+    })
+    .catch((error) => {
+      console.error("Error occurred:", error);
+      dispatch({ type: "GET_TOP3_GAMES_ERROR", payload: error.message });
+    });
   };
 }
 
@@ -188,20 +195,20 @@ export function getTop3Games() {
 export function getTop10Games() {
   return (dispatch) => {
     return axios.get("/games/top10")
-      .then((response) => {
-        dispatch({ type: "GET_TOP10_GAMES", payload: response.data });
-      })
-      .catch((error) => {
-        console.error("Error occurred:", error);
+    .then((response) => {
+      dispatch({ type: "GET_TOP10_GAMES", payload: response.data });
+    })
+    .catch((error) => {
+      console.error("Error occurred:", error);
         dispatch({ type: "GET_TOP3_GAMES_ERROR", payload: error.message });
       });
-  };
-}
-
-
-// Acciones asincrónicas para obtener Top 3 Juegos
-export function getRandomGames() {
-  return (dispatch) => {
+    };
+  }
+  
+  
+  // Acciones asincrónicas para obtener Top 3 Juegos
+  export function getRandomGames() {
+    return (dispatch) => {
     return axios.get("/games/freegames")
       .then((response) => {
         dispatch({ type: "GET_FREE_GAMES", payload: response.data });
@@ -213,9 +220,10 @@ export function getRandomGames() {
     };
   }
 
-export function getAllGames(page) {
-  return dispatch => {
-    axios.get("/games/all")
+  
+  export function getAllGames(page) {
+    return dispatch => {
+      axios.get("/games/all")
       .then(response => {
         dispatch({ type: "GET_ALL_GAMES", payload: response.data });
       })
@@ -225,11 +233,11 @@ export function getAllGames(page) {
       });
     };
   }
-
-// Acciones asincrónicas para obtener el detalle de un juego por ID
-export function getGamesId(gameId) {
-  return dispatch => {
-    axios.get(`/games/${gameId}`)
+  
+  // Acciones asincrónicas para obtener el detalle de un juego por ID
+  export function getGamesId(gameId) {
+    return dispatch => {
+      axios.get(`/games/${gameId}`)
       .then(response => {
         dispatch({ type: "GET_GAME_ID", payload: response.data });
       })
@@ -237,7 +245,7 @@ export function getGamesId(gameId) {
         console.error("Error occurred:", error);
         dispatch({ type: "GET_GAME_ID_ERROR", payload: error.message });
       });
-  };
+    };
 }
 
 // Cambia el payload de la acción para que no necesite un valor específico
@@ -262,7 +270,7 @@ export function checkGameInLibrary({ gameId, userId }) {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('token');
-
+      
       const response = await axios.get(`/check-library/${gameId}/${userId}`, {
         headers: {
           Authorization: token,
@@ -274,6 +282,20 @@ export function checkGameInLibrary({ gameId, userId }) {
       });
     } catch (error) {
       console.error("Error occurred", error);
+    }
+  };
+}
+
+// Acciones para obtener filtrado avanzado
+export function fetchGamesByTagsAndPlatform(tag, platform) {
+  return async dispatch => {
+    try {
+      const response = await axios.get(`/games/filter?tag=${tag}&platform=${platform}`);
+      console.log("Request to /games/filter was successful");
+      dispatch({ type: "GET_GAMES_BY_TAGS_PLATFORM", payload: response.data });
+    } catch (error) {
+      console.error("Error occurred:", error);
+      dispatch({ type: "FILTER_GAMES_BY_TAGS_PLATFORM_ERROR", payload: error.message });
     }
   };
 }
@@ -318,9 +340,6 @@ export function getReviewsByGameId(gameId) {
       });
   };
 }
-
-// Obtener todos los juegos desde panel admin
-// Obtener todos los juegos desde panel admin
 
 
 // Obtener todos los juegos para admin

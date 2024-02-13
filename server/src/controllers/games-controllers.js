@@ -27,7 +27,6 @@ async function data() {
     });
 
     await Promise.all(upsertPromises);
-
     console.log("Registros creados o actualizados correctamente");
   } catch (error) {
     console.error("Error al obtener los datos de Juegos:", error);
@@ -98,6 +97,7 @@ async function getTop3Games(req, res, next) {
     next(error); // Lanzar el error para que se maneje adecuadamente en un controlador Express u otro lugar
   }
 }
+
 // Obtener lista de 6 juegos Randoms
 async function getRandomGames(req, res, next) {
   try {
@@ -152,6 +152,31 @@ async function getGames(req, res, next) {
   }
 }
 
+// Obtener lista de juegos Randoms por categoría
+async function getRandomGamesByCategory(req, res, next) {
+  try {
+    const { category } = req.params;
+
+    // Construir la URL de la API utilizando la categoría proporcionada
+    const apiUrl = `https://www.freetogame.com/api/games?category=${category}`;
+
+    const response = await axios.get(apiUrl);
+
+    if (response.status === 200) {
+      let games = response.data;
+      const shuffleArray = (array) => {
+      };
+      shuffleArray(games);
+      res.json(games);
+    } else {
+      throw new Error('No se pudo obtener la lista de juegos');
+    }
+  } catch (error) {
+    next(error);
+  }
+}
+
+
 
 // Obtener el detalle de un país en particular
 async function getOneGame(req, res, next) {
@@ -182,6 +207,7 @@ module.exports = {
   getRandomGames,
   getAllGames,
   getOneGame,
+  getRandomGamesByCategory,
   filterGamesByTagsAndPlatform,
   data
 };
