@@ -34,6 +34,8 @@ function Library() {
       await dispatch(addGameToLibrary({ userId: parsedUserId, gameId }));
     }
   };
+  
+  
 
   return (
     <div className={style.container}>
