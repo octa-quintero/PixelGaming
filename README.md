@@ -37,8 +37,6 @@ PixelGaming es una plataforma innovadora para amantes de los juegos online, cent
 <h2><img src="./client/src/assets/readme/pixelGames.png" alt="Logo del Proyecto"></h2>
 
 
-<h2><img src="./client/src/assets/readme/pixelGaming2.gif" alt="Logo del Proyecto"></h2>
-
 ## Instalación
 
 Para ejecutar el proyecto en tu entorno local, sigue estos sencillos pasos:
