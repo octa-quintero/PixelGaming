@@ -6,9 +6,12 @@ import {
 } from '../../redux/action.js';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLayerGroup, faComputer, faGlobe, faPaperclip } from '@fortawesome/free-solid-svg-icons';
+import { faComputer,
+  faGlobe,
+  faPaperclip,
+  faPlay
+} from '@fortawesome/free-solid-svg-icons';
 import style from "./categoryStyle.module.css";
-import Heart from "../../assets/pixelArt/heart.png";
 import biblioteca from '../../assets/pixelArt/library.gif';
 import Cat from '../../assets/pixelArt/pixelCat.gif'
 import horror from "../../assets/pixelArt/horror.gif"
@@ -19,26 +22,31 @@ import fighting from "../../assets/pixelArt/fighting.gif"
 function Category() {
   const dispatch = useDispatch();
   const randomCategory = useSelector((state) => state.randomCategory) || [];
-  const isGameInLibrary = useSelector(state => state.isGameInLibrary);
   const { categoryName } = useParams();
   const location = useLocation();
-
-
-  useEffect(() => {
-    dispatch(getRandomGamesByCategory(categoryName));
-  }, [dispatch, categoryName]);
-
+  const [paginaActual, setPaginaActual] = useState(1);
+  const juegosPorPagina = 10;
+  const startIndex = (paginaActual - 1) * juegosPorPagina;
+  const endIndex = startIndex + juegosPorPagina;
 
   useEffect(() => {
-    dispatch(getRandomGamesByCategory(categoryName));
-  }, [dispatch, categoryName]);
+    dispatch(getRandomGamesByCategory(categoryName, paginaActual));
+  }, [dispatch, categoryName, paginaActual]);
+
+  const handlePaginaAnterior = () => {
+    setPaginaActual((prev) => Math.max(prev - 1, 1));
+  };
+
+  const handlePaginaSiguiente = () => {
+    setPaginaActual((prev) => prev + 1);
+  };
 
   const getCategoryInfo = () => {
     const path = location.pathname;
 
     switch (path) {
       case '/category/horror':
-        return { image: horror, categoryStyle: style.horror , text: 'Terror'};
+        return { image: horror, categoryStyle: style.horror, text: 'Terror' };
       case '/category/strategy':
         return { image: strategy, categoryStyle: style.strategy, text: 'Estrategia' };
       case '/category/racing':
@@ -68,13 +76,13 @@ function Category() {
           {randomCategory.length === 0 ? (
             <div className={style.noGamesMessage}>
               <p>No existen juegos actualmente!</p>
-              <img src={Cat} alt="Cat"/>
+              <img src={Cat} alt="Cat" />
             </div>
           ) : (
             <div className={style.cardContent}>
-              {randomCategory.map((games, index) => (
-                <div key={games.id} to={`/games/${games.id}`} className={style.cardContent1} id={games.id}>
-                  <NavLink key={games.id} to={`/games/${games.id}`} id={games.id} className={style.cardImage2}>
+              {randomCategory.slice(startIndex, endIndex).map((games, index) => (
+                <div key={games.id} className={style.cardContent1} id={games.id}>
+                  <NavLink to={`/games/${games.id}`} className={style.cardImage2}>
                     <img src={games.thumbnail} alt={games.title} className={style.cardImage} />
                   </NavLink>
                   <div className={style.content1}>
@@ -106,6 +114,17 @@ function Category() {
             </div>
           )}
         </div>
+        {randomCategory.length > juegosPorPagina && (
+          <div className={style.buttonCategory}>
+  <button className={`${style.buttonC} ${style.playButton}`} onClick={handlePaginaAnterior} disabled={paginaActual === 1}>
+    <FontAwesomeIcon icon={faPlay} />
+  </button>
+  <button className={`${style.buttonC} ${style.playButton}`} onClick={handlePaginaSiguiente}>
+    <FontAwesomeIcon icon={faPlay} />
+  </button>
+</div>
+
+        )}
       </div>
       <div className={style.content2}>
         <img src={image} alt="Categoría" />

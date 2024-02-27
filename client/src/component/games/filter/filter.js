@@ -14,7 +14,7 @@ function Filter() {
 
   // Define las opciones agrupadas por categoría
   const optionsByCategory = {
-    "Géneros de Juegos": [
+    "Géneros de Juegos": [ 
       'mmorpg', 'mmo', 'shooter', 'strategy', 'moba', 'battle-royale', 'card', 'racing', 'sports', 'social', 'action'
     ],
     "Gráficos": [

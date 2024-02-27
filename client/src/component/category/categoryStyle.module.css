@@ -330,3 +330,24 @@
   font-size: 45px;
   z-index: 1;
 }
+
+.buttonCategory{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  gap: 10px;
+}
+
+.buttonC{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  background-color: #ffe600;
+}
+
+.playButton{
+  width: 100px;
+}
