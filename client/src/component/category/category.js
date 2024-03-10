@@ -22,24 +22,31 @@ import fighting from "../../assets/pixelArt/fighting.gif"
 function Category() {
   const dispatch = useDispatch();
   const randomCategory = useSelector((state) => state.randomCategory) || [];
-  const { categoryName } = useParams();
   const location = useLocation();
+  const { categoryName } = useParams();
   const [paginaActual, setPaginaActual] = useState(1);
   const juegosPorPagina = 10;
   const startIndex = (paginaActual - 1) * juegosPorPagina;
-  const endIndex = startIndex + juegosPorPagina;
+  const endIndex = Math.min(startIndex + juegosPorPagina, randomCategory.length);
 
   useEffect(() => {
     dispatch(getRandomGamesByCategory(categoryName, paginaActual));
   }, [dispatch, categoryName, paginaActual]);
 
   const handlePaginaAnterior = () => {
-    setPaginaActual((prev) => Math.max(prev - 1, 1));
+    if (paginaActual > 1) {
+      setPaginaActual((prev) => prev - 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
-
+  
   const handlePaginaSiguiente = () => {
-    setPaginaActual((prev) => prev + 1);
+    if (endIndex < randomCategory.length) {
+      setPaginaActual((prev) => prev + 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
+  
 
   const getCategoryInfo = () => {
     const path = location.pathname;
@@ -113,19 +120,18 @@ function Category() {
               ))}
             </div>
           )}
+          </div>
+          {randomCategory.length > juegosPorPagina && (
+            <div className={style.buttonCategory}>
+              <button className={style.buttonC} onClick={handlePaginaAnterior} disabled={paginaActual === 1}>
+                <p className={style.buttonCategory}><FontAwesomeIcon icon={faPlay} rotation={180} /></p>
+              </button>
+              <button className={style.buttonC} onClick={handlePaginaSiguiente} disabled={endIndex >= randomCategory.length}>
+                <p className={style.buttonCategory}><FontAwesomeIcon icon={faPlay} /></p>
+              </button>
+          </div>
+          )}
         </div>
-        {randomCategory.length > juegosPorPagina && (
-          <div className={style.buttonCategory}>
-  <button className={`${style.buttonC} ${style.playButton}`} onClick={handlePaginaAnterior} disabled={paginaActual === 1}>
-    <FontAwesomeIcon icon={faPlay} />
-  </button>
-  <button className={`${style.buttonC} ${style.playButton}`} onClick={handlePaginaSiguiente}>
-    <FontAwesomeIcon icon={faPlay} />
-  </button>
-</div>
-
-        )}
-      </div>
       <div className={style.content2}>
         <img src={image} alt="Categoría" />
       </div>

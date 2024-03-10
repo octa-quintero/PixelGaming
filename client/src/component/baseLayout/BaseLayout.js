@@ -44,7 +44,10 @@ export default function BaseLayout() {
             <Navbar />
           </Grid>
         )}
-        <Grid item flexGrow={1} display={'flex'} justifyContent={'center'} alignItems={'flex-start'} minHeight={'100vh'}>
+        <Grid item flexGrow={1} display={'flex'} justifyContent={'center'} alignItems={'flex-start'} minHeight={'100vh'} style={{
+                background: 'linear-gradient(to right, rgb(19, 19, 19), transparent, rgb(19, 19, 19))',
+                paddingBottom: '50px',
+            }}>
           <Routes>
             <Route exact path={'/'} element={<Home />} />
             <Route path={'/games'} element={<Games />} />

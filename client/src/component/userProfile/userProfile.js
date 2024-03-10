@@ -16,24 +16,24 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 
-import Duck from "../../assets/usersPixelArt/duck.png";
-import Ghost from "../../assets/usersPixelArt/ghost.png";
-import Ghost1 from "../../assets/usersPixelArt/ghost1.png";
-import Cat from "../../assets/usersPixelArt/cat.png";
-import Flower from "../../assets/usersPixelArt/flower.png";
-import Picachu from "../../assets/usersPixelArt/picachu.png";
-import Skull from "../../assets/usersPixelArt/skull.png";
-import Ufo from "../../assets/usersPixelArt/ufo.png";
-import Fungus from "../../assets/usersPixelArt/fungus.png";
-import Kirby from "../../assets/usersPixelArt/kirby.png";
-import Charizard from "../../assets/usersPixelArt/charizard.png";
-import Computer from "../../assets/usersPixelArt/computer.png";
-import Espada from "../../assets/usersPixelArt/espada.png";
-import GameVoy from "../../assets/usersPixelArt/gameboy.png";
-import Hamburguer from "../../assets/usersPixelArt/hamburguer.png";
-import Pacman from "../../assets/usersPixelArt/pacman.png";
-import Pizza from "../../assets/usersPixelArt/pizza.png";
-import Superman from "../../assets/usersPixelArt/superman.png";
+import Duck from "../../assets/usersPixelArt/duck.webp";
+import Ghost from "../../assets/usersPixelArt/ghost.webp";
+import Ghost1 from "../../assets/usersPixelArt/ghost1.webp";
+import Cat from "../../assets/usersPixelArt/cat.webp";
+import Flower from "../../assets/usersPixelArt/flower.webp";
+import Picachu from "../../assets/usersPixelArt/picachu.webp";
+import Skull from "../../assets/usersPixelArt/skull.webp";
+import Ufo from "../../assets/usersPixelArt/ufo.webp";
+import Fungus from "../../assets/usersPixelArt/fungus.webp";
+import Kirby from "../../assets/usersPixelArt/kirby.webp";
+import Charizard from "../../assets/usersPixelArt/charizard.webp";
+import Computer from "../../assets/usersPixelArt/computer.webp";
+import Espada from "../../assets/usersPixelArt/espada.webp";
+import GameVoy from "../../assets/usersPixelArt/gameboy.webp";
+import Hamburguer from "../../assets/usersPixelArt/hamburguer.webp";
+import Pacman from "../../assets/usersPixelArt/pacman.webp";
+import Pizza from "../../assets/usersPixelArt/pizza.webp";
+import Superman from "../../assets/usersPixelArt/superman.webp";
 
 import style from './userProfileStyle.module.css';
 

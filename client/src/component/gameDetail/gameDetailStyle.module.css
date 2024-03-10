@@ -4,11 +4,12 @@
   justify-content: flex-start;
   flex-direction: column;
   width: 80%;
-  height: 100vh;
+  height: 100%;
   margin-top: 30px;
   color: rgb(202, 202, 202);
   background-color: #2a2a2abb;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
 }
 
 .cardContent{
@@ -27,11 +28,11 @@
   overflow: hidden;
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
   height: auto;
   flex-direction: row;
   overflow: hidden;
   transition: 0.3s;
+  border-radius: 10px;
 }
 
 .image{
@@ -252,10 +253,6 @@
   font-weight: bold;
 }
 
-.avatarImage{
-  width: 30px;
-}
-
 .cardBtn:hover{
   background-color: #0475f6;
 }
@@ -282,7 +279,7 @@
 }
 
 .reviewUser img{
-  width: 25px;
+  width: 20px;
 }
 
 .text{

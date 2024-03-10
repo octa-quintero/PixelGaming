@@ -9,7 +9,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLayerGroup, faComputer, faGlobe, faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import style from "./libraryStyle.module.css";
-import Heart from "../../assets/pixelArt/heart.png";
+import Heart from "../../assets/pixelArt/heart.webp";
 import biblioteca from '../../assets/pixelArt/library.gif';
 import Cat from '../../assets/pixelArt/pixelCat.gif'
 

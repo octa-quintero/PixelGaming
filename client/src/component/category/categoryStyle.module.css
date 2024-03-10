@@ -337,17 +337,26 @@
   align-items: center;
   flex-direction: row;
   width: 100%;
-  gap: 10px;
+  gap: 20%;
+  margin-top: 10px;
 }
 
 .buttonC{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40px;
-  background-color: #ffe600;
+  background-color: transparent;
+  border: none;
+  color: rgb(202, 202, 202);
+  cursor: pointer;
 }
 
-.playButton{
-  width: 100px;
+.buttonCategory{
+  font-size: 35px;
+}
+
+.buttonCategory button:disabled {
+  color: rgb(202, 202, 202);
+  opacity: 0.2;
+  cursor: not-allowed;
 }
