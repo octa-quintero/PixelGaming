@@ -146,7 +146,7 @@ function UserProfile() {
     <div className={style.userProfileContainer}>
       <div className={style.userContent}>
         <div className={style.content}>
-          <h1 className={style.title}><FontAwesomeIcon icon={faUser} />Configuración de la Cuenta</h1>
+          <h1 className={style.title}><FontAwesomeIcon icon={faUser} />Configuración del perfil</h1>
           <div className={style.bienvenido}>
             <h2>Bienvenido</h2>
             <h1 className={style.text1}>
