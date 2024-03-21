@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index.js",
     "dev": "nodemon index.js",
-    "heroku-postbuild": "npm install && npm run build",
-    "test": "mocha -w ./tests/**/*.spec.js"
+    "test": "mocha -w ./tests/**/*.spec.js",
+    "build": "echo 'No es necesario ningún proceso de construcción para el servidor.'"
   },
   "license": "ISC",
   "dependencies": {

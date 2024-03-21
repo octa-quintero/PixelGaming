@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres
+    container_name: postgres-container
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: pixelgaming
+    ports:
+      - "5432:5432"
+    networks:
+      - pixel-gaming
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin-container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: octa.quinteroo@gmail.com 
+      PGADMIN_DEFAULT_PASSWORD: 1234
+    ports:
+      - "5050:80"
+    networks:
+      - pixel-gaming
+
+  client:
+    build: ./client
+    container_name: client-pixelgaming
+    ports:
+      - "81:80"
+    networks:
+      - pixel-gaming
+
+  server:
+    build: ./server
+    container_name: server-pixelgaming
+    ports:
+      - "8080:8080"
+    networks:
+      - pixel-gaming
+
+networks:
+  pixel-gaming:

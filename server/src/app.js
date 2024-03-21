@@ -5,16 +5,19 @@ const cors = require('cors');
 const morgan = require('morgan');
 const path = require('path');
 const routes = require('./routes/index.js');
-const PORT = process.env.PORT || 3001;
 const { Pool } = require('pg');
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
 require('./db.js');
 
 const server = express(); // Creación de la instancia del servidor
 server.use(cors()); // Habilitar CORS
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true
+  user: DB_USER,
+  password: DB_PASSWORD,
+  host: DB_HOST,
+  port: DB_PORT,
+  database: DB_NAME,
 });
 
 pool.connect((err, client, done) => {

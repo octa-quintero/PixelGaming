@@ -10,17 +10,17 @@ const PORT = process.env.PORT || 3001;
 // Middleware
 server.use(cors());
 
-// Servir archivos estáticos en producción
 if (process.env.NODE_ENV === 'production') {
-  server.use(express.static(path.join(__dirname, 'client/build')));
+  const buildPath = path.resolve(__dirname, '..', 'client', 'build');
+  server.use(express.static(buildPath));
 }
 
-console.log(__dirname, 'client/build');
-
-// Sincronización de la base de datos y inicio del servidor
 async function startServer() {
   try {
+    await conn.authenticate();
+    console.log('Connected to the database');
     await conn.sync({ force: false });
+    console.log('Database synchronized successfully');
     await server.listen(PORT);
     console.log('Server listening on port', PORT);
     await data();

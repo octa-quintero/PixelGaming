@@ -5,14 +5,21 @@ const path = require('path');
 const {
   DB_USER,
   DB_PASSWORD,
-  DB_HOST
+  DB_HOST,
+  DB_NAME,
+  DB_PORT
 } = process.env;
 
 // Configuración de Sequelize para la conexión a la base de datos
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pixelgaming`, {
-    logging: false,
-    native: false,
+const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+  host: 'localhost',
+  port: DB_PORT,
+  dialect: 'postgres',
+  logging: false,
 });
+
+console.log('DB_HOST:', DB_HOST);
+
 
 // Cargar modelos de la carpeta 'models'
 const basename = path.basename(__filename);
@@ -59,4 +66,3 @@ module.exports = {
   conn: sequelize,
   Op
 }
-
