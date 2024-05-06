@@ -7,6 +7,7 @@ const path = require('path');
 const routes = require('./routes/index.js');
 const { Pool } = require('pg');
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
+require('dotenv').config();
 require('./db.js');
 
 const server = express(); // Creación de la instancia del servidor
@@ -25,7 +26,7 @@ pool.connect((err, client, done) => {
     console.error('Error al conectar con la base de datos:', err);
   } else {
     console.log('Conexión exitosa con la base de datos!');
-    done(); // liberar el cliente al pool
+    done();
   }
 });
 

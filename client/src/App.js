@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.module.scss';
-import BaseLayout from "./component/baseLayout/BaseLayout";
 import { BrowserRouter } from "react-router-dom";
+import BaseLayout from "./component/baseLayout/BaseLayout";
+import './App.module.scss';
 
 function App() {
   return (
@@ -12,7 +12,5 @@ function App() {
       </div>
   );
 }
-
-
 export default App;
   

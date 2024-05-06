@@ -1,5 +1,8 @@
 version: '3.8'
 
+networks:
+  pixel-gaming:
+
 services:
   postgres:
     image: postgres
@@ -25,20 +28,26 @@ services:
       - pixel-gaming
 
   client:
+    image: pixelgaming-client
     build: ./client
-    container_name: client-pixelgaming
+    container_name: pixelgaming-client
     ports:
       - "81:80"
     networks:
       - pixel-gaming
 
   server:
-    build: ./server
-    container_name: server-pixelgaming
+    image: pixelgaming-server
+    depends_on:
+      - postgres
+    container_name: pixelgaming-server
+    environment:
+      DB_USER: postgres
+      DB_PASSWORD: 1234
+      DB_HOST: postgres  # Usar el nombre del servicio aquí en lugar de una dirección IP fija
+      DB_PORT: 5432
+      DB_NAME: pixelgaming
     ports:
       - "8080:8080"
     networks:
       - pixel-gaming
-
-networks:
-  pixel-gaming:

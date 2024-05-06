@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:3001/'
+  baseURL: 'http://localhost:8080/'
 });
 
 // Agrega un interceptor para configurar los encabezados antes de cada solicitud

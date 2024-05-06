@@ -10,13 +10,13 @@ const {
   DB_PORT
 } = process.env;
 
-// Configuración de Sequelize para la conexión a la base de datos
-const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
-  host: 'localhost',
-  port: DB_PORT,
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
   dialect: 'postgres',
   logging: false,
 });
+
 
 console.log('DB_HOST:', DB_HOST);
 

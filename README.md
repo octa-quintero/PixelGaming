@@ -19,7 +19,7 @@
 
 PixelGaming es una plataforma innovadora para amantes de los juegos online, centrada en la búsqueda, personalización y interaccion de la comunidad. Descubre, crea tu biblioteca, y participa en la comunidad de jugadores.
 
-- **Descubre y Explora:** Encuentra emocionantes juegos online.
+- **Descubre y Explora:** Encuentra emocionantes juegos online
 
 - **Crea tu Cuenta:** Personaliza tu experiencia y comparte con la comunidad.
 
